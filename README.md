@@ -7,7 +7,7 @@ Package license: MIT
 
 Feedstock license: BSD
 
-Summary: The Geospatial Data Abstraction Library (GDAL)
+Summary: The Geospatial Data Abstraction Library (GDAL). Built with all command line tools and with GEOS and HDF5 support.
 
 
 
