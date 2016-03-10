@@ -16,8 +16,4 @@ def has_geos():
         ogr.UseExceptions()
     return hasgeos
 
-if has_geos():
-  print('GDAL has GEOS compiled in')
-else:
-  print('GEOS not available within GDAL')
-  
+assert has_geos(), 'GEOS not available within GDAL'
