@@ -1,10 +1,12 @@
+{% set version = "1.11.4" %}
+
 package:
     name: gdal
-    version: 1.11.4
+    version: {{ version }}
 
 source:
-    fn: gdal-1.11.4.tar.gz
-    url: http://download.osgeo.org/gdal/1.11.4/gdal-1.11.4.tar.gz
+    fn: gdal-{{ version }}.tar.gz
+    url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.gz
     md5: e9a966f0f5a88c43da47faf78a865952
     patches:
         - clang.patch  # [osx]
@@ -13,8 +15,12 @@ source:
         - install_scripts.patch
 
 build:
-    number: 0
+    number: 2
     skip: True  # [win and py35]
+    features:
+        - vc9  # [win and py27]
+        - vc10  # [win and py34]
+        - vc14  # [win and py35]
 
 requirements:
     build:
