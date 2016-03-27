@@ -38,6 +38,7 @@ requirements:
         - postgresql  # [linux]
         - openjpeg  # [not win]
         - curl  # [not win]
+        - giflib  # [not win]
     run:
         - python
         - numpy x.x
@@ -52,6 +53,7 @@ requirements:
         - postgresql  # [linux]
         - openjpeg  # [not win]
         - curl  # [not win]
+        - giflib  # [not win]
 
 test:
     files:
@@ -82,6 +84,7 @@ test:
         - gdalenhance --version  # [not win]
         - gdalwarp --version  # [not win]
         - gdalinfo --formats  # [not win]
+        - conda inspect linkages gdal --name _test  # [linux]
 
 about:
     home: http://www.gdal.org/
