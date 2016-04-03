@@ -14,7 +14,7 @@ source:
         - install_scripts.patch
 
 build:
-    number: 1
+    number: 2
     skip: True  # [win and py35]
     features:
         - vc9  # [win and py27]
@@ -41,9 +41,17 @@ requirements:
         - postgresql  # [linux]
         - openjpeg  # [not win]
         - curl  # [not win]
+        - giflib  # [not win]
+        - json-c  # [not win]
+        - jasper  # [not win]
+        - freexl  # [not win]
+        - expat
+        - libxml2  # [not win]
+        #- libspatialite FIXME: PR pending
     run:
         - python
         - numpy x.x
+        - libtool  # [not win]
         - hdf4  # [not win]
         - hdf5
         - geos
@@ -59,6 +67,13 @@ requirements:
         - postgresql  # [linux]
         - openjpeg  # [not win]
         - curl  # [not win]
+        - giflib  # [not win]
+        - json-c  # [not win]
+        - jasper  # [not win]
+        - freexl  # [not win]
+        - expat
+        - libxml2  # [not win]
+        #- libspatialite FIXME: PR pending
 
 test:
     files:
@@ -89,6 +104,7 @@ test:
         - gdalenhance --version  # [not win]
         - gdalwarp --version  # [not win]
         - gdalinfo --formats  # [not win]
+        - conda inspect linkages -n _test gdal  # [linux]
 
 about:
     home: http://www.gdal.org/
