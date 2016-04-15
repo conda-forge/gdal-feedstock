@@ -15,7 +15,9 @@ source:
         - install_scripts.patch
 
 build:
-    number: 4
+    number: 5
+    # FIXME: Revert this once staged-recipes/pull/370 is merged.
+    skip: True  # [py35]
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -33,20 +35,21 @@ requirements:
         - xerces-c
         - libnetcdf
         - krb5
-        - libtiff
         - libpng
         - openjpeg
+        - libtiff 4*
+        - jpeg 9*
         - curl
         - expat
         - zlib  # [not win]
-        - jpeg  # [not win]
+        # TODO: Test `postgresql` on OS X.
         - postgresql  # [linux]
         - jasper  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
         - freexl  # [not win]
-        - xz  # [not win]
-        - libspatialite  # [linux]
+        - xz 5.2*  # [not win]
+        - libspatialite  # [not win]
     run:
         - python
         - numpy x.x
@@ -57,21 +60,24 @@ requirements:
         - xerces-c
         - libnetcdf
         - krb5
-        - libtiff
         - libpng
         - openjpeg
+        - libtiff 4*
+        - jpeg 9*
         - curl
         - expat
         - zlib  # [not win]
-        - jpeg  # [not win]
+        # TODO: Test `postgresql` on OS X.
         - postgresql  # [linux]
         - jasper  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
         - freexl  # [not win]
-        - xz  # [not win]
-        - libspatialite  # [linux]
+        - xz 5.2*  # [not win]
+        - libspatialite  # [not win]
 test:
+    requires:
+        - python {{ environ['PY_VER'] + '*' }}  # [win]
     files:
         - os1_hw.py
         - sites.dbf

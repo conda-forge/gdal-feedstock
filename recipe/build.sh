@@ -4,10 +4,12 @@ if [ $(uname) == Darwin ]; then
   export LDFLAGS="-headerpad_max_install_names"
   OPTS="--enable-rpath"
 else
-  OPTS="--with-pg=$PREFIX/bin/pg_config --with-xml2=$PREFIX"
+  OPTS="--with-pg=$PREFIX/bin/pg_config --disable-rpath"
 fi
 
-CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
+export LDFLAGS="$LDFLAGS -L$PREFIX/lib"
+export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
+
 ./configure --prefix=$PREFIX \
             --with-hdf4=$PREFIX \
             --with-hdf5=$PREFIX \
@@ -15,21 +17,20 @@ CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
             --with-netcdf=$PREFIX \
             --with-geos=$PREFIX/bin/geos-config \
             --with-static-proj4=$PREFIX \
-            --with-openjpeg=$PREFIX \
+            --with-libz=$PREFIX \
+            --with-png=$PREFIX \
             --with-jpeg=$PREFIX \
             --with-libtiff=$PREFIX \
-            --with-png=$PREFIX \
-            --with-libz=$PREFIX \
-            --disable-rpath \
+            --with-openjpeg=$PREFIX \
             --without-pam \
             --with-python \
             --with-libjson-c=$PREFIX \
             --with-expat=$PREFIX \
             --with-freexl=$PREFIX \
+            --with-xml2=$PREFIX \
             --with-spatialite=$PREFIX \
             --enable-debug \
-            $PGFLAG
-
+            $OPTS
 
 make
 make install
