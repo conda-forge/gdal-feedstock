@@ -15,7 +15,7 @@ source:
         - install_scripts.patch
 
 build:
-    number: 4
+    number: 5
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -33,19 +33,19 @@ requirements:
         - xerces-c
         - libnetcdf
         - krb5
-        - libtiff
+        - libtiff 4*
         - libpng
         - openjpeg
         - curl
         - expat
         - zlib  # [not win]
-        - jpeg  # [not win]
+        - jpeg 9*  # [not win]
         - postgresql  # [linux]
         - jasper  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
         - freexl  # [not win]
-        - xz  # [not win]
+        - xz 5*  # [not win]
         - libspatialite  # [linux]
     run:
         - python
@@ -57,19 +57,19 @@ requirements:
         - xerces-c
         - libnetcdf
         - krb5
-        - libtiff
+        - libtiff 4*
         - libpng
         - openjpeg
         - curl
         - expat
         - zlib  # [not win]
-        - jpeg  # [not win]
+        - jpeg 9*  # [not win]
         - postgresql  # [linux]
         - jasper  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
         - freexl  # [not win]
-        - xz  # [not win]
+        - xz 5*  # [not win]
         - libspatialite  # [linux]
 test:
     files:
