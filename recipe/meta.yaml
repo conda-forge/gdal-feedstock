@@ -16,8 +16,8 @@ source:
 
 build:
     number: 5
-    # FIXME: Revert this once staged-recipes/pull/370 is merged.
-    skip: True  # [py35]
+    skip: True  # [not win]
+    skip: True  # [py27]
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -28,53 +28,33 @@ requirements:
         - python
         - setuptools
         - numpy x.x
-        - hdf4  # [not win]
         - hdf5 1.8.15.1
         - geos
         - proj.4
         - xerces-c
         - libnetcdf
         - krb5
+        - libtiff
         - libpng
         - openjpeg
-        - libtiff 4*
         - jpeg 9*
         - curl
         - expat
-        - zlib  # [not win]
-        # TODO: Test `postgresql` on OS X.
-        - postgresql  # [linux]
-        - jasper  # [not win]
-        - giflib  # [not win]
-        - json-c  # [not win]
-        - freexl  # [not win]
-        - xz 5.2*  # [not win]
-        - libspatialite  # [not win]
     run:
         - python
         - numpy x.x
-        - hdf4  # [not win]
         - hdf5 1.8.15.1
         - geos
         - proj.4
         - xerces-c
         - libnetcdf
         - krb5
+        - libtiff
         - libpng
         - openjpeg
-        - libtiff 4*
         - jpeg 9*
         - curl
         - expat
-        - zlib  # [not win]
-        # TODO: Test `postgresql` on OS X.
-        - postgresql  # [linux]
-        - jasper  # [not win]
-        - giflib  # [not win]
-        - json-c  # [not win]
-        - freexl  # [not win]
-        - xz 5.2*  # [not win]
-        - libspatialite  # [not win]
 test:
     requires:
         - python {{ environ['PY_VER'] + '*' }}  # [win]
