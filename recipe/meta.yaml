@@ -15,7 +15,9 @@ source:
         - install_scripts.patch
 
 build:
-    number: 4
+    number: 5
+    skip: True  # [not win]
+    skip: True  # [py27]
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -26,7 +28,6 @@ requirements:
         - python
         - setuptools
         - numpy x.x
-        - hdf4  # [not win]
         - hdf5 1.8.15.1
         - geos
         - proj.4
@@ -36,21 +37,12 @@ requirements:
         - libtiff
         - libpng
         - openjpeg
+        - jpeg 9*
         - curl
         - expat
-        - zlib  # [not win]
-        - jpeg  # [not win]
-        - postgresql  # [linux]
-        - jasper  # [not win]
-        - giflib  # [not win]
-        - json-c  # [not win]
-        - freexl  # [not win]
-        - xz  # [not win]
-        - libspatialite  # [linux]
     run:
         - python
         - numpy x.x
-        - hdf4  # [not win]
         - hdf5 1.8.15.1
         - geos
         - proj.4
@@ -60,18 +52,12 @@ requirements:
         - libtiff
         - libpng
         - openjpeg
+        - jpeg 9*
         - curl
         - expat
-        - zlib  # [not win]
-        - jpeg  # [not win]
-        - postgresql  # [linux]
-        - jasper  # [not win]
-        - giflib  # [not win]
-        - json-c  # [not win]
-        - freexl  # [not win]
-        - xz  # [not win]
-        - libspatialite  # [linux]
 test:
+    requires:
+        - python {{ environ['PY_VER'] + '*' }}  # [win]
     files:
         - os1_hw.py
         - sites.dbf
