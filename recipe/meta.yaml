@@ -14,7 +14,7 @@ source:
         - install_scripts.patch
 
 build:
-    number: 3
+    number: 4
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -33,10 +33,10 @@ requirements:
         - libnetcdf
         - kealib
         - krb5
-        - libtiff
+        - libtiff 4*
         - libpng
         - zlib  # [not win]
-        - jpeg  # [not win]
+        - jpeg 9*  # [not win]
         - postgresql  # [linux]
         - openjpeg
         - curl
@@ -51,10 +51,10 @@ requirements:
         - libnetcdf
         - kealib
         - krb5
-        - libtiff
+        - libtiff 4*
         - libpng
         - zlib  # [not win]
-        - jpeg  # [not win]
+        - jpeg 9*  # [not win]
         - postgresql  # [linux]
         - openjpeg
         - curl
