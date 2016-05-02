@@ -3,7 +3,7 @@ from osgeo import ogr
 from osgeo import osr
 
 # this module does some tests
-import os1_hw
+import tests
 
 # Set GDAL_DATA. This is done normally done by the activate script,
 # but this doesn't happen in the testing environment
