@@ -8,8 +8,8 @@ import ogr
 
 # Set the working directory and filenames.
 # os.chdir('d:/data/classes/python/os1')
-dataFn = 'sites.shp'
-outFn = 'sites_coords.txt'
+dataFn = 'tests/sites.shp'
+outFn = 'tests/sites_coords.txt'
 
 # Open the output file.
 outFile = open(outFn, 'w')

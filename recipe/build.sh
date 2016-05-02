@@ -26,7 +26,7 @@ CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
             --with-python \
             $PGFLAG
 
-make
+make -s
 make install
 
 # Make sure GDAL_DATA and set and still present in the package.
