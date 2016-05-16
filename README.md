@@ -69,6 +69,7 @@ Terminology
 
 Current build status
 ====================
+
 Linux: [![Circle CI](https://circleci.com/gh/conda-forge/gdal-feedstock.svg?style=svg)](https://circleci.com/gh/conda-forge/gdal-feedstock)
 OSX: [![TravisCI](https://travis-ci.org/conda-forge/gdal-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/gdal-feedstock) 
 Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/gdal-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/gdal-feedstock/branch/master)
