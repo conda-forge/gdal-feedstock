@@ -43,7 +43,7 @@ requirements:
         - postgresql  # [not win]
         - openjpeg
         - curl
-        - sqlite
+        - sqlite  # [not win]
         - libspatialite  # [not win]
 
     run:
@@ -64,7 +64,7 @@ requirements:
         - postgresql  # [not win]
         - openjpeg
         - curl
-        - sqlite 
+        - sqlite  # [not win]
         - libspatialite  # [not win]
 
 test:
