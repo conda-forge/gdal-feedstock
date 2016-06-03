@@ -17,7 +17,7 @@ source:
         - install_scripts.patch
 
 build:
-    number: 3
+    number: 4
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -40,9 +40,12 @@ requirements:
         - libpng 1.6*
         - zlib 1.2*  # [not win]
         - jpeg 9*
-        - postgresql  # [linux]
+        - postgresql  # [not win]
         - openjpeg
         - curl
+        - sqlite  # [not win]
+        - libspatialite  # [not win]
+
     run:
         - python
         - numpy x.x
@@ -58,9 +61,11 @@ requirements:
         - libpng 1.6*
         - zlib 1.2*  # [not win]
         - jpeg 9*
-        - postgresql  # [linux]
+        - postgresql  # [not win]
         - openjpeg
         - curl
+        - sqlite  # [not win]
+        - libspatialite  # [not win]
 
 test:
     files:

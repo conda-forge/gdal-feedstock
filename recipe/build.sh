@@ -20,6 +20,9 @@ CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
             --with-jpeg=$PREFIX \
             --with-libtiff=$PREFIX \
             --with-png=$PREFIX \
+	    --with-sqlite3=$PREFIX \
+            --with-spatialite=$PREFIX \
+	    --with-curl \
             --with-libz=$PREFIX \
             --disable-rpath \
             --without-pam \
