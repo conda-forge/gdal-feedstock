@@ -18,7 +18,7 @@ source:
         - install_scripts.patch
 
 build:
-    number: 6
+    number: 7
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -46,12 +46,12 @@ requirements:
         - postgresql  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
-        - freexl  # [not win]
+        - freexl
         - openjpeg
         - curl
         - expat
-        - sqlite  # [not win]
-        - libspatialite  # [not win]
+        - sqlite 3.13.*
+        - libspatialite
 
     run:
         - python
@@ -71,12 +71,12 @@ requirements:
         - postgresql  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
-        - freexl  # [not win]
+        - freexl
         - openjpeg
         - curl
         - expat
-        - sqlite  # [not win]
-        - libspatialite  # [not win]
+        - sqlite 3.13.*
+        - libspatialite
 
 test:
     files:
