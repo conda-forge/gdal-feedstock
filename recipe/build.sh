@@ -21,7 +21,9 @@ export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
 # `--without-pam` was removed.
 # See https://github.com/conda-forge/gdal-feedstock/pull/47 for the discussion.
 
-./configure --prefix=$PREFIX \
+./configure CC=$CC \
+            CXX=$CXX \
+            --prefix=$PREFIX \
             --with-hdf4=$PREFIX \
             --with-hdf5=$PREFIX \
             --with-xerces=$PREFIX \
@@ -43,7 +45,6 @@ export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
             --with-sqlite3=$PREFIX \
             --with-curl \
             --with-python \
-            --without-libtool \
             $OPTS
 
 
