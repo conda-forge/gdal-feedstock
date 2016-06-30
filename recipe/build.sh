@@ -18,11 +18,17 @@ fi
 export LDFLAGS="$LDFLAGS -L$PREFIX/lib"
 export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
 
+# make copy and unset CC and CXX
+# see https://github.com/conda-forge/gdal-feedstock/issues/81
+export CF_CC=$CC
+export CF_CXX=$CXX
+unset CC CXX
+
 # `--without-pam` was removed.
 # See https://github.com/conda-forge/gdal-feedstock/pull/47 for the discussion.
 
-./configure CC=$CC \
-            CXX=$CXX \
+./configure CC=$CF_CC \
+            CXX=$CF_CXX \
             --prefix=$PREFIX \
             --with-hdf4=$PREFIX \
             --with-hdf5=$PREFIX \
