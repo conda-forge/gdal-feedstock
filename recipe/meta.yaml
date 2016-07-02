@@ -16,9 +16,10 @@ source:
         - disable_jpeg12.patch  # [win]
         - windowshdf5.patch  # [win]
         - install_scripts.patch
+        - config_site.patch  # [not win]
 
 build:
-    number: 6
+    number: 7
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -28,7 +29,6 @@ requirements:
     build:
         - python
         - setuptools
-        - toolchain
         - cmake  # [win]
         - numpy x.x
         - hdf4

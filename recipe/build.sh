@@ -10,13 +10,12 @@ source activate "${CONDA_DEFAULT_ENV}"
 
 if [ $(uname) == Darwin ]; then
     OPTS="--enable-rpath"
-    export CXX="${CXX} -stdlib=libc++"
 else
     OPTS="--disable-rpath"
 fi
 
-export LDFLAGS="$LDFLAGS -L$PREFIX/lib"
-export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
+# experimental CONFIG_SITE support
+export CONFIG_SITE=`pwd`/config.site
 
 # `--without-pam` was removed.
 # See https://github.com/conda-forge/gdal-feedstock/pull/47 for the discussion.
@@ -43,7 +42,6 @@ export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
             --with-sqlite3=$PREFIX \
             --with-curl \
             --with-python \
-            --without-libtool \
             $OPTS
 
 
