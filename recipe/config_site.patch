@@ -1,0 +1,51 @@
+--- /dev/null	2016-07-02 15:43:08.000000000 +1000
++++ config.site	2016-07-02 15:53:31.000000000 +1000
+@@ -0,0 +1,48 @@
++
++if [ "$(uname)" == "Darwin" ]
++then
++    # for Mac OSX
++    CC=clang
++    CXX=clang++
++    MACOSX_VERSION_MIN="10.9"
++    MACOSX_DEPLOYMENT_TARGET="${MACOSX_VERSION_MIN}"
++    CMAKE_OSX_DEPLOYMENT_TARGET="${MACOSX_VERSION_MIN}"
++    CFLAGS="${CFLAGS} -mmacosx-version-min=${MACOSX_VERSION_MIN}"
++    CXXFLAGS="${CXXFLAGS} -mmacosx-version-min=${MACOSX_VERSION_MIN}"
++    CXXFLAGS="${CXXFLAGS} -stdlib=libc++"
++    LDFLAGS="${LDFLAGS} -headerpad_max_install_names"
++    LDFLAGS="${LDFLAGS} -mmacosx-version-min=${MACOSX_VERSION_MIN}"
++    LDFLAGS="${LDFLAGS} -lc++"
++    LINKFLAGS="${LDFLAGS}"
++elif [ "$(uname)" == "Linux" ]
++then
++    # for Linux
++    CC=gcc
++    CXX=g++
++    CFLAGS="${CFLAGS}"
++    # Boost wants to enable `float128` support on Linux by default.
++    # However, we don't install `libquadmath` so it will fail to find
++    # the needed headers and fail to compile things. Adding this flag
++    # tells Boost not to support `float128` and avoids this search
++    # process. As it has confused a few people. We have added it here.
++    # The idea to add this flag was inspired by this Boost ticked.
++    #
++    # https://svn.boost.org/trac/boost/ticket/9240
++    #
++    CXXFLAGS="${CXXFLAGS} -DBOOST_MATH_DISABLE_FLOAT128"
++    LDFLAGS="${LDFLAGS}"
++    LINKFLAGS="${LDFLAGS}"
++else
++    echo "This system is unsupported by the toolchain."
++    exit 1
++fi
++
++CFLAGS="${CFLAGS} -m${ARCH}"
++CXXFLAGS="${CXXFLAGS} -m${ARCH}"
++
++# not sure about this bit - needed for GDAL
++LDFLAGS="$LDFLAGS -L$PREFIX/lib"
++CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
++
++# make sure we always suceed as some things check
++true

@@ -51,6 +51,18 @@ assert driver is not None
 driver = gdal.GetDriverByName("WCS")
 assert driver is not None
 
+# only available when freexl successfully linked in
+driver = ogr.GetDriverByName("XLS")
+assert driver is not None
+
+# only available when expat successfully linked in
+driver = ogr.GetDriverByName("KML")
+assert driver is not None
+
+# only available when SQLite successfully linked in
+driver = ogr.GetDriverByName("SQLite")
+assert driver is not None
+
 def has_geos():
     pnt1 = ogr.CreateGeometryFromWkt( 'POINT(10 20)' )
     pnt2 = ogr.CreateGeometryFromWkt( 'POINT(30 20)' )
