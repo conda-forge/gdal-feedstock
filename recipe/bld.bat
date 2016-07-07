@@ -64,7 +64,15 @@ set BLD_OPTS=%WIN64% ^
     OPENJPEG_LIB=%LIBRARY_LIB%\openjp2.lib ^
     OPENJPEG_VERSION=20100 ^
     CURL_INC="-I%LIBRARY_INC%" ^
-    CURL_LIB="%LIBRARY_LIB%\libcurl.lib wsock32.lib wldap32.lib winmm.lib"
+    CURL_LIB="%LIBRARY_LIB%\libcurl.lib wsock32.lib wldap32.lib winmm.lib" ^
+    FREEXL_CFLAGS="-I%LIBRARY_INC%" ^
+    FREEXL_LIBS=%LIBRARY_LIB%\freexl_i.lib ^
+    EXPAT_DIR=%LIBRARY_PREFIX% ^
+    EXPAT_INCLUDE="-I%LIBRARY_INC%" ^
+    EXPAT_LIB=%LIBRARY_LIB%\expat.lib ^
+    SQLITE_INC="-I%LIBRARY_INC% -DHAVE_SPATIALITE" ^
+    SQLITE_LIB="%LIBRARY_LIB%\sqlite3.lib %LIBRARY_LIB%\spatialite_i.lib" ^
+    SPATIALITE_412_OR_LATER=yes
 
 nmake /f makefile.vc %BLD_OPTS%
 if errorlevel 1 exit 1

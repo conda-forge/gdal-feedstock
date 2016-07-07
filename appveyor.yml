@@ -20,51 +20,21 @@ environment:
 
   matrix:
     - TARGET_ARCH: x86
-      CONDA_NPY: 110
       CONDA_PY: 27
 
     - TARGET_ARCH: x64
-      CONDA_NPY: 110
       CONDA_PY: 27
 
     - TARGET_ARCH: x86
-      CONDA_NPY: 111
-      CONDA_PY: 27
-
-    - TARGET_ARCH: x64
-      CONDA_NPY: 111
-      CONDA_PY: 27
-
-    - TARGET_ARCH: x86
-      CONDA_NPY: 110
       CONDA_PY: 34
 
     - TARGET_ARCH: x64
-      CONDA_NPY: 110
       CONDA_PY: 34
 
     - TARGET_ARCH: x86
-      CONDA_NPY: 111
-      CONDA_PY: 34
-
-    - TARGET_ARCH: x64
-      CONDA_NPY: 111
-      CONDA_PY: 34
-
-    - TARGET_ARCH: x86
-      CONDA_NPY: 110
       CONDA_PY: 35
 
     - TARGET_ARCH: x64
-      CONDA_NPY: 110
-      CONDA_PY: 35
-
-    - TARGET_ARCH: x86
-      CONDA_NPY: 111
-      CONDA_PY: 35
-
-    - TARGET_ARCH: x64
-      CONDA_NPY: 111
       CONDA_PY: 35
 
 
@@ -91,9 +61,9 @@ install:
     - cmd: set PATH=%CONDA_INSTALL_LOCN%;%CONDA_INSTALL_LOCN%\scripts;%PATH%
     - cmd: set PYTHONUNBUFFERED=1
 
+    - cmd: conda config --set show_channel_urls true
     - cmd: conda install -c pelson/channel/development --yes --quiet obvious-ci
     - cmd: conda config --add channels conda-forge
-    - cmd: conda config --set show_channel_urls true
     - cmd: conda info
     - cmd: conda install -n root --quiet --yes conda-build anaconda-client jinja2 setuptools
     # Workaround for Python 3.4 and x64 bug in latest conda-build.
