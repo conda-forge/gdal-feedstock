@@ -18,7 +18,7 @@ source:
         - install_scripts.patch
 
 build:
-    number: 6
+    number: 7
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -28,9 +28,9 @@ requirements:
     build:
         - python
         - setuptools
-        - toolchain
+        - mkl
         - cmake  # [win]
-        - numpy x.x
+        - numpy 1.10.2
         - hdf4
         - hdf5 1.8.17|1.8.17.*
         - geos
@@ -38,7 +38,6 @@ requirements:
         - xerces-c
         - libnetcdf 4.4.*
         - kealib
-        - krb5
         - libtiff 4.0.*
         - libpng >=1.6.21,<1.7
         - zlib 1.2.*  # [not win]
@@ -46,16 +45,16 @@ requirements:
         - postgresql  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
-        - freexl  # [not win]
+        - freexl
         - openjpeg
         - curl
         - expat
-        - sqlite  # [not win]
-        - libspatialite  # [not win]
+        - sqlite 3.13.*
+        - libspatialite
 
     run:
         - python
-        - numpy x.x
+        - numpy 1.10.2
         - hdf4
         - hdf5 1.8.17|1.8.17.*
         - geos
@@ -63,7 +62,6 @@ requirements:
         - xerces-c
         - libnetcdf 4.4.*
         - kealib
-        - krb5
         - libtiff 4.0.*
         - libpng >=1.6.21,<1.7
         - zlib 1.2.*  # [not win]
@@ -71,12 +69,12 @@ requirements:
         - postgresql  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
-        - freexl  # [not win]
+        - freexl
         - openjpeg
         - curl
         - expat
-        - sqlite  # [not win]
-        - libspatialite  # [not win]
+        - sqlite 3.13.*
+        - libspatialite
 
 test:
     files:
@@ -106,6 +104,7 @@ test:
         - gdalenhance --version
         - gdalwarp --version
         - gdalinfo --formats
+        - conda inspect linkages -n _test gdal  # [not win]
 
 about:
     home: http://www.gdal.org/
