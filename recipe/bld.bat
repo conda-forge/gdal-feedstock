@@ -89,6 +89,11 @@ if errorlevel 1 exit 1
 
 :: Python bindings
 cd swig\python
+
+:: Regenerate python bindings.
+make veryclean
+make generate
+
 %PYTHON% setup.py build
 if errorlevel 1 exit 1
 
