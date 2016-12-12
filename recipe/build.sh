@@ -79,13 +79,13 @@ export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
             $OPTS
 
 # Regenerate python bindings.
-cd swig/python
+pushd swig/python
 make veryclean
 make generate
-cd ../..
+popd
 
 # CircleCI offers two cores.
-make -j 2 >> $BUILD_OUTPUT 2>&1
+make -j $CPU_COUNT >> $BUILD_OUTPUT 2>&1
 make install >> $BUILD_OUTPUT 2>&1
 
 # Make sure GDAL_DATA and set and still present in the package.
