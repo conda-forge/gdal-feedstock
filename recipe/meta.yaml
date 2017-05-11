@@ -8,6 +8,7 @@ source:
   fn: gdal-{{ version }}.tar.gz
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.gz
   sha256: d06546a6e34b77566512a2559e9117402320dd9487de9aa95cb8a377815dc360
+  # Workaround CircleCI time limit.
   patches:
     - clang.patch  # [osx]
     - prepend-dll.patch  # [win]
@@ -20,6 +21,7 @@ source:
 
 build:
   number: 0
+  skip: True  # [not (py36 and linux)]
   features:
     - vc9  # [win and py27]
     - vc10  # [win and py34]
