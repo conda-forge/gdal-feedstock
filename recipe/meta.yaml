@@ -20,7 +20,7 @@ source:
     - install_scripts.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [py36 and linux]
   features:
     - vc9  # [win and py27]
