@@ -37,7 +37,7 @@ requirements:
     - hdf5 1.8.17|1.8.17.*
     - geos 3.5.*
     - proj4 4.9.3
-    - xerces-c
+    - xerces-c >=3.1.4-3
     - libnetcdf 4.4.*
     - libdap4 3.18.*  # [not win]
     - kealib
@@ -65,7 +65,7 @@ requirements:
     - hdf5 1.8.17|1.8.17.*
     - geos 3.5.*
     - proj4 4.9.3
-    - xerces-c
+    - xerces-c >=3.1.4-3
     - libnetcdf 4.4.*
     - libdap4 3.18.*  # [not win]
     - kealib
