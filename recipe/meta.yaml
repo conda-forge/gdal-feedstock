@@ -54,6 +54,7 @@ requirements:
     - expat
     - sqlite 3.13.*
     - libspatialite
+    - icu
     - vc   9  # [win and py27]
     - vc  10  # [win and py34]
     - vc  14  # [win and py>=35]
@@ -82,6 +83,7 @@ requirements:
     - expat
     - sqlite 3.13.*
     - libspatialite
+    - icu
     - vc   9  # [win and py27]
     - vc  10  # [win and py34]
     - vc  14  # [win and py>=35]
