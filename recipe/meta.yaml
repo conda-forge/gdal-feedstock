@@ -1,4 +1,4 @@
-{% set version = "2.2.1" %}
+{% set version = "2.1.4" %}
 
 package:
   name: gdal
@@ -7,8 +7,7 @@ package:
 source:
   fn: gdal-{{ version }}.tar.gz
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.gz
-  sha256: 61837706abfa3e493f3550236efc2c14bd6b24650232f9107db50a944abf8b2f
-  # Workaround to allow CircleCI to complete.
+  sha256: 79aa6331008af7c1d36d30e4a7dae92b2b8a3512a6084b672a2b2659731e6529
   patches:
     - clang.patch  # [osx]
     - prepend-dll.patch  # [win]
