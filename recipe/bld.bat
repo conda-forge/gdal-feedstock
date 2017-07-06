@@ -1,4 +1,10 @@
-cd swig\python
+cd swig
+
+:: Regenerate python bindings.
+nmake /f makefile.vc python %BLD_OPTS%
+if errorlevel 1 exit 1
+
+cd python
 
 %PYTHON% setup.py build_ext --include-dirs %LIBRARY_INC% --library-dirs %LIBRARY_LIB% --gdal-config %LIBRARY_BIN%\gdal-config
 if errorlevel 1 exit 1
