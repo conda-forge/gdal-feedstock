@@ -8,14 +8,13 @@ source:
   fn: gdal-{{ version }}.tar.gz
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.gz
   sha256: 61837706abfa3e493f3550236efc2c14bd6b24650232f9107db50a944abf8b2f
-  # Workaround to allow CircleCI to complete.
   patches:
     - clang.patch  # [osx]
     - prepend-dll.patch  # [win]
     - install_scripts.patch
 
 build:
-  number: 0
+  number: 1
   features:
     - vc9  # [win and py27]
     - vc10  # [win and py34]
@@ -26,14 +25,14 @@ requirements:
     - python
     - setuptools
     - cmake  # [win]
-    - numpy x.x
+    - numpy 1.8.*
     - libgdal {{ version }}
     - vc 9  # [win and py27]
     - vc 10  # [win and py34]
     - vc 14  # [win and (py35 and py36)]
   run:
     - python
-    - numpy x.x
+    - numpy >=1.8
     - libgdal {{ version }}
     - vc 9  # [win and py27]
     - vc 10  # [win and py34]
