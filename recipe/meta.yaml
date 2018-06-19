@@ -1,4 +1,4 @@
-{% set version = "2.2.4" %}
+{% set version = "2.3.0" %}
 
 package:
   name: gdal
@@ -6,7 +6,7 @@ package:
 
 source:
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.xz
-  sha256: 441eb1d1acb35238ca43a1a0a649493fc91fdcbab231d0747e9d462eea192278
+  sha256: 6f75e49aa30de140525ccb58688667efe3a2d770576feb7fbc91023b7f552aa2
   patches:
     - clang.patch  # [osx]
     - prepend-dll.patch  # [win]
