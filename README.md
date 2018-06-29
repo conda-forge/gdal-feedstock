@@ -14,14 +14,16 @@ Summary: Python wrapper for the Geospatial Data Abstraction Library (GDAL)
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/gdal-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/gdal-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/gdal-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/gdal-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/gdal-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/gdal-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/gdal-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/gdal-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/gdal-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/gdal-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/gdal-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/gdal-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/gdal/badges/version.svg)](https://anaconda.org/conda-forge/gdal)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/gdal/badges/downloads.svg)](https://anaconda.org/conda-forge/gdal)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gdal-green.svg)](https://anaconda.org/conda-forge/gdal) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gdal.svg)](https://anaconda.org/conda-forge/gdal) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gdal.svg)](https://anaconda.org/conda-forge/gdal) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gdal.svg)](https://anaconda.org/conda-forge/gdal) |
 
 Installing gdal
 ===============
