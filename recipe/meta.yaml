@@ -17,12 +17,13 @@ source:
     - patches/disable_jpeg12.patch
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win and vc<14]
 
 requirements:
   build:
     - cmake  # [win]
+    - pkg-config  # [unix]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
