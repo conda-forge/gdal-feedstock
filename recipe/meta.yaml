@@ -175,6 +175,7 @@ outputs:
       files:
         - test_data
         - extra_tests.py
+        - run_tests.py
       imports:
         - osr
         - gdal
@@ -186,6 +187,11 @@ outputs:
         - osgeo._gdalconst
         - osgeo._ogr
         - osgeo._osr
+      commands:
+        - $PYTHON run_tests.py  # [unix]
+        - %PYTHON% run_tests.py  # [win]
+        - $PYTHON extra_tests.py  # [unix]
+        - %PYTHON% extra_tests.py  # [win]
       about:
         summary: 'Python wrapper for the Geospatial Data Abstraction Library (GDAL)'
 

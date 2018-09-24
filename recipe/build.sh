@@ -57,4 +57,5 @@ bash configure --prefix=$PREFIX \
                --verbose \
                $OPTS
 
+cat config.log
 make -j $CPU_COUNT ${VERBOSE_AT}
