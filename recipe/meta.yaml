@@ -191,8 +191,6 @@ outputs:
       commands:
         - $PYTHON run_test.py  # [unix]
         - %PYTHON% run_test.py  # [win]
-        - $PYTHON extra_tests.py  # [unix]
-        - %PYTHON% extra_tests.py  # [win]
       about:
         summary: 'Python wrapper for the Geospatial Data Abstraction Library (GDAL)'
 
