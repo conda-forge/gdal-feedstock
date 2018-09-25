@@ -155,7 +155,7 @@ outputs:
         - gdalwarp --version
         - gdalinfo --formats
         - gdalinfo http://thredds.nersc.no/thredds/dodsC/greenpath/Model/topaz  # [not win]
-        - run_test_lib.sh  # [unix]
+        - sh run_test_lib.sh  # [unix]
         - run_test_lib.bat  # [win]
     about:
       summary: 'The Geospatial Data Abstraction Library (GDAL)'
