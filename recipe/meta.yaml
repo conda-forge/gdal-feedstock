@@ -144,6 +144,8 @@ outputs:
     test:
       files:
         - test_data
+        - run_test_lib.sh  # [unix]
+        - run_test_lib.bat  # [win]
       commands:
         - gdal_grid --version
         - gdal_rasterize --version
@@ -153,6 +155,8 @@ outputs:
         - gdalwarp --version
         - gdalinfo --formats
         - gdalinfo http://thredds.nersc.no/thredds/dodsC/greenpath/Model/topaz  # [not win]
+        - run_test_lib.sh  # [unix]
+        - run_test_lib.bat  # [win]
     about:
       summary: 'The Geospatial Data Abstraction Library (GDAL)'
 
@@ -176,7 +180,7 @@ outputs:
       files:
         - test_data
         - extra_tests.py
-        - run_test.py
+        - run_test_python.py
       imports:
         - osr
         - gdal
@@ -189,8 +193,8 @@ outputs:
         - osgeo._ogr
         - osgeo._osr
       commands:
-        - $PYTHON run_test.py  # [unix]
-        - %PYTHON% run_test.py  # [win]
+        - $PYTHON run_test_python.py  # [unix]
+        - %PYTHON% run_test_python.py  # [win]
       about:
         summary: 'Python wrapper for the Geospatial Data Abstraction Library (GDAL)'
 
