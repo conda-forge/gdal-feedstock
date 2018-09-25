@@ -161,7 +161,8 @@ outputs:
       summary: 'The Geospatial Data Abstraction Library (GDAL)'
 
   - name: gdal
-    script: install_python.sh
+    script: install_python.sh  # [unix]
+    script: install_python.bat  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
