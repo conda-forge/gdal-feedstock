@@ -23,7 +23,7 @@ build:
 requirements:
   build:
     - cmake  # [win]
-    -  pkg-config  # [not win]
+    - pkg-config  # [not win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
