@@ -13,21 +13,21 @@ cxx_compiler:
 expat:
 - '2.2'
 gdal:
-- '2.2'
+- '2.3'
 geos:
-- 3.6.2
+- 3.7.0
 giflib:
 - '5.1'
 hdf4:
 - '4.2'
 hdf5:
-- 1.10.3
+- 1.10.4
 jpeg:
 - '9'
 json_c:
-- '0.12'
+- '0.13'
 kealib:
-- 1.4.9
+- 1.4.10
 libdap4:
 - '3.19'
 libkml:
@@ -35,7 +35,7 @@ libkml:
 libnetcdf:
 - '4.6'
 libpng:
-- 1.6.34
+- 1.6.35
 libtiff:
 - 4.0.9
 libxml2:
@@ -63,8 +63,6 @@ pin_run_as_build:
     max_pin: x.x
   hdf4:
     max_pin: x.x
-  hdf5:
-    max_pin: x.x.x
   jpeg:
     max_pin: x
   json-c:
@@ -103,15 +101,15 @@ pin_run_as_build:
   zlib:
     max_pin: x.x
 poppler:
-- '0.67'
+- 0.67.0
 proj4:
-- 4.9.3
+- 5.2.0
 python:
 - '2.7'
 sqlite:
 - '3'
 xerces_c:
-- 3.2.0
+- 3.2.2
 xz:
 - '5.2'
 zlib:
