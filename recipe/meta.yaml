@@ -25,7 +25,6 @@ source:
     - patches/install_scripts.patch
 
 build:
-  skip: True  # [win and py27]
   number: 11
 
 requirements:
