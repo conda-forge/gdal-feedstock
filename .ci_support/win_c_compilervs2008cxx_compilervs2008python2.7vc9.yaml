@@ -1,5 +1,5 @@
 c_compiler:
-- vs2015
+- vs2008
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -7,7 +7,7 @@ channel_targets:
 curl:
 - '7.59'
 cxx_compiler:
-- vs2015
+- vs2008
 expat:
 - '2.2'
 gdal:
@@ -89,11 +89,11 @@ pin_run_as_build:
 proj4:
 - 4.9.3
 python:
-- '3.7'
+- '2.7'
 sqlite:
 - '3'
 vc:
-- '14'
+- '9'
 xerces_c:
 - 3.2.2
 xz:
