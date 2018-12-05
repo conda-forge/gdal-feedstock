@@ -1,5 +1,5 @@
 c_compiler:
-- vs2008
+- vs2015
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -7,17 +7,17 @@ channel_targets:
 curl:
 - '7.59'
 cxx_compiler:
-- vs2008
+- vs2015
 expat:
 - '2.2'
 gdal:
-- 2.2.4
+- '2.3'
 geos:
-- 3.6.2
+- 3.7.0
 hdf4:
 - '4.2'
 hdf5:
-- 1.10.2
+- 1.10.4
 icu:
 - '58'
 jpeg:
@@ -27,7 +27,7 @@ kealib:
 libkml:
 - '1.3'
 libnetcdf:
-- 4.4.1.1
+- '4.6'
 libpng:
 - 1.6.35
 libtiff:
@@ -85,13 +85,13 @@ pin_run_as_build:
   zlib:
     max_pin: x.x
 proj4:
-- 4.9.3
+- 5.2.0
 python:
-- '2.7'
+- '3.7'
 sqlite:
 - '3'
 vc:
-- '9'
+- '14'
 xerces_c:
 - 3.2.2
 zip_keys:
@@ -104,5 +104,6 @@ zip_keys:
   - proj4
   - hdf5
   - libnetcdf
+  - kealib
 zlib:
 - '1.2'

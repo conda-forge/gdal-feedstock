@@ -104,5 +104,6 @@ zip_keys:
   - proj4
   - hdf5
   - libnetcdf
+  - kealib
 zlib:
 - '1.2'
