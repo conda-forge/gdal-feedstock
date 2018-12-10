@@ -9,13 +9,13 @@ environment:
     secure: tumuXLL8PU75WMnRDemRy02ruEq2RpNxeK3dz0MjFssnosPm2v4EFjfNB4PTotA1
 
   matrix:
-    - CONFIG: win_c_compilervs2008cxx_compilervs2008geos3.6.2hdf51.10.2kealib1.4.7libnetcdf4.4.1.1proj44.9.3python2.7vc9
+    - CONFIG: win_c_compilervs2008cxx_compilervs2008geos3.6.2hdf51.10.2libnetcdf4.4.1.1proj44.9.3python2.7vc9
       CONDA_INSTALL_LOCN: C:\Miniconda36-x64
 
-    - CONFIG: win_c_compilervs2015cxx_compilervs2015geos3.7.0hdf51.10.4kealib1.4.10libnetcdf4.6proj45.2.0python3.6vc14
+    - CONFIG: win_c_compilervs2015cxx_compilervs2015geos3.7.0hdf51.10.4libnetcdf4.6proj45.2.0python3.6vc14
       CONDA_INSTALL_LOCN: C:\Miniconda36-x64
 
-    - CONFIG: win_c_compilervs2015cxx_compilervs2015geos3.7.0hdf51.10.4kealib1.4.10libnetcdf4.6proj45.2.0python3.7vc14
+    - CONFIG: win_c_compilervs2015cxx_compilervs2015geos3.7.0hdf51.10.4libnetcdf4.6proj45.2.0python3.7vc14
       CONDA_INSTALL_LOCN: C:\Miniconda36-x64
 
 

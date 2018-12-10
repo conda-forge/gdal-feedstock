@@ -82,6 +82,8 @@ pin_run_as_build:
     max_pin: x
   xerces-c:
     max_pin: x.x.x
+  xz:
+    max_pin: x.x
   zlib:
     max_pin: x.x
 proj4:
@@ -94,6 +96,8 @@ vc:
 - '14'
 xerces_c:
 - 3.2.2
+xz:
+- '5.2'
 zip_keys:
 - - python
   - vc
@@ -104,6 +108,5 @@ zip_keys:
   - proj4
   - hdf5
   - libnetcdf
-  - kealib
 zlib:
 - '1.2'
