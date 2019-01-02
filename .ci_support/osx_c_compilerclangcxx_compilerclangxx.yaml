@@ -26,8 +26,6 @@ hdf4:
 - '4.2'
 hdf5:
 - 1.10.4
-jpeg:
-- '9'
 json_c:
 - '0.13'
 kealib:
@@ -69,8 +67,6 @@ pin_run_as_build:
     max_pin: x.x
   hdf4:
     max_pin: x.x
-  jpeg:
-    max_pin: x
   json-c:
     max_pin: x.x
   kealib:
