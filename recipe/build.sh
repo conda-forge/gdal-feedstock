@@ -31,7 +31,9 @@ bash configure --prefix=$PREFIX \
                --with-geotiff=$PREFIX \
                --with-hdf4=$PREFIX \
                --with-hdf5=$PREFIX \
-               --with-jpeg=$PREFIX \
+               --with-jpeg=internal \
+               --with-jpeg12 \
+               --with-hide-internal-symbols=yes \
                --with-kea=$PREFIX/bin/kea-config \
                --with-libiconv-prefix=$PREFIX \
                --with-libjson-c=$PREFIX \

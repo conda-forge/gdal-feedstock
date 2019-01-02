@@ -13,11 +13,9 @@ source:
     - patches/windowshdf5.patch  # [win]
     # Use multiple cores on Windows.
     - patches/multiprocessor.patch  # [win]
-    # disable 12 bit jpeg on Windows as we aren't using internal jpeg
-    - patches/disable_jpeg12.patch  # [win]
 
 build:
-  number: 1000
+  number: 1001
   skip: True  # [win and vc<14]
 
 requirements:
@@ -35,7 +33,6 @@ requirements:
     - giflib  # [not win]
     - hdf4
     - hdf5
-    - jpeg
     - json-c  # [not win]
     - kealib
     - libdap4  # [not win]
@@ -83,7 +80,6 @@ outputs:
         - giflib  # [not win]
         - hdf4
         - hdf5
-        - jpeg
         - json-c  # [not win]
         - kealib
         - libdap4  # [not win]
