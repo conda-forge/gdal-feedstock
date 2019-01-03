@@ -33,6 +33,7 @@ requirements:
     - giflib  # [not win]
     - hdf4
     - hdf5
+    - jpeg
     - json-c  # [not win]
     - kealib
     - libdap4  # [not win]
@@ -80,6 +81,7 @@ outputs:
         - giflib  # [not win]
         - hdf4
         - hdf5
+        - jpeg
         - json-c  # [not win]
         - kealib
         - libdap4  # [not win]
