@@ -8,7 +8,6 @@ source:
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.xz
   sha256: c3791dcc6d37e59f6efa86e2df2a55a4485237b0a48e330ae08949f0cdf00f27
   patches:
-  patches:
     # BUILT_AS_DYNAMIC_LIB.
     - patches/windowshdf5.patch  # [win]
     # Use multiple cores on Windows.
@@ -17,7 +16,7 @@ source:
     - patches/disable_jpeg12.patch  # [win]
 
 build:
-  number: 1001
+  number: 1002
   skip: True  # [win and vc<14]
 
 requirements:
