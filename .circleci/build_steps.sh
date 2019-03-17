@@ -20,6 +20,7 @@ conda-build:
 CONDARC
 
 conda install --yes --quiet conda-forge-ci-setup=2 conda-build -c conda-forge
+conda config --set channel_priority strict
 
 # set up the condarc
 setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"

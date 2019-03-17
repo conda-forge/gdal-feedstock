@@ -18,6 +18,7 @@ echo "Configuring conda."
 source ~/miniconda3/bin/activate root
 
 conda install -n root -c conda-forge --quiet --yes conda-forge-ci-setup=2 conda-build
+conda config --set channel_priority strict
 mangle_compiler ./ ./recipe .ci_support/${CONFIG}.yaml
 setup_conda_rc ./ ./recipe ./.ci_support/${CONFIG}.yaml
 
