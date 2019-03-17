@@ -2,6 +2,8 @@ MACOSX_DEPLOYMENT_TARGET:
 - '10.9'
 c_compiler:
 - clang
+c_compiler_version:
+- '4'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -10,6 +12,8 @@ curl:
 - '7.64'
 cxx_compiler:
 - clangxx
+cxx_compiler_version:
+- '4'
 expat:
 - '2.2'
 gdal:
