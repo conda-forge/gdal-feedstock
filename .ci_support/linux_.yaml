@@ -23,7 +23,7 @@ geos:
 geotiff:
 - 1.4.2
 giflib:
-- '5.1'
+- 5.1.7
 hdf4:
 - '4.2'
 hdf5:
@@ -64,8 +64,6 @@ pin_run_as_build:
   geos:
     max_pin: x.x.x
   geotiff:
-    max_pin: x.x
-  giflib:
     max_pin: x.x
   hdf4:
     max_pin: x.x
