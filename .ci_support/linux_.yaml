@@ -27,7 +27,7 @@ giflib:
 hdf4:
 - '4.2'
 hdf5:
-- 1.10.4
+- 1.10.5
 jpeg:
 - '9'
 json_c:
@@ -49,7 +49,7 @@ libuuid:
 libxml2:
 - '2.9'
 numpy:
-- '1.9'
+- '1.14'
 openjpeg:
 - '2.3'
 openssl:
