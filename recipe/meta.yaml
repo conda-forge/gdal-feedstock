@@ -1,4 +1,4 @@
-{% set version = "2.4.1" %}
+{% set version = "2.4.2" %}
 
 package:
   name: gdal-split
@@ -6,7 +6,7 @@ package:
 
 source:
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.xz
-  sha256: fd51b4900b2fc49b98d8714f55fc8a78ebfd07218357f93fb796791115a5a1ad
+  sha256: dcc132e469c5eb76fa4aaff238d32e45a5d947dc5b6c801a123b70045b618e0c
   patches:
     # BUILT_AS_DYNAMIC_LIB.
     - patches/windowshdf5.patch  # [win]
@@ -14,11 +14,9 @@ source:
     - patches/multiprocessor.patch  # [win]
     # disable 12 bit jpeg on Windows as we aren't using internal jpeg
     - patches/disable_jpeg12.patch  # [win]
-    # remove duplicate definition of function
-    - patches/setcsvfilenamehook.patch  # [win]
 
 build:
-  number: 7
+  number: 3
   skip: True  # [win and vc<14]
 
 requirements:
