@@ -1,7 +1,5 @@
 c_compiler:
 - vs2015
-- vs2015
-- vs2015
 cfitsio:
 - '3.470'
 channel_sources:
@@ -11,8 +9,6 @@ channel_targets:
 curl:
 - '7.64'
 cxx_compiler:
-- vs2015
-- vs2015
 - vs2015
 expat:
 - '2.2'
@@ -114,17 +110,10 @@ tiledb:
 - 1.7.0
 vc:
 - '14'
-- '14'
-- '14'
 xerces_c:
 - 3.2.2
 xz:
 - '5.2'
-zip_keys:
-- - python
-  - vc
-  - c_compiler
-  - cxx_compiler
 zlib:
 - '1.2'
 zstd:
