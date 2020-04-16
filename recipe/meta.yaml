@@ -14,7 +14,7 @@ source:
     - patches/disable_jpeg12.patch  # [win]
 
 build:
-  number: 4
+  number: 5
   skip: True  # [win and vc<14]
 
 requirements:
