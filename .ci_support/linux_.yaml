@@ -9,7 +9,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 curl:
-- '7.64'
+- '7'
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -29,7 +29,7 @@ giflib:
 hdf4:
 - '4.2'
 hdf5:
-- 1.10.5
+- 1.10.6
 icu:
 - '64.2'
 jpeg:

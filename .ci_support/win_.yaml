@@ -1,5 +1,5 @@
 c_compiler:
-- vs2015
+- vs2017
 cfitsio:
 - '3.470'
 channel_sources:
@@ -7,9 +7,9 @@ channel_sources:
 channel_targets:
 - conda-forge main
 curl:
-- '7.64'
+- '7'
 cxx_compiler:
-- vs2015
+- vs2017
 expat:
 - '2.2'
 gdal:
@@ -21,7 +21,7 @@ geotiff:
 hdf4:
 - '4.2'
 hdf5:
-- 1.10.5
+- 1.10.6
 icu:
 - '64.2'
 jpeg:
@@ -86,8 +86,6 @@ pin_run_as_build:
     max_pin: x
   tiledb:
     max_pin: x.x.x
-  vc:
-    max_pin: x
   xerces-c:
     max_pin: x.x.x
   xz:
