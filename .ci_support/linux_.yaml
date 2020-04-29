@@ -23,7 +23,7 @@ gdal:
 geos:
 - 3.8.1
 geotiff:
-- 1.5.1
+- '1.6'
 giflib:
 - '5.2'
 hdf4:
@@ -50,6 +50,8 @@ libtiff:
 - 4.1.0
 libuuid:
 - 2.32.1
+libwebp_base:
+- '1.1'
 libxml2:
 - '2.9'
 numpy:
