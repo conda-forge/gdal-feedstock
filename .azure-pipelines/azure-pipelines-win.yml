@@ -56,8 +56,8 @@ jobs:
 
     - task: CondaEnvironment@1
       inputs:
-        packageSpecs: 'python=3.6 conda-build conda conda-forge::conda-forge-ci-setup=3 pip' # Optional
-        installOptions: "-c conda-forge"
+        packageSpecs: 'python=3.6 conda-build conda conda-forge::conda-forge-ci-setup=3 pip posix' # Optional
+        installOptions: "-c conda-forge -c msys2"
         updateConda: true
       displayName: Install conda-build and activate environment
 
