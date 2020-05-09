@@ -103,7 +103,7 @@ python:
 sqlite:
 - '3'
 tiledb:
-- '1.7'
+- '2.0'
 vc:
 - '14'
 xerces_c:
