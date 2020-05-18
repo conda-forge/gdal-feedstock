@@ -6,20 +6,17 @@ jobs:
 - job: win
   pool:
     vmImage: vs2017-win2016
-  timeoutInMinutes: 360
   strategy:
-    maxParallel: 4
     matrix:
       win_:
         CONFIG: win_
-        CONDA_BLD_PATH: D:\\bld\\
-        UPLOAD_PACKAGES: True
-  steps:
-    # TODO: Fast finish on azure pipelines?
-    - script: |
-        ECHO ON
-        
+        UPLOAD_PACKAGES: 'True'
+    maxParallel: 4
+  timeoutInMinutes: 360
+  variables:
+    CONDA_BLD_PATH: D:\\bld\\
 
+  steps:
     - script: |
         choco install vcpython27 -fdv -y --debug
       condition: contains(variables['CONFIG'], 'vs2008')
