@@ -19,7 +19,7 @@ docker_image:
 expat:
 - '2.2'
 gdal:
-- '3.0'
+- '3.1'
 geos:
 - 3.8.1
 geotiff:
@@ -102,14 +102,10 @@ pin_run_as_build:
     max_pin: x
   tiledb:
     max_pin: x.x
-  xerces-c:
-    max_pin: x.x.x
   xz:
     max_pin: x.x
   zlib:
     max_pin: x.x
-  zstd:
-    max_pin: x.x.x
 poppler:
 - '0.89'
 proj:
@@ -123,10 +119,10 @@ sqlite:
 tiledb:
 - '2.0'
 xerces_c:
-- 3.2.2
+- '3.2'
 xz:
 - '5.2'
 zlib:
 - '1.2'
 zstd:
-- 1.4.4
+- '1.4'
