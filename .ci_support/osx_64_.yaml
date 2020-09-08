@@ -54,8 +54,6 @@ libxml2:
 - '2.9'
 macos_machine:
 - x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
 numpy:
 - '1.16'
 openjpeg:
@@ -109,7 +107,7 @@ pin_run_as_build:
 poppler:
 - '0.89'
 proj:
-- 7.1.0
+- 7.1.1
 python:
 - 3.6.* *_cpython
 - 3.7.* *_cpython
