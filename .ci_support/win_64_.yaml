@@ -12,8 +12,6 @@ cxx_compiler:
 - vs2017
 expat:
 - '2.2'
-gdal:
-- '3.0'
 geos:
 - 3.8.1
 geotiff:
@@ -53,8 +51,6 @@ pin_run_as_build:
   curl:
     max_pin: x
   expat:
-    max_pin: x.x
-  gdal:
     max_pin: x.x
   geotiff:
     max_pin: x.x.x
