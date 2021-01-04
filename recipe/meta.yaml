@@ -1,4 +1,4 @@
-{% set version = "3.2.0" %}
+{% set version = "3.2.1" %}
 
 package:
   name: gdal-split
@@ -6,7 +6,7 @@ package:
 
 source:
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.xz
-  sha256: b051f852600ffdf07e337a7f15673da23f9201a9dbb482bd513756a3e5a196a6
+  sha256: 6c588b58fcb63ff3f288eb9f02d76791c0955ba9210d98c3abd879c770ae28ea
   patches:
     # disable 12 bit jpeg on Windows as we aren't using internal jpeg
     - disable_jpeg12.patch  # [win]
