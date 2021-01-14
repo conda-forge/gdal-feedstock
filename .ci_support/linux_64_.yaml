@@ -31,7 +31,7 @@ hdf4:
 hdf5:
 - 1.10.6
 icu:
-- '67'
+- '68'
 jpeg:
 - '9'
 json_c:
@@ -127,6 +127,8 @@ xz:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
+- - cdt_name
+  - docker_image
 - - python
   - numpy
 zlib:
