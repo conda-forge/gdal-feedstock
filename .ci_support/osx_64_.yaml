@@ -33,7 +33,7 @@ icu:
 jpeg:
 - '9'
 json_c:
-- '0.13'
+- '0.15'
 kealib:
 - '1.4'
 libdap4:
