@@ -23,7 +23,7 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-aarch64
 expat:
-- '2.2'
+- '2.3'
 geos:
 - 3.9.1
 geotiff:

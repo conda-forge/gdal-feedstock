@@ -11,7 +11,7 @@ curl:
 cxx_compiler:
 - vs2017
 expat:
-- '2.2'
+- '2.3'
 geos:
 - 3.9.1
 geotiff:

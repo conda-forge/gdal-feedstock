@@ -17,7 +17,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '11'
 expat:
-- '2.2'
+- '2.3'
 geos:
 - 3.9.1
 geotiff:
