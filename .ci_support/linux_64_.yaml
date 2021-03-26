@@ -19,7 +19,7 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-comp7
 expat:
-- '2.2'
+- '2.3'
 gdal:
 - '3.1'
 geos:
@@ -57,9 +57,9 @@ libwebp_base:
 libxml2:
 - '2.9'
 numpy:
-- '1.16'
-- '1.16'
-- '1.16'
+- '1.17'
+- '1.17'
+- '1.17'
 - '1.19'
 openjpeg:
 - '2.4'

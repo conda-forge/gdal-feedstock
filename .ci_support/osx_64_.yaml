@@ -17,7 +17,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '11'
 expat:
-- '2.2'
+- '2.3'
 gdal:
 - '3.1'
 geos:
@@ -55,9 +55,9 @@ libxml2:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 numpy:
-- '1.16'
-- '1.16'
-- '1.16'
+- '1.17'
+- '1.17'
+- '1.17'
 - '1.19'
 openjpeg:
 - '2.4'
