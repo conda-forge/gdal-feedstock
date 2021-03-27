@@ -36,6 +36,8 @@ json_c:
 - '0.15'
 kealib:
 - '1.4'
+libdap4:
+- 3.20.6
 libkml:
 - '1.3'
 libnetcdf:
