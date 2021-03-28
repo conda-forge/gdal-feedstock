@@ -25,15 +25,11 @@ fi
 
 # Hdf4 not supported on non-x86
 HDF4="--with-hdf4=${PREFIX}"
-# Disable DODs for non-x86 while we fix libdap
-DODS="--with-dods-root=${PREFIX}"
 if [[ $ARCH =~ aarch.* ]]; then
   HDF4="--with-hdf4=no"
-  DODS="--with-dods-root=no"
 fi
 if [[ $ARCH =~ ppc.* ]]; then
   HDF4="--with-hdf4=no"
-  DODS="--with-dods-root=no"
 fi
 
 # `--without-pam` was removed.
@@ -42,7 +38,7 @@ fi
 (bash configure --prefix=${PREFIX} \
                --host=${HOST} \
                --with-curl \
-               ${DODS} \
+               --with-dods-root=${PREFIX} \
                --with-expat=${PREFIX} \
                --with-freexl=${PREFIX} \
                --with-geos=${PREFIX}/bin/geos-config \
