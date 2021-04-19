@@ -17,7 +17,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '11'
 expat:
-- '2.3'
+- '2'
 gdal:
 - '3.1'
 geos:
@@ -49,7 +49,7 @@ libpng:
 libtiff:
 - '4'
 libwebp_base:
-- '1.1'
+- '1'
 libxml2:
 - '2.9'
 macos_machine:
@@ -68,8 +68,6 @@ pcre:
 pin_run_as_build:
   curl:
     max_pin: x
-  expat:
-    max_pin: x.x
   gdal:
     max_pin: x.x
   geotiff:

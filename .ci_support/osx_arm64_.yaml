@@ -1,23 +1,21 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
 c_compiler:
-- gcc
+- clang
 c_compiler_version:
-- '9'
-cdt_name:
-- cos6
+- '11'
 cfitsio:
 - '3.470'
 channel_sources:
-- conda-forge,defaults
+- conda-forge/label/rust_dev,conda-forge
 channel_targets:
 - conda-forge main
 curl:
 - '7'
 cxx_compiler:
-- gxx
+- clangxx
 cxx_compiler_version:
-- '9'
-docker_image:
-- quay.io/condaforge/linux-anvil-comp7
+- '11'
 expat:
 - '2'
 gdal:
@@ -50,16 +48,14 @@ libpng:
 - '1.6'
 libtiff:
 - '4'
-libuuid:
-- 2.32.1
 libwebp_base:
 - '1'
 libxml2:
 - '2.9'
+macos_machine:
+- arm64-apple-darwin20.0.0
 numpy:
-- '1.17'
-- '1.17'
-- '1.17'
+- '1.19'
 - '1.19'
 openjpeg:
 - '2.4'
@@ -88,8 +84,6 @@ pin_run_as_build:
     max_pin: x.x
   libtiff:
     max_pin: x
-  libuuid:
-    max_pin: x
   libxml2:
     max_pin: x.x
   openjpeg:
@@ -114,14 +108,12 @@ poppler:
 proj:
 - 8.0.0
 python:
-- 3.6.* *_cpython
-- 3.7.* *_cpython
 - 3.8.* *_cpython
 - 3.9.* *_cpython
 sqlite:
 - '3'
 target_platform:
-- linux-64
+- osx-arm64
 tiledb:
 - '2.2'
 xerces_c:
@@ -131,8 +123,6 @@ xz:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-- - cdt_name
-  - docker_image
 - - python
   - numpy
 zlib:
