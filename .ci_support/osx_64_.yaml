@@ -55,6 +55,7 @@ libxml2:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 numpy:
+- '1.18'
 - '1.17'
 - '1.17'
 - '1.17'
@@ -110,6 +111,7 @@ poppler:
 proj:
 - 8.0.0
 python:
+- 3.6.* *_73_pypy
 - 3.6.* *_cpython
 - 3.7.* *_cpython
 - 3.8.* *_cpython
