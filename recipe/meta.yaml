@@ -16,9 +16,6 @@ build:
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - numpy                                  # [build_platform != target_platform]
     - cmake  # [win]
     - pkg-config >=0.21  # [not win]
     - gnuconfig  # [unix]
@@ -144,6 +141,9 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - cmake  # [win]
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - numpy                                  # [build_platform != target_platform]
       host:
         - python
         - pip
