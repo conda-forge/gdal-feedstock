@@ -48,6 +48,5 @@ gdaladdo --version
 gdalenhance --version
 gdalwarp --version
 gdalinfo --formats
-gdalinfo http://thredds.nersc.no/thredds/dodsC/greenpath/Model/topaz
 test -f ${PREFIX}/lib/libgdal${SHLIB_EXT}
 test ! -f ${PREFIX}/lib/libgdal.a

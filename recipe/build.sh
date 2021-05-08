@@ -40,7 +40,6 @@ fi
 (bash configure --prefix=${PREFIX} \
                --host=${HOST} \
                --with-curl \
-               --with-dods-root=${PREFIX} \
                --with-expat=${PREFIX} \
                --with-freexl=${PREFIX} \
                --with-geos=${PREFIX}/bin/geos-config \
