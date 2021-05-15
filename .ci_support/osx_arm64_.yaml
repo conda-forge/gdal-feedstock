@@ -24,6 +24,8 @@ geotiff:
 - '1.6'
 giflib:
 - '5.2'
+hdf4:
+- '4.2'
 hdf5:
 - 1.10.6
 icu:
@@ -64,6 +66,8 @@ pin_run_as_build:
     max_pin: x
   geotiff:
     max_pin: x.x.x
+  hdf4:
+    max_pin: x.x
   jpeg:
     max_pin: x
   json-c:
