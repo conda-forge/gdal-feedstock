@@ -30,7 +30,7 @@ requirements:
     - geos
     - geotiff
     - giflib  # [not win]
-    - hdf4  # [x86]
+    - hdf4
     - hdf5
     - icu
     - jpeg
@@ -83,7 +83,7 @@ outputs:
         - geos
         - geotiff
         - giflib  # [not win]
-        - hdf4  # [x86]
+        - hdf4
         - hdf5
         - icu
         - jpeg
