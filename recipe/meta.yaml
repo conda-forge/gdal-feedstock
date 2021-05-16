@@ -19,6 +19,7 @@ requirements:
     - cmake  # [win]
     - pkg-config >=0.21  # [not win]
     - make  # [unix]
+    - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
@@ -29,7 +30,7 @@ requirements:
     - geos
     - geotiff
     - giflib  # [not win]
-    - hdf4  # [x86]
+    - hdf4
     - hdf5
     - icu
     - jpeg
@@ -82,7 +83,7 @@ outputs:
         - geos
         - geotiff
         - giflib  # [not win]
-        - hdf4  # [x86]
+        - hdf4
         - hdf5
         - icu
         - jpeg
@@ -142,6 +143,9 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - cmake  # [win]
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - numpy                                  # [build_platform != target_platform]
       host:
         - python
         - pip

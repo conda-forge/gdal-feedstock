@@ -26,10 +26,6 @@ drivers = [
     "WebP",
 ]
 
-if os.getenv('ARCH') != "64":
-    # only available for x86
-    drivers.remove("HDF4")
-
 for driver in drivers:
     print(driver)
     assert gdal.GetDriverByName(driver)
