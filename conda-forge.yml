@@ -1,5 +1,5 @@
 bot:
-  abi_migration_branches: [v3.1.x]
+  abi_migration_branches: [v3.1.x, v3.2.x]
 build_platform: {osx_arm64: osx_64}
 conda_forge_output_validation: true
 provider: {linux: azure, linux_aarch64: azure, linux_ppc64le: azure, osx: azure, win: azure}
