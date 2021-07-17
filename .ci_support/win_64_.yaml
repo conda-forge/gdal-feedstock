@@ -11,19 +11,19 @@ curl:
 cxx_compiler:
 - vs2017
 expat:
-- '2.2'
+- '2'
 gdal:
 - '2.4'
 geos:
-- 3.8.1
+- 3.9.1
 geotiff:
-- 1.5.1
+- '1.6'
 hdf4:
 - '4.2'
 hdf5:
-- 1.10.5
+- 1.10.6
 icu:
-- '64.2'
+- '68'
 jpeg:
 - '9'
 kealib:
@@ -35,28 +35,29 @@ libnetcdf:
 libpng:
 - '1.6'
 libtiff:
-- 4.1.0
+- '4'
 libxml2:
 - '2.9'
 numpy:
-- '1.14'
+- '1.17'
+- '1.17'
+- '1.17'
+- '1.19'
 openjpeg:
-- '2.3'
+- '2.4'
 openssl:
 - 1.1.1
+pcre:
+- '8'
 pin_run_as_build:
   curl:
     max_pin: x
-  expat:
-    max_pin: x.x
   gdal:
     max_pin: x.x
   geotiff:
     max_pin: x.x.x
   hdf4:
     max_pin: x.x
-  icu:
-    max_pin: x
   jpeg:
     max_pin: x
   kealib:
@@ -80,27 +81,31 @@ pin_run_as_build:
     max_pin: x.x
   sqlite:
     max_pin: x
-  xerces-c:
-    max_pin: x.x.x
   xz:
     max_pin: x.x
   zlib:
     max_pin: x.x
 poppler:
-- 0.67.0
+- '21.03'
 proj:
-- 7.0.0
+- 7.2.0
 python:
 - 3.6.* *_cpython
 - 3.7.* *_cpython
 - 3.8.* *_cpython
+- 3.9.* *_cpython
 sqlite:
 - '3'
+target_platform:
+- win-64
 vc:
 - '14'
 xerces_c:
-- 3.2.2
+- '3.2'
 xz:
 - '5.2'
+zip_keys:
+- - python
+  - numpy
 zlib:
 - '1.2'
