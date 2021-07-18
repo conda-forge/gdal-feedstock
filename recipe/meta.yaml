@@ -52,7 +52,7 @@ requirements:
     - openjpeg
     - openssl
     - pcre
-    - poppler
+    - poppler 0.67.0
     - postgresql
     - proj
     - sqlite
