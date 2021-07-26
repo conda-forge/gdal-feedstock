@@ -106,7 +106,7 @@ pin_run_as_build:
   zlib:
     max_pin: x.x
 poppler:
-- 0.67.0
+- 0.89.0
 proj:
 - 7.2.0
 python:
