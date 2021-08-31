@@ -12,7 +12,7 @@ source:
     - disable_jpeg12.patch  # [win]
 
 build:
-  number: 17
+  number: 18
 
 requirements:
   build:
