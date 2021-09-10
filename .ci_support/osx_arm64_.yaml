@@ -104,7 +104,7 @@ pin_run_as_build:
   zlib:
     max_pin: x.x
 poppler:
-- '21.03'
+- '21.09'
 proj:
 - 8.0.1
 python:
