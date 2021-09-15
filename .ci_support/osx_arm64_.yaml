@@ -7,7 +7,7 @@ c_compiler_version:
 cfitsio:
 - '3.470'
 channel_sources:
-- conda-forge/label/rust_dev,conda-forge
+- conda-forge
 channel_targets:
 - conda-forge main
 curl:
@@ -27,7 +27,7 @@ giflib:
 hdf4:
 - 4.2.15
 hdf5:
-- 1.10.6
+- 1.12.1
 icu:
 - '68'
 jpeg:
