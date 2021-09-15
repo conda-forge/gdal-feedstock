@@ -17,6 +17,8 @@ FOR /F "tokens=1,2 delims=." %%a IN ("%poppler%") DO (
   set POPPLER_MAJOR_VERSION=%%a
   set POPPLER_MINOR_VERSION=%%b
 )
+:: remove leading zeros
+set /a POPPLER_MINOR_VERSION=10000%POPPLER_MINOR_VERSION% %% 10000
 
 :: Need consistent flags between build and install.
 set BLD_OPTS=%WIN64% ^
@@ -85,7 +87,7 @@ set BLD_OPTS=%WIN64% ^
     POPPLER_CFLAGS="-I%LIBRARY_INC%\poppler -DPOPPLER_HAS_OPTCONTENT= -DPOPPLER_BASE_STREAM_HAS_TWO_ARGS= " ^
     POPPLER_MAJOR_VERSION=%POPPLER_MAJOR_VERSION% ^
     POPPLER_MINOR_VERSION=%POPPLER_MINOR_VERSION% ^
-    POPPLER_LIBS="%LIBRARY_LIB%\poppler.lib" ^
+    POPPLER_LIBS="%LIBRARY_LIB%\poppler.lib /FORCE:MULTIPLE" ^
     WEBP_ENABLED=YES ^
     WEBP_CFLAGS="-I%LIBRARY_INC%" ^
     WEBP_LIBS="%LIBARY_LIB%\libwebp.lib" ^
