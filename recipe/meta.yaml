@@ -13,6 +13,7 @@ source:
 
 build:
   number: 9
+  skip: True  # [ppc64le or aarch64]
 
 requirements:
   build:
