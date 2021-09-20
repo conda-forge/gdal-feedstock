@@ -155,6 +155,8 @@ outputs:
         # having not been migrated yet causing conflicts with the "libgdal" output
         # See: https://github.com/conda-forge/gdal-feedstock/pull/415
         - hdf5
+        # Removed support for use_2to3, see https://setuptools.readthedocs.io/en/latest/history.html#v58-0-0
+        - setuptools <58
       run:
         - python
         - {{ pin_compatible('numpy') }}
