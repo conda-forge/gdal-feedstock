@@ -86,7 +86,7 @@ pin_run_as_build:
 poppler:
 - '21.09'
 proj:
-- 8.0.1
+- 8.1.0
 python:
 - 3.6.* *_cpython
 - 3.7.* *_cpython
