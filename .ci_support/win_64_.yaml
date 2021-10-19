@@ -1,7 +1,7 @@
 c_compiler:
 - vs2017
 cfitsio:
-- '3.470'
+- 4.0.0
 channel_sources:
 - conda-forge
 channel_targets:
@@ -39,7 +39,6 @@ libwebp_base:
 libxml2:
 - '2.9'
 numpy:
-- '1.18'
 - '1.18'
 - '1.18'
 - '1.19'
@@ -88,7 +87,6 @@ poppler:
 proj:
 - 8.1.1
 python:
-- 3.6.* *_cpython
 - 3.7.* *_cpython
 - 3.8.* *_cpython
 - 3.9.* *_cpython
