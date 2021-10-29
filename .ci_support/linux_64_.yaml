@@ -21,7 +21,7 @@ docker_image:
 expat:
 - '2'
 geos:
-- 3.9.1
+- 3.10.0
 geotiff:
 - '1.7'
 giflib:
@@ -49,13 +49,12 @@ libpng:
 libtiff:
 - '4'
 libuuid:
-- 2.32.1
+- '2'
 libwebp_base:
 - '1'
 libxml2:
 - '2.9'
 numpy:
-- '1.18'
 - '1.18'
 - '1.18'
 - '1.19'
@@ -108,7 +107,6 @@ poppler:
 proj:
 - 8.1.1
 python:
-- 3.6.* *_cpython
 - 3.7.* *_cpython
 - 3.8.* *_cpython
 - 3.9.* *_cpython
