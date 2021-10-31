@@ -24,7 +24,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - nss >=3.69,<4.0a0
+    - nspr >=4.30,<5.0a0
 
 outputs:
   - name: libgdal
