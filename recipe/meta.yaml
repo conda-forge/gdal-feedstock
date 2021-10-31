@@ -24,44 +24,10 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - cfitsio
-    - curl
-    - expat
-    - freexl
-    - geos
-    - geotiff
-    - giflib  # [not win]
-    - hdf4
-    - hdf5
-    - icu
-    - jpeg
-    - json-c  # [not win]
-    - kealib
-    - libdap4  # [not win]
-    - libkml
-    - libnetcdf
-    - libpng
-    - libpq
-    - libspatialite
-    - libtiff
-    - libuuid  # [linux]
-    - libwebp-base
-    - libxml2
-    - openjpeg
-    - openssl
-    - pcre
     - poppler
     # temporary addition to try to fix a solver issue
     # See: https://github.com/conda-forge/gdal-feedstock/pull/540
     - nss >=3.69,<4.0a0
-    - postgresql
-    - proj
-    - sqlite
-    - tiledb
-    - xerces-c
-    - xz
-    - zlib
-    - zstd
 
 outputs:
   - name: libgdal
