@@ -51,6 +51,9 @@ requirements:
     - openssl
     - pcre
     - poppler
+    # temporary addition to try to fix a solver issue
+    # See: https://github.com/conda-forge/gdal-feedstock/pull/540
+    - nss >=3.69,<4.0a0
     - postgresql
     - proj
     - sqlite
