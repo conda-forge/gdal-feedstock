@@ -70,6 +70,7 @@ set BLD_OPTS=%WIN64% ^
     PROJ_FLAGS="-DPROJ_STATIC" ^
     PROJ_INCLUDE="-I%LIBRARY_INC%" ^
     PROJ_LIBRARY=%LIBRARY_LIB%\proj.lib ^
+    SETARGV="%VCToolsInstallDir%\lib\x64\setargv.obj" ^
     SPATIALITE_412_OR_LATER=yes ^
     SQLITE_INC="-I%LIBRARY_INC% -DHAVE_SPATIALITE" ^
     SQLITE_LIB="%LIBRARY_LIB%\sqlite3.lib %LIBRARY_LIB%\spatialite_i.lib" ^
