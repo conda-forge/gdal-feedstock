@@ -31,3 +31,7 @@ gdalwarp --version
 if errorlevel 1 exit 1
 gdalinfo --formats
 if errorlevel 1 exit 1
+
+:: Check wildcard expansion (assumes only one .shp file in directory). See https://github.com/conda-forge/gdal-feedstock/issues/558
+ogrinfo *.shp
+if errorlevel 1 exit 1
