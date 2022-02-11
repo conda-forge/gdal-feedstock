@@ -1,5 +1,5 @@
 c_compiler:
-- vs2017
+- vs2019
 cfitsio:
 - 4.0.0
 channel_sources:
@@ -9,7 +9,7 @@ channel_targets:
 curl:
 - '7'
 cxx_compiler:
-- vs2017
+- vs2019
 expat:
 - '2'
 geos:
