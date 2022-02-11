@@ -11,7 +11,10 @@ find ${PREFIX}/lib -name '*.la' -delete
 unset PYTHON
 
 export CPPFLAGS="${CPPFLAGS} -I${PREFIX}/include"
+# Remove -std=c++XX from build ${CXXFLAGS}
+CXXFLAGS=$(echo "${CXXFLAGS}" | sed -E 's@-std=c\+\+[^ ]+@@g')
 export CXXFLAGS="${CXXFLAGS} -std=c++17"
+
 (bash configure --prefix=${PREFIX} \
                --host=${HOST} \
                --with-blosc=${PREFIX} \
