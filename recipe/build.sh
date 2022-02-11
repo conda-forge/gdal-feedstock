@@ -10,8 +10,8 @@ find ${PREFIX}/lib -name '*.la' -delete
 # Force python bindings to not be built.
 unset PYTHON
 
-export CPPFLAGS="${CPPFLAGS} -std=c++17 -I${PREFIX}/include"
-
+export CPPFLAGS="${CPPFLAGS} -I${PREFIX}/include"
+export CXXFLAGS="${CXXFLAGS} -std=c++17"
 (bash configure --prefix=${PREFIX} \
                --host=${HOST} \
                --with-blosc=${PREFIX} \
