@@ -12,12 +12,6 @@ unset PYTHON
 
 export CPPFLAGS="${CPPFLAGS} -I${PREFIX}/include"
 
-# Filter out -std=.* from CXXFLAGS as it disrupts checks for C++ language levels.
-re='(.*[[:space:]])\-std\=[^[:space:]]*(.*)'
-if [[ "${CXXFLAGS}" =~ $re ]]; then
-    export CXXFLAGS="${BASH_REMATCH[1]}${BASH_REMATCH[2]}"
-fi
-
 (bash configure --prefix=${PREFIX} \
                --host=${HOST} \
                --with-blosc=${PREFIX} \
