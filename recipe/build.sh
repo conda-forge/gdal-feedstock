@@ -18,16 +18,6 @@ if [[ "${CXXFLAGS}" =~ $re ]]; then
     export CXXFLAGS="${BASH_REMATCH[1]}${BASH_REMATCH[2]}"
 fi
 
-# See https://github.com/AnacondaRecipes/aggregate/pull/103
-if [[ $target_platform =~ linux.* ]]; then
-  export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,${PREFIX}/lib"
-  mkdir -p ${PREFIX}/include/linux
-  cp ${RECIPE_DIR}/userfaultfd.h ${PREFIX}/include/linux/userfaultfd.h
-fi
-
-# `--without-pam` was removed.
-# See https://github.com/conda-forge/gdal-feedstock/pull/47 for the discussion.
-
 (bash configure --prefix=${PREFIX} \
                --host=${HOST} \
                --with-blosc=${PREFIX} \
@@ -69,6 +59,3 @@ fi
 
 make -j $CPU_COUNT ${VERBOSE_AT}
 
-if [[ $target_platform =~ linux.* ]]; then
-  rm ${PREFIX}/include/linux/userfaultfd.h
-fi

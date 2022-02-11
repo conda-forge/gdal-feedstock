@@ -22,6 +22,7 @@ requirements:
     - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - sysroot_linux-64 2.17  # [linux64]
   host:
     - blosc
     - cfitsio
