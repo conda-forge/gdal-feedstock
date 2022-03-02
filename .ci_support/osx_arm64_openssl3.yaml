@@ -111,7 +111,7 @@ sqlite:
 target_platform:
 - osx-arm64
 tiledb:
-- '2.6'
+- '2.7'
 xerces_c:
 - '3.2'
 xz:
