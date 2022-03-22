@@ -9,7 +9,7 @@ cdt_arch:
 cdt_name:
 - cos7
 cfitsio:
-- 4.0.0
+- 4.1.0
 channel_sources:
 - conda-forge
 channel_targets:
