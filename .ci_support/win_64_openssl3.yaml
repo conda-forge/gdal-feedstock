@@ -15,7 +15,7 @@ expat:
 geos:
 - 3.10.2
 geotiff:
-- '1.7'
+- 1.7.0
 hdf4:
 - 4.2.15
 hdf5:
