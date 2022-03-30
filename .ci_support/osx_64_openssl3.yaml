@@ -21,7 +21,7 @@ expat:
 geos:
 - 3.10.2
 geotiff:
-- 1.7.0
+- 1.7.1
 giflib:
 - '5.2'
 hdf4:
@@ -66,8 +66,6 @@ pcre:
 pin_run_as_build:
   curl:
     max_pin: x
-  geotiff:
-    max_pin: x.x.x
   hdf4:
     max_pin: x.x
   jpeg:
