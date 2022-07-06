@@ -13,6 +13,6 @@
 @REM Support plugins if the plugin directory exists
 @REM i.e if it has been manually created by the user
 @set "GDAL_DRIVER_PATH=%CONDA_PREFIX%\Library\bin\gdalplugins"
-@if not exist %GDAL_DRIVER_PATH% (
+@if not exist "%GDAL_DRIVER_PATH%" (
      set "GDAL_DRIVER_PATH="
 )
