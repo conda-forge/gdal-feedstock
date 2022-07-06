@@ -18,7 +18,7 @@ if [ -d $CONDA_PREFIX/share/gdal ]; then
     export GDAL_DRIVER_PATH=$CONDA_PREFIX/lib/gdalplugins
 elif [ -d $CONDA_PREFIX/Library/share/gdal ]; then
     export GDAL_DATA=$CONDA_PREFIX/Library/share/gdal
-    export GDAL_DRIVER_PATH=$CONDA_PREFIX/Library/lib/gdalplugins
+    export GDAL_DRIVER_PATH=$CONDA_PREFIX/Library/bin/gdalplugins
 fi
 
 

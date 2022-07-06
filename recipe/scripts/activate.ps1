@@ -8,7 +8,7 @@ if ($ENV:GDAL_DRIVER_PATH) {
     $ENV:_CONDA_SET_GDAL_DRIVER_PATH=$ENV:GDAL_DRIVER_PATH
 }
 
-$ENV:GDAL_DRIVER_PATH="$ENV:CONDA_PREFIX\Library\lib\gdalplugins"
+$ENV:GDAL_DRIVER_PATH="$ENV:CONDA_PREFIX\Library\bin\gdalplugins"
 if (-Not (Test-Path $ENV:GDAL_DRIVER_PATH) ) {
      Remove-Item ENV:GDAL_DRIVER_PATH
 }
