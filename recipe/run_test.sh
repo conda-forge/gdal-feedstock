@@ -51,3 +51,7 @@ gdalinfo --formats
 
 test -f ${PREFIX}/lib/libgdal${SHLIB_EXT}
 test ! -f ${PREFIX}/lib/libgdal.a
+
+if [[ $(uname) == Darwin ]]; then
+  otool -L ${PREFIX}/lib/libgdal.31.dylib
+fi
