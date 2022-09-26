@@ -64,46 +64,16 @@ numpy:
 - '1.20'
 - '1.20'
 openjpeg:
-- '2.5'
+- '2'
 openssl:
 - 1.1.1
 pcre:
 - '8'
 pin_run_as_build:
-  curl:
-    max_pin: x
-  hdf4:
-    max_pin: x.x
-  jpeg:
-    max_pin: x
-  json-c:
-    max_pin: x.x
-  kealib:
-    max_pin: x.x
-  libkml:
-    max_pin: x.x
-  libpng:
-    max_pin: x.x
-  libtiff:
-    max_pin: x
-  libuuid:
-    max_pin: x
-  libxml2:
-    max_pin: x.x
-  openjpeg:
-    max_pin: x.x
   poppler:
     max_pin: x.x
   python:
     min_pin: x.x
-    max_pin: x.x
-  sqlite:
-    max_pin: x
-  tiledb:
-    max_pin: x.x
-  xz:
-    max_pin: x.x
-  zlib:
     max_pin: x.x
 poppler:
 - '22.04'
@@ -123,7 +93,7 @@ tiledb:
 xerces_c:
 - '3.2'
 xz:
-- '5.2'
+- '5'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
