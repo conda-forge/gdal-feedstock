@@ -19,6 +19,7 @@ export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 
 (bash configure --prefix=${PREFIX} \
                --host=${HOST} \
+               --with-hide-internal-symbols=yes \
                --with-blosc=${PREFIX} \
                --with-curl \
                --with-dods-root=${PREFIX} \
