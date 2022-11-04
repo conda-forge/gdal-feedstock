@@ -15,3 +15,5 @@ provider:
   osx: azure
   win: azure
 test_on_native_only: true
+azure:
+  store_build_artifacts: true
