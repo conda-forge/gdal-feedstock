@@ -11,7 +11,7 @@ source:
     - 0001-Improve-numpy-fixing.patch
 
 build:
-  number: 0
+  number: 1
   skip_compile_pyc:
     - "share/bash-completion/completions/*.py"
 
