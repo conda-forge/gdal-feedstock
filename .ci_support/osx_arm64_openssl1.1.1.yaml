@@ -19,7 +19,7 @@ cxx_compiler_version:
 expat:
 - '2'
 geos:
-- 3.11.0
+- 3.11.1
 geotiff:
 - 1.7.1
 giflib:
