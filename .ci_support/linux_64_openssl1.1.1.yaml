@@ -89,7 +89,7 @@ sqlite:
 target_platform:
 - linux-64
 tiledb:
-- '2.11'
+- '2.13'
 xerces_c:
 - '3.2'
 xz:
