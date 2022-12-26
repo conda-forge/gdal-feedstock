@@ -39,7 +39,6 @@ requirements:
     - kealib
     - lerc
     - libcurl
-    - libdap4  # [not win]
     - libdeflate
     - libiconv
     - libkml
@@ -98,7 +97,6 @@ outputs:
         - kealib
         - lerc
         - libcurl
-        - libdap4  # [not win]
         - libdeflate
         - libiconv
         - libkml
@@ -128,7 +126,6 @@ outputs:
         - geotiff
         - giflib  # [not win]
         - json-c  # [not win]
-        - libdap4  # [not win]
         - libpq
         - libspatialite
         - libuuid  # [linux]
