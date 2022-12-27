@@ -53,7 +53,7 @@ requirements:
     - lz4-c
     - openjpeg
     - openssl
-    - pcre
+    - pcre2
     - poppler
     - postgresql
     - proj
@@ -111,7 +111,7 @@ outputs:
         - lz4-c
         - openjpeg
         - openssl
-        - pcre
+        - pcre2
         - poppler
         - postgresql
         - proj

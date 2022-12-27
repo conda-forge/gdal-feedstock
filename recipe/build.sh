@@ -40,7 +40,7 @@ export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
                --with-libz=${PREFIX} \
                --with-netcdf=${PREFIX} \
                --with-openjpeg=${PREFIX} \
-               --with-pcre \
+               --with-pcre2 \
                --with-pg=yes \
                --with-png=${PREFIX} \
                --with-poppler=${PREFIX} \
