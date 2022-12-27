@@ -39,7 +39,7 @@ requirements:
     - kealib
     - lerc
     - libcurl
-    - libdap4
+    - libdap4  # [not win]
     - libdeflate
     - libiconv
     - libkml
@@ -98,7 +98,7 @@ outputs:
         - kealib
         - lerc
         - libcurl
-        - libdap4
+        - libdap4  # [not win]
         - libdeflate
         - libiconv
         - libkml
