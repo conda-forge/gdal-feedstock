@@ -2,12 +2,9 @@
 
 pushd swig/python
 
-$PYTHON setup.py build_ext \
-        --include-dirs $INCLUDE_PATH \
-        --library-dirs $LIBRARY_PATH \
-        --gdal-config gdal-config
-$PYTHON setup.py build_py
-$PYTHON setup.py build_scripts
-$PYTHON setup.py install
+$PYTHON -m pip install --no-deps --ignore-installed . \
+        --global-option build_ext \
+        --global-option "-I$INCLUDE_PATH" \
+        --global-option "-L$LIBRARY_PATH"
 
 popd
