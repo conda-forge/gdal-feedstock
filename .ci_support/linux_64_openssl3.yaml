@@ -68,8 +68,8 @@ openjpeg:
 - '2'
 openssl:
 - '3'
-pcre2:
-- '10.40'
+pcre:
+- '8'
 pin_run_as_build:
   poppler:
     max_pin: x.x
