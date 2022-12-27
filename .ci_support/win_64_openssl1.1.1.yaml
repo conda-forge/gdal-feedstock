@@ -28,6 +28,8 @@ lerc:
 - '4'
 libcurl:
 - '7'
+libdap4:
+- 3.20.6
 libdeflate:
 - '1.14'
 libiconv:
