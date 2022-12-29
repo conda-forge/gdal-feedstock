@@ -55,7 +55,7 @@ libpng:
 libpq:
 - '15'
 libtiff:
-- '4'
+- '4.5'
 libuuid:
 - '2'
 libwebp_base:
