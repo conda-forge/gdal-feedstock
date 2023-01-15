@@ -43,7 +43,7 @@ libcurl:
 libdap4:
 - 3.20.6
 libdeflate:
-- '1.14'
+- '1.16'
 libiconv:
 - '1'
 libkml:

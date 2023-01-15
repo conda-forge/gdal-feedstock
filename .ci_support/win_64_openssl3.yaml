@@ -29,7 +29,7 @@ lerc:
 libcurl:
 - '7'
 libdeflate:
-- '1.14'
+- '1.16'
 libiconv:
 - '1'
 libkml:
