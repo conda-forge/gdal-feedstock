@@ -3,5 +3,5 @@ __migrator:
   kind: version
   migration_number: 1
 libdeflate:
-- '1.16'
-migrator_ts: 1673716723.9076347
+- '1.17'
+migrator_ts: 1673799393.576726
