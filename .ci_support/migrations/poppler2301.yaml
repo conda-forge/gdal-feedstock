@@ -2,6 +2,6 @@ __migrator:
   build_number: 1
   kind: version
   migration_number: 1
-libdeflate:
-- '1.17'
-migrator_ts: 1673799393.576726
+migrator_ts: 1674060515.3542438
+poppler:
+- '23.01'
