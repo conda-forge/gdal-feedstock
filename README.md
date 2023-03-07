@@ -1,11 +1,24 @@
-About gdal-split
-================
+About gdal-split-feedstock
+==========================
 
-Home: 
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gdal-feedstock/blob/main/LICENSE.txt)
+
+About gdal-split
+----------------
+
+Home: http://www.gdal.org
 
 Package license: MIT
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gdal-feedstock/blob/main/LICENSE.txt)
+Summary: GDAL is a translator library for raster and vector geospatial data formats that is released under an
+X/MIT style Open Source license by the Open Source Geospatial Foundation.
+
+About libgdal
+-------------
+
+
+
+Package license: MIT
 
 Summary: The Geospatial Data Abstraction Library (GDAL)
 
