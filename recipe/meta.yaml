@@ -8,11 +8,11 @@ source:
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.xz
   sha256: d32223ddf145aafbbaec5ccfa5dbc164147fb3348a3413057f9b1600bb5b3890
   patches:
-    # disable 12 bit jpeg on Windows as we aren't using internal jpeg
+    # disable 12 bit libjpeg-turbo  on Windows as we aren't using internal libjpeg-turbo
     - disable_jpeg12.patch  # [win]
 
 build:
-  number: 18
+  number: 19
 
 requirements:
   build:
@@ -34,7 +34,7 @@ requirements:
     - hdf4
     - hdf5
     - icu
-    - jpeg
+    - libjpeg-turbo
     - json-c  # [not win]
     - kealib
     - lerc
@@ -93,7 +93,7 @@ outputs:
         - hdf4
         - hdf5
         - icu
-        - jpeg
+        - libjpeg-turbo
         - json-c  # [not win]
         - kealib
         - lerc
