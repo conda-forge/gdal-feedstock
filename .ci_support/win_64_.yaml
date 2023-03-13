@@ -20,8 +20,6 @@ hdf5:
 - 1.12.2
 icu:
 - '70'
-jpeg:
-- '9'
 kealib:
 - '1.5'
 lerc:
@@ -32,6 +30,8 @@ libdeflate:
 - '1.17'
 libiconv:
 - '1'
+libjpeg_turbo:
+- 2.1.5
 libkml:
 - '1.3'
 libnetcdf:
