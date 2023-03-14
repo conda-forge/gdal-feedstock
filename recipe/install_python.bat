@@ -5,7 +5,7 @@ rd /s /q swig\python
 
 FOR /F "tokens=*" %%g IN ('%PYTHON% -c "import numpy; print(numpy.get_include())"') do (SET Python_NumPy_INCLUDE_DIR=%%g)
 
-cmake "-UPython*" ^
+cmake %CMAKE_ARGS% "-UPython*" ^
       -DPython_EXECUTABLE="%PYTHON%" ^
       -DPython_NumPy_INCLUDE_DIR="%Python_NumPy_INCLUDE_DIR%" ^
       -DGDAL_PYTHON_INSTALL_PREFIX:PATH="%STDLIB_DIR%\.." ^

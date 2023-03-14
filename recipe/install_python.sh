@@ -10,8 +10,9 @@ rm -rf swig/python
 
 Python_LOOKUP_VERSION=$($PYTHON -c "import sys; print(str(sys.version_info.major)+'.'+str(sys.version_info.minor)+'.'+str(sys.version_info.micro))")
 
-cmake "-UPython*" \
+cmake ${CMAKE_ARGS} "-UPython*" \
       -DPython_LOOKUP_VERSION=${Python_LOOKUP_VERSION} \
+      -DPython_EXECUTABLE="$PYTHON"
       -DBUILD_PYTHON_BINDINGS:BOOL=ON \
       -DGDAL_USE_EXTERNAL_LIBS=OFF \
       -DGDAL_BUILD_OPTIONAL_DRIVERS:BOOL=OFF \
