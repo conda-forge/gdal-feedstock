@@ -24,7 +24,7 @@ geotiff:
 hdf4:
 - 4.2.15
 hdf5:
-- 1.12.2
+- 1.14.0
 icu:
 - '70'
 kealib:
