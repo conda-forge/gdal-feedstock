@@ -10,6 +10,8 @@ source:
   patches:
     # disable 12 bit jpeg  on Windows as we aren't using internal jpeg
     - disable_jpeg12.patch  # [win]
+    # changes for latest hdf5
+    - hdf5_1.14.patch
 
 build:
   number: 22
