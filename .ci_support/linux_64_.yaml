@@ -54,7 +54,7 @@ libjpeg_turbo:
 libkml:
 - '1.3'
 libnetcdf:
-- 4.9.1
+- 4.9.2
 libpng:
 - '1.6'
 libpq:
