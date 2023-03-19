@@ -9,7 +9,7 @@ source:
   sha256: 3cccbed883b1fb99b913966aa3a650ad930e7c3afc714f5823f9754176ee49ea
 
 build:
-  number: 3
+  number: 4
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
 
