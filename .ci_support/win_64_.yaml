@@ -27,7 +27,7 @@ lerc:
 libcurl:
 - '7'
 libdeflate:
-- '1.17'
+- '1.18'
 libiconv:
 - '1'
 libjpeg_turbo:
