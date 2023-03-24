@@ -41,7 +41,7 @@ libcurl:
 libdap4:
 - 3.20.6
 libdeflate:
-- '1.17'
+- '1.18'
 libiconv:
 - '1'
 libjpeg_turbo:
