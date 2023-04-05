@@ -71,8 +71,8 @@ lz4_c:
 numpy:
 - '1.21'
 - '1.23'
-- '1.20'
-- '1.20'
+- '1.21'
+- '1.21'
 openjpeg:
 - '2'
 openssl:
@@ -86,7 +86,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 poppler:
-- '23.03'
+- '23.04'
 postgresql:
 - '15'
 proj:
