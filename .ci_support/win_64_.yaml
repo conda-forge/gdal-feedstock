@@ -12,7 +12,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 curl:
-- '7'
+- '8'
 cxx_compiler:
 - vs2019
 expat:
@@ -26,13 +26,13 @@ hdf4:
 hdf5:
 - 1.14.0
 icu:
-- '70'
+- '72'
 kealib:
 - '1.5'
 lerc:
 - '4'
 libcurl:
-- '7'
+- '8'
 libdeflate:
 - '1.18'
 libiconv:
