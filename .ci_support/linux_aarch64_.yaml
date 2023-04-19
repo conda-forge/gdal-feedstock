@@ -33,7 +33,7 @@ hdf4:
 hdf5:
 - 1.14.0
 icu:
-- '70'
+- '72'
 json_c:
 - '0.16'
 kealib:
@@ -41,7 +41,7 @@ kealib:
 lerc:
 - '4'
 libcurl:
-- '7'
+- '8'
 libdap4:
 - 3.20.6
 libdeflate:
