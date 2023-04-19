@@ -14,7 +14,7 @@ source:
     - hdf5_1.14.patch
 
 build:
-  number: 25
+  number: 26
 
 requirements:
   build:
