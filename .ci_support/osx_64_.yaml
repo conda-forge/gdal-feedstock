@@ -8,7 +8,7 @@ arrow_cpp:
 c_compiler:
 - clang
 c_compiler_version:
-- '14'
+- '15'
 cfitsio:
 - 4.2.0
 channel_sources:
@@ -20,7 +20,7 @@ curl:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '14'
+- '15'
 expat:
 - '2'
 geos:
