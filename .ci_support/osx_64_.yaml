@@ -4,7 +4,7 @@ arrow_cpp:
 - 10.0.1
 - 11.0.0
 - '12'
-- 9.0.0
+- '13'
 c_compiler:
 - clang
 c_compiler_version:
