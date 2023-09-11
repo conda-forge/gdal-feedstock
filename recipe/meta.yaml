@@ -9,7 +9,7 @@ source:
   sha256: 9297948f0a8ba9e6369cd50e87c7e2442eda95336b94d2b92ef1829d260b9a06
 
 build:
-  number: 9
+  number: 10
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
 
@@ -134,6 +134,7 @@ outputs:
         - geotiff
         - giflib  # [not win]
         - json-c  # [not win]
+        - libgrpc
         - libpq
         - libspatialite
         - libuuid  # [linux]
