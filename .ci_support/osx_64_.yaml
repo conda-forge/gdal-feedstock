@@ -47,6 +47,8 @@ libcurl:
 - '8'
 libdeflate:
 - '1.18'
+libgrpc:
+- '1.56'
 libiconv:
 - '1'
 libjpeg_turbo:
