@@ -11,7 +11,7 @@ source:
     - flatgeobuffcxx17.patch
 
 build:
-  number: 16
+  number: 17
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
 
