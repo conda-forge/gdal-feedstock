@@ -48,7 +48,7 @@ lerc:
 libcurl:
 - '8'
 libdeflate:
-- '1.18'
+- '1.19'
 libiconv:
 - '1'
 libjpeg_turbo:
