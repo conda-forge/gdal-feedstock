@@ -44,7 +44,7 @@ libnetcdf:
 libpng:
 - '1.6'
 libpq:
-- '15'
+- '16'
 libtiff:
 - '4.6'
 libwebp_base:
