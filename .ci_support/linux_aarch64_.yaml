@@ -54,7 +54,7 @@ libdeflate:
 libiconv:
 - '1'
 libjpeg_turbo:
-- 2.1.5
+- '3'
 libkml:
 - '1.3'
 libnetcdf:
