@@ -295,7 +295,9 @@ outputs:
         - gdal_merge.py --version
         - gdal2tiles.py --help
         - gdal2xyz.py --help
-        - gdal_retile.py --version
+        # gdal_retile.py returns error code, but outputs no error message?
+        - if not exist %PREFIX%\\Library\\bin\\gdal_retile.py exit 1  # [win]
+        - test -f $PREFIX/bin/gdal_retile.py  # [unix]
         - gdal_proximity.py --help
         - gdal_polygonize.py --help
         - gdal_sieve.py --version
