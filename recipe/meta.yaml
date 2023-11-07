@@ -285,11 +285,13 @@ outputs:
       commands:
         - python run_test.py
         # Check .py GDAL utilities
-        # --help not implemented as documented for gdal_merge.py, gdal_retile.py, gdal_sieve.py, gdalmove.py, gdal_edit.py, gdal_pansharpen.py, gdalcompare.py, ogrmerge.py?
+        # --help not implemented as documented for gdalattachpct.py, gdal_merge.py, gdal_retile.py, gdal_sieve.py, gdalmove.py, gdal_edit.py, gdal_pansharpen.py, gdalcompare.py, ogrmerge.py?
         # also, --version does not work with e.g. rgb2pct.py...
         - rgb2pct.py --help
         - pct2rgb.py --help
-        - gdalattachpct.py --help
+        # Check for existence of gdalattachpct.py as neither --help nor --version seem to work
+        - if not exist %PREFIX%\\Library\\bin\\gdalattachpct.py exit 1  # [win]
+        - test -f $PREFIX/bin/gdalattachpct.py  # [unix]
         - gdal_merge.py --version
         - gdal2tiles.py --help
         - gdal2xyz.py --help
