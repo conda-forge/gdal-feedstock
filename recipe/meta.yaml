@@ -306,7 +306,7 @@ outputs:
         - gdal_sieve.py --version
         - gdal_fillnodata.py --help
         - gdalmove.py --version
-        # Returns error despite printing help
+        # Errors out on --version despite printing GDAL version
         - if not exist %PREFIX%\\Library\\bin\\gdal_edit.py exit 1  # [win]
         - test -f $PREFIX/bin/gdal_edit.py  # [unix]
         - gdal_calc.py --help
