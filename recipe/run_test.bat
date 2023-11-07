@@ -40,3 +40,42 @@ if errorlevel 1 exit 1
 gdal_translate --formats
 if errorlevel 1 exit 1
 
+:: Check .py utilities
+:: --help not implemented as documented for gdal_merge.py, gdal_retile.py, gdal_sieve.py, gdalmove.py, gdal_edit.py, gdal_pansharpen.py, gdalcompare.py, ogrmerge.py?
+:: also, --version does not work with e.g. rgb2pct.py...
+rgb2pct.py --help
+if errorlevel 1 exit 1
+pct2rgb.py --help
+if errorlevel 1 exit 1
+gdalattachpct.py --help
+if errorlevel 1 exit 1
+gdal_merge.py --version
+if errorlevel 1 exit 1
+gdal2tiles.py --help
+if errorlevel 1 exit 1
+gdal2xyz.py --help
+if errorlevel 1 exit 1
+gdal_retile.py --version
+if errorlevel 1 exit 1
+gdal_proximity.py --help
+if errorlevel 1 exit 1
+gdal_polygonize.py --help
+if errorlevel 1 exit 1
+gdal_sieve.py --version
+if errorlevel 1 exit 1
+gdal_fillnodata.py --help
+if errorlevel 1 exit 1
+gdalmove.py --version
+if errorlevel 1 exit 1
+gdal_edit.py --version
+if errorlevel 1 exit 1
+gdal_calc.py --help
+if errorlevel 1 exit 1
+gdal_pansharpen.py --version
+if errorlevel 1 exit 1
+gdalcompare.py --version
+if errorlevel 1 exit 1
+ogrmerge.py --version
+if errorlevel 1 exit 1
+ogr_layer_algebra.py --help
+if errorlevel 1 exit 1
