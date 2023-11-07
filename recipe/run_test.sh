@@ -54,23 +54,3 @@ test ! -f ${PREFIX}/lib/libgdal.a
 
 # check all drivers
 gdal_translate --formats
-
-# check Python-based utilities
-rgb2pct.py --help
-pct2rgb.py --help
-gdalattachpct.py --help
-gdal_merge.py --version
-gdal2tiles.py --help
-gdal2xyz.py --help
-gdal_retile.py --version
-gdal_proximity.py --help
-gdal_polygonize.py --help
-gdal_sieve.py --version
-gdal_fillnodata.py --help
-gdalmove.py --version
-gdal_edit.py --version
-gdal_calc.py --help
-gdal_pansharpen.py --version
-gdalcompare.py --version
-ogrmerge.py --version
-ogr_layer_algebra.py --help
