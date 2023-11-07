@@ -314,7 +314,9 @@ outputs:
         - if not exist %PREFIX%\\Library\\bin\\gdal_pansharpen.py exit 1  # [win]
         - test -f $PREFIX/bin/gdal_pansharpen.py  # [unix]
         - gdalcompare.py --version
-        - ogrmerge.py --version
+        # Errors out on --version despite printing GDAL version
+        - if not exist %PREFIX%\\Library\\bin\\ogrmerge.py exit 1  # [win]
+        - test -f $PREFIX/bin/ogrmerge.py  # [unix]        
         - ogr_layer_algebra.py --help
       about:
         summary: Python wrapper for the Geospatial Data Abstraction Library (GDAL)
