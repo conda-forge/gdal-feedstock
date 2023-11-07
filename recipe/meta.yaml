@@ -310,7 +310,9 @@ outputs:
         - if not exist %PREFIX%\\Library\\bin\\gdal_edit.py exit 1  # [win]
         - test -f $PREFIX/bin/gdal_edit.py  # [unix]
         - gdal_calc.py --help
-        - gdal_pansharpen.py --version
+        # Errors out on --version despite printing GDAL version
+        - if not exist %PREFIX%\\Library\\bin\\gdal_pansharpen.py exit 1  # [win]
+        - test -f $PREFIX/bin/gdal_pansharpen.py  # [unix]
         - gdalcompare.py --version
         - ogrmerge.py --version
         - ogr_layer_algebra.py --help
