@@ -317,7 +317,9 @@ outputs:
         # Errors out on --version despite printing GDAL version
         - if not exist %PREFIX%\\Library\\bin\\ogrmerge.py exit 1  # [win]
         - test -f $PREFIX/bin/ogrmerge.py  # [unix]        
-        - ogr_layer_algebra.py --help
+        # Returns error despite printing help
+        - if not exist %PREFIX%\\Library\\bin\\ogr_layer_algebra.py exit 1  # [win]
+        - test -f $PREFIX/bin/ogr_layer_algebra.py  # [unix]
       about:
         summary: Python wrapper for the Geospatial Data Abstraction Library (GDAL)
         license: MIT
