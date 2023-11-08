@@ -274,6 +274,7 @@ outputs:
         - test_data
         - extra_tests.py
         - run_test.py
+        - test_script_exist.bat
       imports:
         - osgeo
         - osgeo.ogr
@@ -320,6 +321,7 @@ outputs:
         # Returns error despite printing help
         # - if not exist %PREFIX%\\Library\\bin\\ogr_layer_algebra.py exit 1  # [win]
         - test -f $PREFIX/bin/ogr_layer_algebra.py  # [unix]
+        - test_script_exist.bat
       about:
         summary: Python wrapper for the Geospatial Data Abstraction Library (GDAL)
         license: MIT
