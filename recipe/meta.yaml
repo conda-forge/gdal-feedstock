@@ -321,7 +321,7 @@ outputs:
         # Returns error despite printing help
         # - if not exist %PREFIX%\\Library\\bin\\ogr_layer_algebra.py exit 1  # [win]
         - test -f $PREFIX/bin/ogr_layer_algebra.py  # [unix]
-        - test_script_exist.bat
+        - test_script_exist.bat # [win]
       about:
         summary: Python wrapper for the Geospatial Data Abstraction Library (GDAL)
         license: MIT
