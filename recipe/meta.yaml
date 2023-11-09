@@ -286,41 +286,42 @@ outputs:
       commands:
         - python run_test.py
         # Check .py GDAL utilities
-        # --help not implemented as documented for gdalattachpct.py, gdal_merge.py, gdal_retile.py, gdal_sieve.py, gdalmove.py, gdal_edit.py, gdal_pansharpen.py, gdalcompare.py, ogrmerge.py?
+        # --help not implemented as documented for gdalattachpct.py,
+        # gdal_merge.py, gdal_retile.py, gdal_sieve.py, gdalmove.py,
+        # gdal_edit.py, gdal_pansharpen.py, gdalcompare.py, ogrmerge.py?
         # also, --version does not work with e.g. rgb2pct.py...
-        # In addition, some scripts are checked only for existence (gdalattachpct.py, gdal_retile.py, gdal_proximity.py) as they unexpectedly return error codes.
+        # In addition, some scripts are checked only for existence
+        # (gdalattachpct.py, gdal_retile.py, gdal_proximity.py) as they
+        # unexpectedly return error codes. For easier debugging, these
+        # existence checks are performed in a separate .bat file on Windows.
+        # These existence checks should be replaced by regular calls once
+        # behavior is fixed in GDAL itself.
         - rgb2pct.py --help
         - pct2rgb.py --help
         # Neither --help nor --version seem to work
-        # - if not exist %PREFIX%\\Library\\bin\\gdalattachpct.py exit 1  # [win]
         - test -f $PREFIX/bin/gdalattachpct.py  # [unix]
         - gdal_merge.py --version
         - gdal2tiles.py --help
         - gdal2xyz.py --help
         # Errors out on --version despite printing GDAL version
-        # - if not exist %PREFIX%\\Library\\bin\\gdal_retile.py exit 1  # [win]
         - test -f $PREFIX/bin/gdal_retile.py  # [unix]
         # Returns error despite printing help
-        # - if not exist %PREFIX%\\Library\\bin\\gdal_proximity.py exit 1  # [win]
         - test -f $PREFIX/bin/gdal_proximity.py  # [unix]
         - gdal_polygonize.py --help
         - gdal_sieve.py --version
         - gdal_fillnodata.py --help
         - gdalmove.py --version
         # Errors out on --version despite printing GDAL version
-        # - if not exist %PREFIX%\\Library\\bin\\gdal_edit.py exit 1  # [win]
         - test -f $PREFIX/bin/gdal_edit.py  # [unix]
         - gdal_calc.py --help
         # Errors out on --version despite printing GDAL version
-        # - if not exist %PREFIX%\\Library\\bin\\gdal_pansharpen.py exit 1  # [win]
         - test -f $PREFIX/bin/gdal_pansharpen.py  # [unix]
         - gdalcompare.py --version
         # Errors out on --version despite printing GDAL version
-        # - if not exist %PREFIX%\\Library\\bin\\ogrmerge.py exit 1  # [win]
         - test -f $PREFIX/bin/ogrmerge.py  # [unix]        
         # Returns error despite printing help
-        # - if not exist %PREFIX%\\Library\\bin\\ogr_layer_algebra.py exit 1  # [win]
         - test -f $PREFIX/bin/ogr_layer_algebra.py  # [unix]
+        # Existence checks on Windows are done in a separate .bat file
         - test_script_exist.bat  # [win]
       about:
         summary: Python wrapper for the Geospatial Data Abstraction Library (GDAL)
