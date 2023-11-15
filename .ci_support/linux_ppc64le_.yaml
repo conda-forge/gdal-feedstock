@@ -39,10 +39,10 @@ lerc:
 libarchive:
 - '3.7'
 libarrow:
-- 10.0.1
 - 11.0.0
 - '12'
 - '13'
+- '14'
 libcurl:
 - '8'
 libdeflate:
@@ -88,7 +88,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 poppler:
-- '23.10'
+- '23.07'
 postgresql:
 - '16'
 proj:

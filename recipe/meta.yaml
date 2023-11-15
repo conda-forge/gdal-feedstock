@@ -11,7 +11,7 @@ source:
     - 0001-cpl_zipOpenNewFileInZip3-validate-length-of-filename.patch
 
 build:
-  number: 3
+  number: 4
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
 
