@@ -12,7 +12,7 @@ source:
       - 0002-Fix-build-error-with-libxml2-2.12-cont-d.patch
 
 build:
-  number: 7
+  number: 8
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
 
