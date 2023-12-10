@@ -27,7 +27,7 @@ giflib:
 hdf4:
 - 4.2.15
 hdf5:
-- 1.14.2
+- 1.14.3
 json_c:
 - '0.17'
 kealib:
@@ -62,7 +62,7 @@ libtiff:
 libwebp_base:
 - '1'
 libxml2:
-- '2.11'
+- '2.12'
 lz4_c:
 - 1.9.3
 macos_machine:
