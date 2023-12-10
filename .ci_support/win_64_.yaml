@@ -19,7 +19,7 @@ geotiff:
 hdf4:
 - 4.2.15
 hdf5:
-- 1.14.2
+- 1.14.3
 kealib:
 - '1.5'
 lerc:
@@ -52,7 +52,7 @@ libtiff:
 libwebp_base:
 - '1'
 libxml2:
-- '2.11'
+- '2.12'
 lz4_c:
 - 1.9.3
 numpy:
@@ -78,7 +78,7 @@ poppler:
 postgresql:
 - '16'
 proj:
-- 9.3.0
+- 9.3.1
 python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
