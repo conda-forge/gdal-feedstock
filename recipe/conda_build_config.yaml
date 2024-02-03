@@ -1,0 +1,5 @@
+# build against 3.0 for now, because some users cannot use 3.2;
+# openssl's run-export is major-version only, meaning builds
+# against 3.0 can be used with 3.2.
+openssl:
+  - 3.0

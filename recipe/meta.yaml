@@ -12,7 +12,7 @@ source:
     - patches/002_libarrow15_compat.patch
 
 build:
-  number: 1
+  number: 2
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
 
@@ -273,9 +273,6 @@ outputs:
         # See: https://github.com/conda-forge/gdal-feedstock/pull/415
         - hdf5
         - libxml2
-        # Workaround to prevent conflicts seen in
-        #  https://github.com/conda-forge/gdal-feedstock/pull/543
-        - openssl
       run:
         - python
         - {{ pin_compatible('numpy') }}
