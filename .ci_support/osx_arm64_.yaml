@@ -78,7 +78,7 @@ numpy:
 openjpeg:
 - '2'
 openssl:
-- '3'
+- '3.0'
 pcre2:
 - '10.42'
 pin_run_as_build:
