@@ -43,10 +43,10 @@ lerc:
 libarchive:
 - '3.7'
 libarrow:
-- 11.0.0
 - '12'
 - '13'
 - '14'
+- '15'
 libcurl:
 - '8'
 libdeflate:
@@ -84,7 +84,7 @@ openjpeg:
 openssl:
 - '3'
 pcre2:
-- '10.42'
+- '10.43'
 pin_run_as_build:
   poppler:
     max_pin: x.x
