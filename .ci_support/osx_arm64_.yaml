@@ -5,7 +5,7 @@ c_compiler:
 c_compiler_version:
 - '16'
 cfitsio:
-- 4.3.1
+- 4.4.0
 channel_sources:
 - conda-forge
 channel_targets:
