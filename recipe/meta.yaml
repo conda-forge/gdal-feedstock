@@ -13,7 +13,7 @@ source:
     - 0003-Fix-build-error-with-libxml2-2.12-cont-d.patch
 
 build:
-  number: 16
+  number: 17
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
 
