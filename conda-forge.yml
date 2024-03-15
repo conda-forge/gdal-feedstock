@@ -9,6 +9,6 @@ provider:
   linux_ppc64le: azure
   osx: azure
   win: azure
-test_on_native_only: true
 conda_build:
   pkg_format: '2'
+test: native_and_emulated
