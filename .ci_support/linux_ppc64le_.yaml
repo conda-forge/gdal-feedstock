@@ -46,7 +46,7 @@ libarrow:
 libcurl:
 - '8'
 libdeflate:
-- '1.19'
+- '1.20'
 libiconv:
 - '1'
 libjpeg_turbo:
