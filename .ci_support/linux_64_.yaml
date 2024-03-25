@@ -92,7 +92,7 @@ poppler:
 postgresql:
 - '16'
 proj:
-- 9.3.1
+- 9.4.0
 python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
