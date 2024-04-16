@@ -13,7 +13,7 @@ source:
     - 0003-Fix-build-error-with-libxml2-2.12-cont-d.patch
 
 build:
-  number: 21
+  number: 22
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
 
@@ -24,8 +24,8 @@ requirements:
     - make  # [not win]
     - ninja  # [win]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
-    - sysroot_linux-64 2.17  # [linux64]
     - swig
   host:
     - blosc
@@ -83,12 +83,12 @@ outputs:
         - cmake
         # ranlib used at install time
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         # libstdc++ is needed in requirements/run
         - {{ compiler('cxx') }}
         - pkg-config  # [not win]
         - make  # [unix]
         - ninja  # [win]
-        - sysroot_linux-64 2.17  # [linux64]
       host:
         - blosc
         - cfitsio
@@ -164,12 +164,12 @@ outputs:
         - cmake
         # ranlib used at install time
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         # libstdc++ is needed in requirements/run
         - {{ compiler('cxx') }}
         - pkg-config  # [not win]
         - make  # [unix]
         - ninja  # [win]
-        - sysroot_linux-64 2.17  # [linux64]
       host:
         - {{ pin_subpackage('libgdal', exact=True) }}
         - blosc
@@ -254,6 +254,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - cmake
         - make  # [unix]
