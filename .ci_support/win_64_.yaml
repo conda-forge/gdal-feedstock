@@ -1,5 +1,7 @@
 c_compiler:
 - vs2019
+c_stdlib:
+- vs
 cfitsio:
 - 4.4.0
 channel_sources:
@@ -90,7 +92,7 @@ sqlite:
 target_platform:
 - win-64
 tiledb:
-- '2.21'
+- '2.22'
 xerces_c:
 - '3.2'
 xz:

@@ -4,6 +4,10 @@ c_compiler:
 - clang
 c_compiler_version:
 - '16'
+c_stdlib:
+- macosx_deployment_target
+c_stdlib_version:
+- '11.0'
 cfitsio:
 - 4.4.0
 channel_sources:
@@ -102,7 +106,7 @@ sqlite:
 target_platform:
 - osx-arm64
 tiledb:
-- '2.21'
+- '2.22'
 xerces_c:
 - '3.2'
 xz:
