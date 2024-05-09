@@ -16,6 +16,7 @@ build:
   number: 24
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
+  skip: true  # [ppc64le]
 
 requirements:
   build:
