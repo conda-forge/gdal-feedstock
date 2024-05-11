@@ -9,7 +9,7 @@ source:
   sha256: e8b4df2a8a7d25272f867455c0c230459545972f81f0eff2ddbf6a6f60dcb1e4
 
 build:
-  number: 3
+  number: 4
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   skip: true  # [ppc64le]
