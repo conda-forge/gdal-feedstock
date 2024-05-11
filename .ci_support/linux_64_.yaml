@@ -45,10 +45,10 @@ libaec:
 libarchive:
 - '3.7'
 libarrow:
-- '12'
 - '13'
 - '14'
 - '15'
+- '16'
 libcurl:
 - '8'
 libdeflate:
