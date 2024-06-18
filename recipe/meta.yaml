@@ -56,7 +56,6 @@ requirements:
     - libwebp-base
     - libxml2
     - lz4-c
-    - openjpeg
     - openssl
     - pcre2
     - poppler
@@ -70,20 +69,8 @@ requirements:
     - zlib
     - zstd
   run:
-    - cfitsio
-    - geotiff
-    - giflib  # [not win]
-    - json-c  # [not win]
-    - libpq
-    - libspatialite
-    - libuuid  # [linux]
-    - libwebp-base
     - poppler
     - postgresql
-    - proj
-    - tiledb
-    - xz
-    - zstd
 
 test:
   files:
@@ -136,7 +123,6 @@ outputs:
         - libuuid  # [linux]
         - libwebp-base
         - libxml2
-        - openjpeg
         - openssl
         - pcre2
         - poppler
@@ -150,21 +136,78 @@ outputs:
         - zlib
         - zstd
       run:
+        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - poppler
+        - postgresql
+    test:
+      files:
+        - test_arrow_parquet.sh   # [unix]
+        - test_arrow_parquet.bat  # [win]
+      commands:
+        - sh test_arrow_parquet.sh   # [unix]
+        - test_arrow_parquet.bat  # [win]
+    about:
+      summary: Arrow and Parquet drivers for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - name: libgdal-openjpeg
+    script: build_openjpeg.sh  # [unix]
+    script: build_openjpeg.bat  # [win]
+    requirements:
+      build:
+        - cmake
+        # ranlib used at install time
+        - {{ compiler('c') }}
+        - {{ stdlib("c") }}
+        # libstdc++ is needed in requirements/run
+        - {{ compiler('cxx') }}
+        - pkg-config  # [not win]
+        - make  # [unix]
+        - ninja  # [win]
+      host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        - blosc
         - cfitsio
+        - curl
+        - expat
+        - freexl
+        - geos
         - geotiff
         - giflib  # [not win]
+        - hdf4
+        - hdf5
+        - libjpeg-turbo
         - json-c  # [not win]
+        - kealib
+        - libarchive
+        - libkml
+        - libnetcdf
+        - libpng
         - libpq
         - libspatialite
+        - libtiff
         - libuuid  # [linux]
         - libwebp-base
+        - libxml2
+        - openssl
+        - pcre2
         - poppler
         - postgresql
         - proj
+        - qhull
+        - sqlite
         - tiledb
+        - xerces-c
         - xz
+        - zlib
         - zstd
+        # plugin specific
+        - openjpeg
+      run:
+        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - poppler
+        - postgresql
     test:
       files:
         - test_arrow_parquet.sh   # [unix]

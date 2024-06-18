@@ -23,10 +23,13 @@ cmake -G "Unix Makefiles" \
       -DGDAL_USE_PARQUET=OFF \
       -DGDAL_USE_ARROW=OFF \
       -DGDAL_USE_ARROWDATASET=OFF \
+      -DGDAL_USE_OPENJPEG=OFF \
       -DOGR_REGISTER_DRIVER_ARROW_FOR_LATER_PLUGIN=ON \
       -DOGR_REGISTER_DRIVER_PARQUET_FOR_LATER_PLUGIN=ON \
+      -DOGR_REGISTER_DRIVER_OPENJPEG_FOR_LATER_PLUGIN=ON \
       -DOGR_DRIVER_ARROW_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-arrow-parquet'" \
       -DOGR_DRIVER_PARQUET_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-arrow-parquet'" \
+      -DOGR_DRIVER_OPENJPEG_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-openjpeg'" \
       -DGDAL_ENABLE_HDF5_GLOBAL_LOCK:BOOL=ON \
       -DBUILD_PYTHON_BINDINGS:BOOL=OFF \
       -DBUILD_JAVA_BINDINGS:BOOL=OFF \
