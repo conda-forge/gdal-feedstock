@@ -330,6 +330,7 @@ about:
     X/MIT style Open Source license by the Open Source Geospatial Foundation.
 
 extra:
+  feedstock-name: gdal
   recipe-maintainers:
     - zklaus
     - akrherz
