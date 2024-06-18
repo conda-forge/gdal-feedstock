@@ -1,7 +1,7 @@
 {% set version = "3.9.0" %}
 
 package:
-  name: gdal-split
+  name: libgdal-core
   version: {{ version }}
 
 source:
@@ -13,6 +13,9 @@ build:
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   skip: true  # [ppc64le]
+  run_exports:
+    # no idea, going with minor pin
+    - {{ pin_subpackage('libgdal-core', max_pin='x.x') }}
 
 requirements:
   build:
@@ -57,7 +60,6 @@ requirements:
     - openssl
     - pcre2
     - poppler
-    - postgresql
     - proj
     # qhull disabled because of https://github.com/conda-forge/qgis-feedstock/issues/284#issuecomment-1356490896
     # - qhull
@@ -67,93 +69,30 @@ requirements:
     - xz
     - zlib
     - zstd
+  run:
+    - cfitsio
+    - geotiff
+    - giflib  # [not win]
+    - json-c  # [not win]
+    - libpq
+    - libspatialite
+    - libuuid  # [linux]
+    - libwebp-base
+    - poppler
+    - postgresql
+    - proj
+    - tiledb
+    - xz
+    - zstd
+
+test:
+  files:
+    - test_data
+    - run_test.bat
+    - run_test.sh
 
 outputs:
-  - name: libgdal
-    script: install_lib.sh  # [unix]
-    script: install_lib.bat  # [win]
-    build:
-      run_exports:
-        # no idea, going with minor pin
-        - {{ pin_subpackage('libgdal', max_pin='x.x') }}
-    requirements:
-      build:
-        - cmake
-        # ranlib used at install time
-        - {{ compiler('c') }}
-        - {{ stdlib("c") }}
-        # libstdc++ is needed in requirements/run
-        - {{ compiler('cxx') }}
-        - pkg-config  # [not win]
-        - make  # [unix]
-        - ninja  # [win]
-      host:
-        - blosc
-        - cfitsio
-        - expat
-        - freexl
-        - geos
-        - geotiff
-        - giflib  # [not win]
-        - hdf4
-        - hdf5
-        - libjpeg-turbo
-        - json-c  # [not win]
-        - kealib
-        - lerc
-        - libarchive
-        - libaec
-        - libcurl
-        - libdeflate
-        - libiconv
-        - libkml
-        - libnetcdf
-        - libpng
-        - libpq
-        - libspatialite
-        - libtiff
-        - libuuid  # [linux]
-        - libwebp-base
-        - libxml2
-        - lz4-c
-        - openjpeg
-        - openssl
-        - pcre2
-        - poppler
-        - postgresql
-        - proj
-        # qhull disabled because of https://github.com/conda-forge/qgis-feedstock/issues/284#issuecomment-1356490896
-        # - qhull
-        - sqlite
-        - tiledb
-        - xerces-c
-        - xz
-        - zlib
-        - zstd
-      run:
-        - cfitsio
-        - geotiff
-        - giflib  # [not win]
-        - json-c  # [not win]
-        - libpq
-        - libspatialite
-        - libuuid  # [linux]
-        - libwebp-base
-        - poppler
-        - postgresql
-        - proj
-        - tiledb
-        - xz
-        - zstd
-    test:
-      files:
-        - test_data
-        - run_test.bat
-        - run_test.sh
-    about:
-      summary: The Geospatial Data Abstraction Library (GDAL)
-      license: MIT
-      license_file: LICENSE.TXT
+  - name: libgdal-core
 
   - name: libgdal-arrow-parquet
     script: build_arrow_parquet.sh  # [unix]
@@ -170,7 +109,7 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
         - blosc
         - cfitsio
         - curl
@@ -186,14 +125,8 @@ outputs:
         - kealib
         - libarchive
         - libarrow
-        # appease linter
-        {% if libarrow is undefined %}
-        {% set libarrow = "14" %}
-        {% endif %}
-        {% if libarrow.split(".")[0] | int >= 14 %}
-        - libarrow-dataset
-        - libparquet
-        {% endif %}
+        - libarrow-dataset  # [libarrow != 13]
+        - libparquet        # [libarrow != 13]
         - libkml
         - libnetcdf
         - libpng
@@ -217,7 +150,7 @@ outputs:
         - zlib
         - zstd
       run:
-        - {{ pin_subpackage('libgdal', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
         - cfitsio
         - geotiff
         - giflib  # [not win]
@@ -244,6 +177,11 @@ outputs:
       license: MIT
       license_file: LICENSE.TXT
 
+  - name: libgdal
+    requirements:
+      run:
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+
   - name: gdal
     script: install_python.sh  # [unix]
     script: install_python.bat  # [win]
@@ -266,7 +204,7 @@ outputs:
         - python
         - pip
         - numpy
-        - {{ pin_subpackage('libgdal', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
         # Workaround to prevent run depending on "libgfortran5 9.3.0" despite "hdf5"
         # having not been migrated yet causing conflicts with the "libgdal" output
         # See: https://github.com/conda-forge/gdal-feedstock/pull/415
@@ -277,7 +215,7 @@ outputs:
         - openssl
       run:
         - python
-        - {{ pin_subpackage('libgdal', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
       files:
         - test_data

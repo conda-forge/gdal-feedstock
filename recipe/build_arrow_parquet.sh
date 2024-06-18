@@ -4,6 +4,8 @@ set -ex # Abort on error.
 
 cd build
 
+cp CMakeCache.txt.orig CMakeCache.txt
+
 # Remove build artifacts potentially generated with a different libarrow version
 rm -rf ogr/ogrsf_frmts/arrow
 rm -rf ogr/ogrsf_frmts/parquet

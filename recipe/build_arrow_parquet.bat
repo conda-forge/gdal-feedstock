@@ -1,6 +1,8 @@
 cd build
 if errorlevel 1 exit 1
 
+copy CMakeCache.txt.orig CMakeCache.txt
+
 REM Remove build artifacts potentially generated with a different libarrow version
 rmdir ogr\ogrsf_frmts\arrow /s /q
 rmdir ogr\ogrsf_frmts\parquet /s /q
