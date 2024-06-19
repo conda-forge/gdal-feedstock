@@ -263,7 +263,7 @@ outputs:
       files:
         - test_data
         - extra_tests.py
-        - run_test.py
+        - test_python.py
         - test_script_exist.bat
       imports:
         - osgeo
@@ -274,7 +274,7 @@ outputs:
         - osgeo._ogr
         - osgeo._osr
       commands:
-        - python run_test.py
+        - python test_python.py
         # Check that Python-implemented GDAL utilities are available with .py extension, as documented
         - gdal2tiles.py --help
         - gdal2xyz.py --help
