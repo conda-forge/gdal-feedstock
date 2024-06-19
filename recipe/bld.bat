@@ -34,10 +34,10 @@ cmake -G "Ninja" ^
       -DGDAL_USE_ARROWDATASET=OFF ^
       -DOGR_REGISTER_DRIVER_ARROW_FOR_LATER_PLUGIN=ON ^
       -DOGR_REGISTER_DRIVER_PARQUET_FOR_LATER_PLUGIN=ON ^
-      -DGDAL_REGISTER_DRIVER_OPENJPEG_FOR_LATER_PLUGIN=ON ^
+      -DGDAL_REGISTER_DRIVER_JP2OPENJPEG_FOR_LATER_PLUGIN=ON ^
       -DOGR_DRIVER_ARROW_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-arrow-parquet'" ^
       -DOGR_DRIVER_PARQUET_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-arrow-parquet'" ^
-      -DGDAL_DRIVER_OPENJPEG_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-openjpeg'" ^
+      -DGDAL_DRIVER_JP2OPENJPEG_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-openjpeg'" ^
       "%SRC_DIR%"
 
 if errorlevel 1 exit /b 1

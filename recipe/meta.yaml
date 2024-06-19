@@ -97,48 +97,11 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
-        - blosc
-        - cfitsio
-        - curl
-        - expat
-        - freexl
-        - geos
-        - geotiff
-        - giflib  # [not win]
-        - hdf4
-        - hdf5
-        - libjpeg-turbo
-        - json-c  # [not win]
-        - kealib
-        - libarchive
         - libarrow
         - libarrow-dataset  # [libarrow != 13]
         - libparquet        # [libarrow != 13]
-        - libkml
-        - libnetcdf
-        - libpng
-        - libpq
-        - libspatialite
-        - libtiff
-        - libuuid  # [linux]
-        - libwebp-base
-        - libxml2
-        - openssl
-        - pcre2
-        - poppler
-        - postgresql
-        - proj
-        - qhull
-        - sqlite
-        - tiledb
-        - xerces-c
-        - xz
-        - zlib
-        - zstd
       run:
         - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
-        - poppler
-        - postgresql
     test:
       files:
         - test_arrow_parquet.sh   # [unix]
@@ -167,47 +130,10 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
-        - blosc
-        - cfitsio
-        - curl
-        - expat
-        - freexl
-        - geos
-        - geotiff
-        - giflib  # [not win]
-        - hdf4
-        - hdf5
-        - libjpeg-turbo
-        - json-c  # [not win]
-        - kealib
-        - libarchive
-        - libkml
-        - libnetcdf
-        - libpng
-        - libpq
-        - libspatialite
-        - libtiff
-        - libuuid  # [linux]
-        - libwebp-base
-        - libxml2
-        - openssl
-        - pcre2
-        - poppler
-        - postgresql
-        - proj
-        - qhull
-        - sqlite
-        - tiledb
-        - xerces-c
-        - xz
-        - zlib
-        - zstd
         # plugin specific
         - openjpeg
       run:
         - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
-        - poppler
-        - postgresql
     test:
       files:
         - test_arrow_parquet.sh   # [unix]
