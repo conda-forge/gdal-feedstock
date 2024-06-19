@@ -59,6 +59,7 @@ requirements:
     - openssl
     - pcre2
     - poppler
+    - postgresql
     - proj
     # qhull disabled because of https://github.com/conda-forge/qgis-feedstock/issues/284#issuecomment-1356490896
     # - qhull
