@@ -265,6 +265,8 @@ outputs:
         - extra_tests.py
         - test_python.py
         - test_script_exist.bat
+      requires:
+        - libgdal-openjpeg
       imports:
         - osgeo
         - osgeo.ogr
