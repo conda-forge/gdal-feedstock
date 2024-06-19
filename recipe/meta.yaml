@@ -83,15 +83,13 @@ outputs:
   - name: libgdal-core
 
   - name: libgdal-arrow-parquet
-    script: build_arrow_parquet.sh  # [unix]
-    script: build_arrow_parquet.bat  # [win]
+    script: build_plugin.sh  # [unix]
+    script: build_plugin.bat  # [win]
     requirements:
       build:
         - cmake
-        # ranlib used at install time
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
-        # libstdc++ is needed in requirements/run
         - {{ compiler('cxx') }}
         - pkg-config  # [not win]
         - make  # [unix]
@@ -104,44 +102,40 @@ outputs:
       run:
         - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
     test:
-      files:
-        - test_arrow_parquet.sh   # [unix]
-        - test_arrow_parquet.bat  # [win]
       commands:
-        - sh test_arrow_parquet.sh   # [unix]
-        - test_arrow_parquet.bat  # [win]
+        - test -f ${PREFIX}/lib/gdalplugins/ogr_Arrow${SHLIB_EXT}        # [unix]
+        - test -f ${PREFIX}/lib/gdalplugins/ogr_Parquet${SHLIB_EXT}      # [unix]
+        - if not exist %LIBRARY_LIB%\gdalplugins\ogr_Arrow.dll exit 1    # [win]
+        - if not exist %LIBRARY_LIB%\gdalplugins\ogr_Parquet.dll exit 1  # [win]
+        - gdalinfo --format Arrow
+        - gdalinfo --format Parquet
     about:
       summary: Arrow and Parquet drivers for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
 
   - name: libgdal-openjpeg
-    script: build_openjpeg.sh  # [unix]
-    script: build_openjpeg.bat  # [win]
+    script: build_plugin.sh  # [unix]
+    script: build_plugin.bat  # [win]
     requirements:
       build:
         - cmake
-        # ranlib used at install time
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
-        # libstdc++ is needed in requirements/run
         - {{ compiler('cxx') }}
         - pkg-config  # [not win]
         - make  # [unix]
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
-        # plugin specific
         - openjpeg
       run:
         - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
     test:
-      files:
-        - test_arrow_parquet.sh   # [unix]
-        - test_arrow_parquet.bat  # [win]
       commands:
-        - sh test_arrow_parquet.sh   # [unix]
-        - test_arrow_parquet.bat  # [win]
+        - test -f ${PREFIX}/lib/gdalplugins/gdal_JP2OpenJPEG${SHLIB_EXT}      # [unix]
+        - if not exist %LIBRARY_LIB%\gdalplugins\gdal_JP2OpenJPEG.dll exit 1  # [win]
+        - gdalinfo --format JP2OpenJPEG
     about:
       summary: Arrow and Parquet drivers for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -150,7 +144,7 @@ outputs:
   - name: libgdal
     requirements:
       run:
-        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        - libgdal-core {{ version }}.*
 
   - name: gdal
     script: install_python.sh  # [unix]
@@ -175,17 +169,10 @@ outputs:
         - pip
         - numpy
         - {{ pin_subpackage('libgdal-core', exact=True) }}
-        # Workaround to prevent run depending on "libgfortran5 9.3.0" despite "hdf5"
-        # having not been migrated yet causing conflicts with the "libgdal" output
-        # See: https://github.com/conda-forge/gdal-feedstock/pull/415
-        - hdf5
         - libxml2
-        # Workaround to prevent conflicts seen in
-        #  https://github.com/conda-forge/gdal-feedstock/pull/543
-        - openssl
       run:
         - python
-        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        - libgdal-core {{ version }}.*
     test:
       files:
         - test_data
