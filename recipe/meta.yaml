@@ -145,6 +145,7 @@ outputs:
     requirements:
       run:
         - libgdal-core {{ version }}.*
+        - libgdal-openjpeg {{ version }}.*
 
   - name: gdal
     script: install_python.sh  # [unix]
