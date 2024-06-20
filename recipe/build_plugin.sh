@@ -22,7 +22,7 @@ if [[ "$PKG_NAME" == "libgdal-arrow-parquet" ]]; then
       -DOGR_ENABLE_DRIVER_PARQUET=ON \
       -DOGR_ENABLE_DRIVER_PARQUET_PLUGIN=ON"
 
-elif [[ "$PKG_NAME" == "libgdal-openjpeg" ]]; then
+elif [[ "$PKG_NAME" == "libgdal-jp2openjpeg" ]]; then
   CMAKE_ARGS="$CMAKE_ARGS \
       -DGDAL_USE_OPENJPEG=ON \
       -DGDAL_ENABLE_DRIVER_JP2OPENJPEG=ON \

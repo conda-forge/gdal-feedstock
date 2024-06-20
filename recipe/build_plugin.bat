@@ -20,7 +20,7 @@ if "%PKG_NAME%" == "libgdal-arrow-parquet" (
       -DOGR_ENABLE_DRIVER_PARQUET_PLUGIN=ON
 )
 
-if "%PKG_NAME%" == "libgdal-openjpeg" (
+if "%PKG_NAME%" == "libgdal-jp2openjpeg" (
   set CMAKE_ARGS=%CMAKE_ARGS% ^
       -DGDAL_USE_OPENJPEG=ON ^
       -DGDAL_ENABLE_DRIVER_JP2OPENJPEG=ON ^

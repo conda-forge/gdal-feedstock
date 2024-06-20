@@ -114,7 +114,7 @@ outputs:
       license: MIT
       license_file: LICENSE.TXT
 
-  - name: libgdal-openjpeg
+  - name: libgdal-jp2openjpeg
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     requirements:
@@ -145,7 +145,7 @@ outputs:
     requirements:
       run:
         - libgdal-core {{ version }}.*
-        - libgdal-openjpeg {{ version }}.*
+        - libgdal-jp2openjpeg {{ version }}.*
 
   - name: gdal
     script: install_python.sh  # [unix]
@@ -181,7 +181,7 @@ outputs:
         - test_python.py
         - test_script_exist.bat
       requires:
-        - libgdal-openjpeg
+        - libgdal-jp2openjpeg
       imports:
         - osgeo
         - osgeo.ogr
