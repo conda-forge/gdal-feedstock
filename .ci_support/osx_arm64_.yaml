@@ -11,9 +11,9 @@ c_stdlib:
 c_stdlib_version:
 - '11.0'
 cfitsio:
-- 4.4.0
+- 4.4.1
 channel_sources:
-- conda-forge/label/numpy_rc,conda-forge
+- conda-forge
 channel_targets:
 - conda-forge main
 curl:
@@ -86,7 +86,7 @@ openjpeg:
 openssl:
 - '3'
 pcre2:
-- '10.43'
+- '10.44'
 pin_run_as_build:
   poppler:
     max_pin: x.x
@@ -105,6 +105,8 @@ python:
 - 3.12.* *_cpython
 - 3.8.* *_cpython
 - 3.9.* *_cpython
+qhull:
+- '2020.2'
 sqlite:
 - '3'
 target_platform:
