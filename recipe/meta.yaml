@@ -172,6 +172,7 @@ outputs:
       run:
         - libgdal-core {{ version }}.*
         - libgdal-jp2openjpeg {{ version }}.*
+        - libgdal-pdf {{ version }}.*
 
   - name: gdal
     script: install_python.sh  # [unix]
