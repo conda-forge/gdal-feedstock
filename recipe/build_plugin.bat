@@ -27,6 +27,13 @@ if "%PKG_NAME%" == "libgdal-jp2openjpeg" (
       -DGDAL_ENABLE_DRIVER_JP2OPENJPEG_PLUGIN=ON
 )
 
+if "%PKG_NAME%" == "libgdal-pdf" (
+  set CMAKE_ARGS=%CMAKE_ARGS% ^
+      -DGDAL_USE_POPPLER=ON ^
+      -DGDAL_ENABLE_DRIVER_PDF=ON ^
+      -DGDAL_ENABLE_DRIVER_PDF_PLUGIN=ON
+)
+
 REM We reuse the same build directory as libgdal, so we just to have to
 REM turn on the required dependency and drivers
 cmake -DBUILD_PYTHON_BINDINGS:BOOL=OFF %CMAKE_ARGS% "%SRC_DIR%"

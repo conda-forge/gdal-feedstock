@@ -27,6 +27,12 @@ elif [[ "$PKG_NAME" == "libgdal-jp2openjpeg" ]]; then
       -DGDAL_USE_OPENJPEG=ON \
       -DGDAL_ENABLE_DRIVER_JP2OPENJPEG=ON \
       -DGDAL_ENABLE_DRIVER_JP2OPENJPEG_PLUGIN=ON"
+
+elif [[ "$PKG_NAME" == "libgdal-pdf" ]]; then
+  CMAKE_ARGS="$CMAKE_ARGS \
+      -DGDAL_USE_POPPLER=ON \
+      -DGDAL_ENABLE_DRIVER_PDF=ON \
+      -DGDAL_ENABLE_DRIVER_PDF_PLUGIN=ON"
 fi
 
 # We reuse the same build directory as libgdal, so we just to have to

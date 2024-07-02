@@ -58,7 +58,6 @@ requirements:
     - lz4-c
     - openssl
     - pcre2
-    - poppler
     - postgresql
     - proj
     # qhull disabled because of https://github.com/conda-forge/qgis-feedstock/issues/284#issuecomment-1356490896
@@ -70,7 +69,6 @@ requirements:
     - zlib
     - zstd
   run:
-    - poppler
     - postgresql
 
 test:
@@ -136,6 +134,34 @@ outputs:
         - test -f ${PREFIX}/lib/gdalplugins/gdal_JP2OpenJPEG${SHLIB_EXT}      # [unix]
         - if not exist %LIBRARY_LIB%\gdalplugins\gdal_JP2OpenJPEG.dll exit 1  # [win]
         - gdalinfo --format JP2OpenJPEG
+    about:
+      summary: Arrow and Parquet drivers for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - name: libgdal-pdf
+    script: build_plugin.sh  # [unix]
+    script: build_plugin.bat  # [win]
+    requirements:
+      build:
+        - cmake
+        - {{ compiler('c') }}
+        - {{ stdlib("c") }}
+        - {{ compiler('cxx') }}
+        - pkg-config  # [not win]
+        - make  # [unix]
+        - ninja  # [win]
+      host:
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        - poppler
+      run:
+        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - poppler
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/gdalplugins/gdal_PDF${SHLIB_EXT}      # [unix]
+        - if not exist %LIBRARY_LIB%\gdalplugins\gdal_PDF.dll exit 1  # [win]
+        - gdalinfo --format PDF
     about:
       summary: Arrow and Parquet drivers for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
