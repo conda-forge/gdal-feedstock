@@ -33,6 +33,19 @@ elif [[ "$PKG_NAME" == "libgdal-pdf" ]]; then
       -DGDAL_USE_POPPLER=ON \
       -DGDAL_ENABLE_DRIVER_PDF=ON \
       -DGDAL_ENABLE_DRIVER_PDF_PLUGIN=ON"
+
+elif [[ "$PKG_NAME" == "libgdal-postgisraster" ]]; then
+  CMAKE_ARGS="$CMAKE_ARGS \
+      -DGDAL_USE_POSTGRESQL=ON \
+      -DGDAL_ENABLE_DRIVER_POSTGISRASTER=ON \
+      -DGDAL_ENABLE_DRIVER_POSTGISRASTER_PLUGIN=ON"
+
+elif [[ "$PKG_NAME" == "libgdal-pg" ]]; then
+  CMAKE_ARGS="$CMAKE_ARGS \
+      -DGDAL_USE_POSTGRESQL=ON \
+      -DOGR_ENABLE_DRIVER_PG=ON \
+      -DOGR_ENABLE_DRIVER_PG_PLUGIN=ON"
+
 fi
 
 # We reuse the same build directory as libgdal, so we just to have to

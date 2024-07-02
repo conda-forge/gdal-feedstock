@@ -49,7 +49,6 @@ requirements:
     - libkml
     - libnetcdf
     - libpng
-    - libpq
     - libspatialite
     - libtiff
     - libuuid  # [linux]
@@ -58,7 +57,6 @@ requirements:
     - lz4-c
     - openssl
     - pcre2
-    - postgresql
     - proj
     # qhull disabled because of https://github.com/conda-forge/qgis-feedstock/issues/284#issuecomment-1356490896
     # - qhull
@@ -68,8 +66,6 @@ requirements:
     - xz
     - zlib
     - zstd
-  run:
-    - postgresql
 
 test:
   files:
@@ -167,12 +163,72 @@ outputs:
       license: MIT
       license_file: LICENSE.TXT
 
+  - name: libgdal-postgisraster
+    script: build_plugin.sh  # [unix]
+    script: build_plugin.bat  # [win]
+    requirements:
+      build:
+        - cmake
+        - {{ compiler('c') }}
+        - {{ stdlib("c") }}
+        - {{ compiler('cxx') }}
+        - pkg-config  # [not win]
+        - make  # [unix]
+        - ninja  # [win]
+      host:
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        - libpq
+        - postgresql
+      run:
+        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - postgresql
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/gdalplugins/gdal_PostGISRaster${SHLIB_EXT}      # [unix]
+        - if not exist %LIBRARY_LIB%\gdalplugins\gdal_PostGISRaster.dll exit 1  # [win]
+        - gdalinfo --format PostGISRaster
+    about:
+      summary: Raster driver PostGIS for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - name: libgdal-pg
+    script: build_plugin.sh  # [unix]
+    script: build_plugin.bat  # [win]
+    requirements:
+      build:
+        - cmake
+        - {{ compiler('c') }}
+        - {{ stdlib("c") }}
+        - {{ compiler('cxx') }}
+        - pkg-config  # [not win]
+        - make  # [unix]
+        - ninja  # [win]
+      host:
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        - libpq
+        - postgresql
+      run:
+        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - postgresql
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/gdalplugins/ogr_PG${SHLIB_EXT}        # [unix]
+        - if not exist %LIBRARY_LIB%\gdalplugins\ogr_PG.dll exit 1    # [win]
+        - gdalinfo --format PG
+    about:
+      summary: Vector driver PG for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
   - name: libgdal
     requirements:
       run:
         - libgdal-core {{ version }}.*
         - libgdal-jp2openjpeg {{ version }}.*
         - libgdal-pdf {{ version }}.*
+        - libgdal-postgisraster {{ version }}.*
+        - libgdal-pg {{ version }}.*
 
   - name: gdal
     script: install_python.sh  # [unix]
