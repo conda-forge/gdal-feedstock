@@ -135,7 +135,7 @@ outputs:
         - if not exist %LIBRARY_LIB%\gdalplugins\gdal_JP2OpenJPEG.dll exit 1  # [win]
         - gdalinfo --format JP2OpenJPEG
     about:
-      summary: Arrow and Parquet drivers for the Geospatial Data Abstraction Library (GDAL)
+      summary: Raster driver JP2OpenJPEG for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
 
@@ -163,7 +163,7 @@ outputs:
         - if not exist %LIBRARY_LIB%\gdalplugins\gdal_PDF.dll exit 1  # [win]
         - gdalinfo --format PDF
     about:
-      summary: Arrow and Parquet drivers for the Geospatial Data Abstraction Library (GDAL)
+      summary: Raster driver PDF for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
 
