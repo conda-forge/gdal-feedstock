@@ -23,10 +23,21 @@ cmake -G "Unix Makefiles" \
       -DGDAL_USE_PARQUET=OFF \
       -DGDAL_USE_ARROW=OFF \
       -DGDAL_USE_ARROWDATASET=OFF \
+      -DGDAL_USE_OPENJPEG=OFF \
+      -DGDAL_USE_POPPLER=OFF \
+      -DGDAL_USE_POSTGRESQL=OFF \
       -DOGR_REGISTER_DRIVER_ARROW_FOR_LATER_PLUGIN=ON \
       -DOGR_REGISTER_DRIVER_PARQUET_FOR_LATER_PLUGIN=ON \
+      -DGDAL_REGISTER_DRIVER_JP2OPENJPEG_FOR_LATER_PLUGIN=ON \
+      -DGDAL_REGISTER_DRIVER_PDF_FOR_LATER_PLUGIN=ON \
+      -DGDAL_REGISTER_DRIVER_POSTGISRASTER_FOR_LATER_PLUGIN=ON \
+      -DOGR_REGISTER_DRIVER_PG_FOR_LATER_PLUGIN=ON \
       -DOGR_DRIVER_ARROW_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-arrow-parquet'" \
       -DOGR_DRIVER_PARQUET_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-arrow-parquet'" \
+      -DGDAL_DRIVER_JP2OPENJPEG_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-jp2openjpeg'" \
+      -DGDAL_DRIVER_PDF_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-pdf'" \
+      -DGDAL_DRIVER_POSTGISRASTER_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-postgisraster'" \
+      -DOGR_DRIVER_PG_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-pg'" \
       -DGDAL_ENABLE_HDF5_GLOBAL_LOCK:BOOL=ON \
       -DBUILD_PYTHON_BINDINGS:BOOL=OFF \
       -DBUILD_JAVA_BINDINGS:BOOL=OFF \
@@ -34,3 +45,18 @@ cmake -G "Unix Makefiles" \
       ${SRC_DIR}
 
 cmake --build . -j ${CPU_COUNT} --config Release
+
+# save cache file for later
+cp CMakeCache.txt CMakeCache.txt.orig
+
+cmake --build . --target install
+
+# Make sure GDAL_DATA and set and still present in the package.
+# https://github.com/conda/conda-recipes/pull/267
+ACTIVATE_DIR=${PREFIX}/etc/conda/activate.d
+DEACTIVATE_DIR=${PREFIX}/etc/conda/deactivate.d
+mkdir -p ${ACTIVATE_DIR}
+mkdir -p ${DEACTIVATE_DIR}
+
+cp ${RECIPE_DIR}/scripts/activate.sh ${ACTIVATE_DIR}/gdal-activate.sh
+cp ${RECIPE_DIR}/scripts/deactivate.sh ${DEACTIVATE_DIR}/gdal-deactivate.sh

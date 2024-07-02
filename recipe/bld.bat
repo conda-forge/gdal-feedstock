@@ -32,13 +32,56 @@ cmake -G "Ninja" ^
       -DGDAL_USE_PARQUET=OFF ^
       -DGDAL_USE_ARROW=OFF ^
       -DGDAL_USE_ARROWDATASET=OFF ^
+      -DGDAL_USE_POPPLER=OFF ^
+      -DGDAL_USE_POSTGRESQL=OFF ^
       -DOGR_REGISTER_DRIVER_ARROW_FOR_LATER_PLUGIN=ON ^
       -DOGR_REGISTER_DRIVER_PARQUET_FOR_LATER_PLUGIN=ON ^
+      -DGDAL_REGISTER_DRIVER_JP2OPENJPEG_FOR_LATER_PLUGIN=ON ^
+      -DGDAL_REGISTER_DRIVER_PDF_FOR_LATER_PLUGIN=ON ^
+      -DGDAL_REGISTER_DRIVER_POSTGISRASTER_FOR_LATER_PLUGIN=ON ^
+      -DOGR_REGISTER_DRIVER_PG_FOR_LATER_PLUGIN=ON ^
       -DOGR_DRIVER_ARROW_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-arrow-parquet'" ^
       -DOGR_DRIVER_PARQUET_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-arrow-parquet'" ^
+      -DGDAL_DRIVER_JP2OPENJPEG_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-jp2openjpeg'" ^
+      -DGDAL_DRIVER_PDF_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-pdf'" ^
+      -DGDAL_DRIVER_POSTGISRASTER_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-postgisraster'" ^
+      -DOGR_DRIVER_PG_PLUGIN_INSTALLATION_MESSAGE="You may install it with with 'conda install -c conda-forge libgdal-pg'" ^
       "%SRC_DIR%"
 
 if errorlevel 1 exit /b 1
 
 cmake --build . -j %CPU_COUNT% --verbose --config Release
 if errorlevel 1 exit /b 1
+
+copy CMakeCache.txt CMakeCache.txt.orig
+
+cmake --build . --config Release --target install
+if errorlevel 1 exit /b 1
+
+set ACTIVATE_DIR=%PREFIX%\etc\conda\activate.d
+set DEACTIVATE_DIR=%PREFIX%\etc\conda\deactivate.d
+mkdir %ACTIVATE_DIR%
+mkdir %DEACTIVATE_DIR%
+
+copy %RECIPE_DIR%\scripts\activate.bat %ACTIVATE_DIR%\gdal-activate.bat
+if errorlevel 1 exit 1
+
+copy %RECIPE_DIR%\scripts\deactivate.bat %DEACTIVATE_DIR%\gdal-deactivate.bat
+if errorlevel 1 exit 1
+
+
+:: Copy powershell activation scripts
+copy %RECIPE_DIR%\scripts\activate.ps1 %ACTIVATE_DIR%\gdal-activate.ps1
+if errorlevel 1 exit 1
+
+copy %RECIPE_DIR%\scripts\deactivate.ps1 %DEACTIVATE_DIR%\gdal-deactivate.ps1
+if errorlevel 1 exit 1
+
+
+
+:: Copy unix shell activation scripts, needed by Windows Bash users
+copy %RECIPE_DIR%\scripts\activate.sh %ACTIVATE_DIR%\gdal-activate.sh
+if errorlevel 1 exit 1
+
+copy %RECIPE_DIR%\scripts\deactivate.sh %DEACTIVATE_DIR%\gdal-deactivate.sh
+if errorlevel 1 exit 1
