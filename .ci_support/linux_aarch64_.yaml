@@ -31,7 +31,7 @@ expat:
 geos:
 - 3.12.1
 geotiff:
-- 1.7.1
+- 1.7.3
 giflib:
 - '5.2'
 hdf4:
@@ -109,6 +109,8 @@ python:
 - 3.12.* *_cpython
 - 3.8.* *_cpython
 - 3.9.* *_cpython
+qhull:
+- '2020.2'
 sqlite:
 - '3'
 target_platform:
