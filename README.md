@@ -3,6 +3,39 @@ About gdal-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gdal-feedstock/blob/main/LICENSE.txt)
 
+GDAL conda-forge packages
+-------------------
+
+
+As of the GDAL 3.9.1 release on conda-forge and to support faster and smaller
+installations, optional dependencies were split out into dedicated plugin
+packages.  This table documents all of the available packages generated from
+this feedstock.
+
+*Note to conda-forge packagers*. If your package needs the GDAL python
+bindings, you should depend on `gdal` and then either `libgdal` to pull in
+all plugins (sans `libgdal-arrow-parquet`) or an explicit list of the plugin
+packages.  If your package only needs the core library and none of the plugins,
+just depend on `libgdal-core`.
+
+Package | Description
+--- | ---
+`gdal` | Python bindings and Python utilities (depends on libgdal-core)
+`libgdal-core` | Core library and C++ utilities, with a number of builtin drivers
+`libgdal` | meta-package gathering all below libgdal-* packages (except libgdal-arrow-parquet)
+`libgdal-arrow-parquet` | `vector.arrow` and `vector.parquet` drivers as a plugin
+`libgdal-fits` | `raster.fits` driver as a plugin
+`libgdal-grib` |  `raster.grib` driver as a plugin
+`libgdal-hdf4` | `raster.hdf4` driver as a plugin
+`libgdal-hdf5` | `raster.hdf5` driver as a plugin
+`libgdal-jp2openjpeg` | `raster.jp2openjpeg` driver as a plugin
+`libgdal-kea` | `raster.kea` driver as a plugin
+`libgdal-netcdf` | `raster.netcdf` driver as a plugin
+`libgdal-pdf` | `raster.pdf` driver as a plugin
+`libgdal-postgisraster` | `raster.postgisraster` driver as a plugin
+`libgdal-pg` | `vector.pg` driver as a plugin
+`libgdal-tiledb` | `raster.tiledb` driver as a plugin
+`libgdal-xls` | `vector.xls` driver as a plugin
 
 About gdal
 ----------
