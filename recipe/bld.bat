@@ -39,6 +39,8 @@ cmake -G "Ninja" ^
       -DGDAL_USE_NETCDF=OFF ^
       -DGDAL_USE_HDF4=OFF ^
       -DGDAL_USE_HDF5=OFF ^
+      -DGDAL_USE_AVIF=OFF ^
+      -DGDAL_USE_HEIF=OFF ^
       -DOGR_ENABLE_DRIVER_ARROW=OFF ^
       -DOGR_ENABLE_DRIVER_PARQUET=OFF ^
       -DGDAL_ENABLE_DRIVER_JP2OPENJPEG=OFF ^
@@ -53,6 +55,8 @@ cmake -G "Ninja" ^
       -DGDAL_ENABLE_DRIVER_NETCDF=OFF ^
       -DGDAL_ENABLE_DRIVER_HDF4=OFF ^
       -DGDAL_ENABLE_DRIVER_HDF5=OFF ^
+      -DGDAL_ENABLE_DRIVER_AVIF=OFF ^
+      -DGDAL_ENABLE_DRIVER_HEIF=OFF ^
       -DOGR_REGISTER_DRIVER_ARROW_FOR_LATER_PLUGIN=ON ^
       -DOGR_REGISTER_DRIVER_PARQUET_FOR_LATER_PLUGIN=ON ^
       -DGDAL_REGISTER_DRIVER_JP2OPENJPEG_FOR_LATER_PLUGIN=ON ^
@@ -67,6 +71,8 @@ cmake -G "Ninja" ^
       -DGDAL_REGISTER_DRIVER_NETCDF_FOR_LATER_PLUGIN=ON ^
       -DGDAL_REGISTER_DRIVER_HDF4_FOR_LATER_PLUGIN=ON ^
       -DGDAL_REGISTER_DRIVER_HDF5_FOR_LATER_PLUGIN=ON ^
+      -DGDAL_REGISTER_DRIVER_AVIF_FOR_LATER_PLUGIN=ON ^
+      -DGDAL_REGISTER_DRIVER_HEIF_FOR_LATER_PLUGIN=ON ^
       -DOGR_DRIVER_ARROW_PLUGIN_INSTALLATION_MESSAGE="You may install it with 'conda install -c conda-forge libgdal-arrow-parquet'" ^
       -DOGR_DRIVER_PARQUET_PLUGIN_INSTALLATION_MESSAGE="You may install it with 'conda install -c conda-forge libgdal-arrow-parquet'" ^
       -DGDAL_DRIVER_JP2OPENJPEG_PLUGIN_INSTALLATION_MESSAGE="You may install it with 'conda install -c conda-forge libgdal-jp2openjpeg'" ^
@@ -80,6 +86,8 @@ cmake -G "Ninja" ^
       -DGDAL_DRIVER_NETCDF_PLUGIN_INSTALLATION_MESSAGE="You may install it with 'conda install -c conda-forge libgdal-netcdf'" ^
       -DGDAL_DRIVER_HDF4_PLUGIN_INSTALLATION_MESSAGE="You may install it with 'conda install -c conda-forge libgdal-hdf4'" ^
       -DGDAL_DRIVER_HDF5_PLUGIN_INSTALLATION_MESSAGE="You may install it with 'conda install -c conda-forge libgdal-hdf5'" ^
+      -DGDAL_DRIVER_AVIF_PLUGIN_INSTALLATION_MESSAGE="You may install it with 'conda install -c conda-forge libgdal-avif'" ^
+      -DGDAL_DRIVER_HEIF_PLUGIN_INSTALLATION_MESSAGE="You may install it with 'conda install -c conda-forge libgdal-heif'" ^
       "%SRC_DIR%"
 
 if errorlevel 1 exit /b 1

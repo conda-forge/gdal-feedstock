@@ -1,15 +1,16 @@
-{% set version = "3.9.2" %}
+{% set version = "3.10.0" %}
 
 package:
   name: libgdal-core
   version: {{ version }}
 
 source:
-  url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.xz
-  sha256: bfbcc9f087f012c36151c20c79f8eac9529e1e5298fbded79cd5a1365f0b113a
+  # FIXME: remove beta1
+  url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}beta1.tar.xz
+  sha256: 0cffa5aa458e9de7483e6d20dbb7ee2a570c5a9830ffd5285c285ce0fd835350
 
 build:
-  number: 7
+  number: 0
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
@@ -68,6 +69,7 @@ requirements:
     - openjpeg
     - tiledb
     - libnetcdf
+    - libheif
   run_constrained:
     - libgdal {{ version }}.*
 
@@ -697,6 +699,80 @@ outputs:
         summary: Python wrapper for the Geospatial Data Abstraction Library (GDAL)
         license: MIT
         license_file: LICENSE.TXT
+
+  - name: libgdal-avif
+    script: build_plugin.sh  # [unix]
+    script: build_plugin.bat  # [win]
+    build:
+      ignore_run_exports_from:
+        - expat
+      script_env:
+        - GDAL_PLUGIN_NAME=AVIF
+        - GDAL_PLUGIN_TYPE=gdal
+        - GDAL_PLUGIN_DEPS=-DGDAL_USE_AVIF=ON
+    requirements:
+      build:
+        - cmake
+        - {{ compiler('c') }}
+        - {{ stdlib("c") }}
+        - {{ compiler('cxx') }}
+        - pkg-config  # [not win]
+        - make  # [unix]
+        - ninja  # [win]
+      host:
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        - libkml-devel
+        - libavif
+        - expat
+      run:
+        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}      # [unix]
+        - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1    # [win]
+        - gdalinfo --format ${GDAL_PLUGIN_NAME}  # [unix]
+        - gdalinfo --format %GDAL_PLUGIN_NAME%   # [win]
+    about:
+      summary: Raster driver AVIF for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - name: libgdal-heif
+    script: build_plugin.sh  # [unix]
+    script: build_plugin.bat  # [win]
+    build:
+      ignore_run_exports_from:
+        - expat
+      script_env:
+        - GDAL_PLUGIN_NAME=HEIF
+        - GDAL_PLUGIN_TYPE=gdal
+        - GDAL_PLUGIN_DEPS=-DGDAL_USE_HEIF=ON
+    requirements:
+      build:
+        - cmake
+        - {{ compiler('c') }}
+        - {{ stdlib("c") }}
+        - {{ compiler('cxx') }}
+        - pkg-config  # [not win]
+        - make  # [unix]
+        - ninja  # [win]
+      host:
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        - libkml-devel
+        - libheif
+        - expat
+      run:
+        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}      # [unix]
+        - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1    # [win]
+        - gdalinfo --format ${GDAL_PLUGIN_NAME}  # [unix]
+        - gdalinfo --format %GDAL_PLUGIN_NAME%   # [win]
+    about:
+      summary: Raster driver HEIF for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
 
 about:
   home: http://www.gdal.org
