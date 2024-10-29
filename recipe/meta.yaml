@@ -10,9 +10,10 @@ source:
   patches:
     - 000_cmake.patch  # [osx]
     - 0001-Python-bindings-fix-compatibility-issue-with-SWIG-43.patch
+    - 0002-libarrow-18-min-compat.patch
 
 build:
-  number: 1
+  number: 2
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:

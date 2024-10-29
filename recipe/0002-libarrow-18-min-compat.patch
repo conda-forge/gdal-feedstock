@@ -1,0 +1,23 @@
+diff --git a/ogr/ogrsf_frmts/parquet/ogrparquetlayer.cpp b/ogr/ogrsf_frmts/parquet/ogrparquetlayer.cpp
+index fc8013301e..e613c0f1d9 100644
+--- a/ogr/ogrsf_frmts/parquet/ogrparquetlayer.cpp
++++ b/ogr/ogrsf_frmts/parquet/ogrparquetlayer.cpp
+@@ -1427,6 +1427,10 @@ bool OGRParquetLayer::ReadNextBatch()
+ {
+     m_nIdxInBatch = 0;
+ 
++    const int nNumGroups = m_poArrowReader->num_row_groups();
++    if (nNumGroups == 0)
++        return false;
++
+     if (m_bSingleBatch)
+     {
+         CPLAssert(m_iRecordBatch == 0);
+@@ -1468,7 +1472,6 @@ bool OGRParquetLayer::ReadNextBatch()
+         }
+         else
+         {
+-            const int nNumGroups = m_poArrowReader->num_row_groups();
+             OGRField sMin;
+             OGRField sMax;
+             OGR_RawField_SetNull(&sMin);
