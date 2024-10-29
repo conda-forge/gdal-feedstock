@@ -29,10 +29,10 @@ libaec:
 libarchive:
 - '3.7'
 libarrow:
-- '14'
 - '15'
 - '16.1'
 - '17.0'
+- '18.0'
 libcurl:
 - '8'
 libdeflate:
