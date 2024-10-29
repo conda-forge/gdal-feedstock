@@ -12,7 +12,7 @@ source:
     - 0001-Python-bindings-fix-compatibility-issue-with-SWIG-43.patch
 
 build:
-  number: 1
+  number: 2
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
