@@ -655,6 +655,7 @@ outputs:
         - osgeo._osr
       commands:
         - python test_python.py
+        - PYTHONWARNINGS="error" python -c "import osgeo; print(osgeo.__version__)"  # [not win]
         # Check that Python-implemented GDAL utilities are available with .py extension, as documented
         - gdal2tiles.py --help
         - gdal2xyz.py --help
