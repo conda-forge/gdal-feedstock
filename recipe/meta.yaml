@@ -9,9 +9,10 @@ source:
   sha256: 34a037852ffe6d2163f1b8948a1aa7019ff767148aea55876c1339b22ad751f1
   patches:
     - 000_cmake.patch  # [osx]
+    - 0001-Python-bindings-fix-compatibility-issue-with-SWIG-43.patch
 
 build:
-  number: 0
+  number: 1
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
@@ -654,6 +655,7 @@ outputs:
         - osgeo._osr
       commands:
         - python test_python.py
+        - PYTHONWARNINGS="error" python -c "import osgeo; print(osgeo.__version__)"  # [not win]
         # Check that Python-implemented GDAL utilities are available with .py extension, as documented
         - gdal2tiles.py --help
         - gdal2xyz.py --help
