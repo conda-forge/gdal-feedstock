@@ -39,8 +39,6 @@ requirements:
     - geos
     - geotiff
     - giflib  # [not win]
-    # GH992 attempt to workaround dep solver picking wrong libxml2
-    - icu  # [not win]
     - libjpeg-turbo
     - json-c  # [not win]
     - lerc
