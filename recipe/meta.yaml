@@ -13,11 +13,12 @@ source:
     - 0002-libarrow-18-min-compat.patch
 
 build:
-  number: 2
+  number: 3
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
     - kealib
+    - icu
     - openjpeg
     - tiledb
     - libnetcdf
@@ -41,6 +42,8 @@ requirements:
     - geos
     - geotiff
     - giflib  # [not win]
+    # GH992 attempt to workaround dep solver picking wrong libxml2
+    - icu  # [not win]
     - libjpeg-turbo
     - json-c  # [not win]
     - lerc
@@ -90,6 +93,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
     requirements:
       build:
         - cmake
@@ -102,6 +106,8 @@ outputs:
       host:
         - expat
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - libarrow
         - libarrow-dataset  # [libarrow != 13]
@@ -127,6 +133,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=JP2OpenJPEG
         - GDAL_PLUGIN_TYPE=gdal
@@ -142,6 +149,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - openjpeg
         - expat
@@ -164,6 +173,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=PDF
         - GDAL_PLUGIN_TYPE=gdal
@@ -179,6 +189,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - poppler
@@ -208,6 +220,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=PostGISRaster
         - GDAL_PLUGIN_TYPE=gdal
@@ -223,6 +236,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - libpq
@@ -247,6 +262,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=PG
         - GDAL_PLUGIN_TYPE=ogr
@@ -262,6 +278,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - libpq
@@ -284,6 +302,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=XLS
         - GDAL_PLUGIN_TYPE=ogr
@@ -299,6 +318,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - freexl
@@ -321,6 +342,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=FITS
         - GDAL_PLUGIN_TYPE=gdal
@@ -336,6 +358,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - cfitsio
@@ -358,6 +382,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=GRIB
         - GDAL_PLUGIN_TYPE=gdal
@@ -373,6 +398,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - libaec
@@ -395,6 +422,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=KEA
         - GDAL_PLUGIN_TYPE=gdal
@@ -410,6 +438,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - {{ pin_subpackage('libgdal-hdf5', exact=True) }}
         - libkml-devel
         - expat
@@ -435,6 +465,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=TileDB
         - GDAL_PLUGIN_TYPE=gdal
@@ -450,6 +481,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - tiledb
@@ -472,6 +505,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=netCDF
         - GDAL_PLUGIN_TYPE=gdal
@@ -487,6 +521,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - {{ pin_subpackage('libgdal-hdf5', exact=True) }}
         - {{ pin_subpackage('libgdal-hdf4', exact=True) }}
         - hdf5
@@ -515,6 +551,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=HDF5
         - GDAL_PLUGIN_TYPE=gdal
@@ -530,6 +567,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - hdf5
@@ -552,6 +591,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=HDF4
         - GDAL_PLUGIN_TYPE=gdal
@@ -567,6 +607,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - hdf4
@@ -614,6 +656,7 @@ outputs:
         - share/bash-completion/completions/*.py
       ignore_run_exports_from:
         - expat
+        - icu
     requirements:
       build:
         - {{ compiler('c') }}
@@ -631,6 +674,8 @@ outputs:
         - pip
         - numpy
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - libxml2
         - expat
