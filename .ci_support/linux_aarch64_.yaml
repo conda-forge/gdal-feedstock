@@ -11,7 +11,7 @@ c_stdlib_version:
 cdt_arch:
 - aarch64
 cdt_name:
-- cos7
+- conda
 cfitsio:
 - 4.4.1
 channel_sources:
@@ -36,6 +36,8 @@ hdf4:
 - 4.2.15
 hdf5:
 - 1.14.3
+icu:
+- '75'
 json_c:
 - '0.18'
 kealib:
@@ -120,8 +122,6 @@ xz:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-- - c_stdlib_version
-  - cdt_name
 - - python
   - numpy
 zlib:
