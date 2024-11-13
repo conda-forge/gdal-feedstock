@@ -24,6 +24,15 @@ Package license: MIT
 
 Summary: Arrow and Parquet drivers for the Geospatial Data Abstraction Library (GDAL)
 
+About libgdal-avif
+------------------
+
+
+
+Package license: MIT
+
+Summary: Raster driver AVIF for the Geospatial Data Abstraction Library (GDAL)
+
 About libgdal-fits
 ------------------
 
@@ -59,6 +68,15 @@ About libgdal-hdf5
 Package license: MIT
 
 Summary: Raster driver HDF5 for the Geospatial Data Abstraction Library (GDAL)
+
+About libgdal-heif
+------------------
+
+
+
+Package license: MIT
+
+Summary: Raster driver HEIF for the Geospatial Data Abstraction Library (GDAL)
 
 About libgdal-jp2openjpeg
 -------------------------
@@ -207,11 +225,13 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gdal-green.svg)](https://anaconda.org/conda-forge/gdal) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gdal.svg)](https://anaconda.org/conda-forge/gdal) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gdal.svg)](https://anaconda.org/conda-forge/gdal) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gdal.svg)](https://anaconda.org/conda-forge/gdal) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal-green.svg)](https://anaconda.org/conda-forge/libgdal) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal.svg)](https://anaconda.org/conda-forge/libgdal) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal.svg)](https://anaconda.org/conda-forge/libgdal) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal.svg)](https://anaconda.org/conda-forge/libgdal) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--arrow--parquet-green.svg)](https://anaconda.org/conda-forge/libgdal-arrow-parquet) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-arrow-parquet.svg)](https://anaconda.org/conda-forge/libgdal-arrow-parquet) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-arrow-parquet.svg)](https://anaconda.org/conda-forge/libgdal-arrow-parquet) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-arrow-parquet.svg)](https://anaconda.org/conda-forge/libgdal-arrow-parquet) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--avif-green.svg)](https://anaconda.org/conda-forge/libgdal-avif) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-avif.svg)](https://anaconda.org/conda-forge/libgdal-avif) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-avif.svg)](https://anaconda.org/conda-forge/libgdal-avif) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-avif.svg)](https://anaconda.org/conda-forge/libgdal-avif) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--core-green.svg)](https://anaconda.org/conda-forge/libgdal-core) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-core.svg)](https://anaconda.org/conda-forge/libgdal-core) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-core.svg)](https://anaconda.org/conda-forge/libgdal-core) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-core.svg)](https://anaconda.org/conda-forge/libgdal-core) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--fits-green.svg)](https://anaconda.org/conda-forge/libgdal-fits) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-fits.svg)](https://anaconda.org/conda-forge/libgdal-fits) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-fits.svg)](https://anaconda.org/conda-forge/libgdal-fits) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-fits.svg)](https://anaconda.org/conda-forge/libgdal-fits) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--grib-green.svg)](https://anaconda.org/conda-forge/libgdal-grib) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-grib.svg)](https://anaconda.org/conda-forge/libgdal-grib) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-grib.svg)](https://anaconda.org/conda-forge/libgdal-grib) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-grib.svg)](https://anaconda.org/conda-forge/libgdal-grib) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--hdf4-green.svg)](https://anaconda.org/conda-forge/libgdal-hdf4) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-hdf4.svg)](https://anaconda.org/conda-forge/libgdal-hdf4) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-hdf4.svg)](https://anaconda.org/conda-forge/libgdal-hdf4) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-hdf4.svg)](https://anaconda.org/conda-forge/libgdal-hdf4) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--hdf5-green.svg)](https://anaconda.org/conda-forge/libgdal-hdf5) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-hdf5.svg)](https://anaconda.org/conda-forge/libgdal-hdf5) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-hdf5.svg)](https://anaconda.org/conda-forge/libgdal-hdf5) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-hdf5.svg)](https://anaconda.org/conda-forge/libgdal-hdf5) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--heif-green.svg)](https://anaconda.org/conda-forge/libgdal-heif) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-heif.svg)](https://anaconda.org/conda-forge/libgdal-heif) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-heif.svg)](https://anaconda.org/conda-forge/libgdal-heif) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-heif.svg)](https://anaconda.org/conda-forge/libgdal-heif) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--jp2openjpeg-green.svg)](https://anaconda.org/conda-forge/libgdal-jp2openjpeg) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-jp2openjpeg.svg)](https://anaconda.org/conda-forge/libgdal-jp2openjpeg) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-jp2openjpeg.svg)](https://anaconda.org/conda-forge/libgdal-jp2openjpeg) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-jp2openjpeg.svg)](https://anaconda.org/conda-forge/libgdal-jp2openjpeg) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--kea-green.svg)](https://anaconda.org/conda-forge/libgdal-kea) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-kea.svg)](https://anaconda.org/conda-forge/libgdal-kea) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-kea.svg)](https://anaconda.org/conda-forge/libgdal-kea) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-kea.svg)](https://anaconda.org/conda-forge/libgdal-kea) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--netcdf-green.svg)](https://anaconda.org/conda-forge/libgdal-netcdf) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-netcdf.svg)](https://anaconda.org/conda-forge/libgdal-netcdf) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-netcdf.svg)](https://anaconda.org/conda-forge/libgdal-netcdf) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-netcdf.svg)](https://anaconda.org/conda-forge/libgdal-netcdf) |
@@ -231,16 +251,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `gdal, libgdal, libgdal-arrow-parquet, libgdal-core, libgdal-fits, libgdal-grib, libgdal-hdf4, libgdal-hdf5, libgdal-jp2openjpeg, libgdal-kea, libgdal-netcdf, libgdal-pdf, libgdal-pg, libgdal-postgisraster, libgdal-tiledb, libgdal-xls` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `gdal, libgdal, libgdal-arrow-parquet, libgdal-avif, libgdal-core, libgdal-fits, libgdal-grib, libgdal-hdf4, libgdal-hdf5, libgdal-heif, libgdal-jp2openjpeg, libgdal-kea, libgdal-netcdf, libgdal-pdf, libgdal-pg, libgdal-postgisraster, libgdal-tiledb, libgdal-xls` can be installed with `conda`:
 
 ```
-conda install gdal libgdal libgdal-arrow-parquet libgdal-core libgdal-fits libgdal-grib libgdal-hdf4 libgdal-hdf5 libgdal-jp2openjpeg libgdal-kea libgdal-netcdf libgdal-pdf libgdal-pg libgdal-postgisraster libgdal-tiledb libgdal-xls
+conda install gdal libgdal libgdal-arrow-parquet libgdal-avif libgdal-core libgdal-fits libgdal-grib libgdal-hdf4 libgdal-hdf5 libgdal-heif libgdal-jp2openjpeg libgdal-kea libgdal-netcdf libgdal-pdf libgdal-pg libgdal-postgisraster libgdal-tiledb libgdal-xls
 ```
 
 or with `mamba`:
 
 ```
-mamba install gdal libgdal libgdal-arrow-parquet libgdal-core libgdal-fits libgdal-grib libgdal-hdf4 libgdal-hdf5 libgdal-jp2openjpeg libgdal-kea libgdal-netcdf libgdal-pdf libgdal-pg libgdal-postgisraster libgdal-tiledb libgdal-xls
+mamba install gdal libgdal libgdal-arrow-parquet libgdal-avif libgdal-core libgdal-fits libgdal-grib libgdal-hdf4 libgdal-hdf5 libgdal-heif libgdal-jp2openjpeg libgdal-kea libgdal-netcdf libgdal-pdf libgdal-pg libgdal-postgisraster libgdal-tiledb libgdal-xls
 ```
 
 It is possible to list all of the versions of `gdal` available on your platform with `conda`:

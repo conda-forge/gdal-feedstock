@@ -1,4 +1,4 @@
-{% set version = "3.9.3" %}
+{% set version = "3.10.0" %}
 
 package:
   name: libgdal-core
@@ -6,18 +6,17 @@ package:
 
 source:
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.xz
-  sha256: 34a037852ffe6d2163f1b8948a1aa7019ff767148aea55876c1339b22ad751f1
+  sha256: af821a3bcf68cf085724c21c9b53605fd451d83af3c8854d8bf194638eb734a8
   patches:
     - 000_cmake.patch  # [osx]
-    - 0001-Python-bindings-fix-compatibility-issue-with-SWIG-43.patch
-    - 0002-libarrow-18-min-compat.patch
 
 build:
-  number: 2
+  number: 0
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
     - kealib
+    - icu
     - openjpeg
     - tiledb
     - libnetcdf
@@ -41,6 +40,8 @@ requirements:
     - geos
     - geotiff
     - giflib  # [not win]
+    # GH992 attempt to workaround dep solver picking wrong libxml2
+    - icu  # [not win]
     - libjpeg-turbo
     - json-c  # [not win]
     - lerc
@@ -72,6 +73,7 @@ requirements:
     - openjpeg
     - tiledb
     - libnetcdf
+    - libheif
   run_constrained:
     - libgdal {{ version }}.*
 
@@ -90,6 +92,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
     requirements:
       build:
         - cmake
@@ -102,6 +105,8 @@ outputs:
       host:
         - expat
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - libarrow
         - libarrow-dataset  # [libarrow != 13]
@@ -127,6 +132,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=JP2OpenJPEG
         - GDAL_PLUGIN_TYPE=gdal
@@ -142,6 +148,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - openjpeg
         - expat
@@ -164,6 +172,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=PDF
         - GDAL_PLUGIN_TYPE=gdal
@@ -179,6 +188,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - poppler
@@ -208,6 +219,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=PostGISRaster
         - GDAL_PLUGIN_TYPE=gdal
@@ -223,6 +235,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - libpq
@@ -247,6 +261,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=PG
         - GDAL_PLUGIN_TYPE=ogr
@@ -262,6 +277,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - libpq
@@ -284,6 +301,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=XLS
         - GDAL_PLUGIN_TYPE=ogr
@@ -299,6 +317,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - freexl
@@ -321,6 +341,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=FITS
         - GDAL_PLUGIN_TYPE=gdal
@@ -336,6 +357,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - cfitsio
@@ -358,6 +381,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=GRIB
         - GDAL_PLUGIN_TYPE=gdal
@@ -373,6 +397,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - libaec
@@ -395,6 +421,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=KEA
         - GDAL_PLUGIN_TYPE=gdal
@@ -410,6 +437,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - {{ pin_subpackage('libgdal-hdf5', exact=True) }}
         - libkml-devel
         - expat
@@ -435,6 +464,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=TileDB
         - GDAL_PLUGIN_TYPE=gdal
@@ -450,6 +480,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - tiledb
@@ -472,6 +504,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=netCDF
         - GDAL_PLUGIN_TYPE=gdal
@@ -487,6 +520,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - {{ pin_subpackage('libgdal-hdf5', exact=True) }}
         - {{ pin_subpackage('libgdal-hdf4', exact=True) }}
         - hdf5
@@ -515,6 +550,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=HDF5
         - GDAL_PLUGIN_TYPE=gdal
@@ -530,6 +566,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - hdf5
@@ -552,6 +590,7 @@ outputs:
     build:
       ignore_run_exports_from:
         - expat
+        - icu
       script_env:
         - GDAL_PLUGIN_NAME=HDF4
         - GDAL_PLUGIN_TYPE=gdal
@@ -567,6 +606,8 @@ outputs:
         - ninja  # [win]
       host:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - expat
         - hdf4
@@ -614,6 +655,7 @@ outputs:
         - share/bash-completion/completions/*.py
       ignore_run_exports_from:
         - expat
+        - icu
     requirements:
       build:
         - {{ compiler('c') }}
@@ -631,6 +673,8 @@ outputs:
         - pip
         - numpy
         - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - libkml-devel
         - libxml2
         - expat
@@ -702,6 +746,86 @@ outputs:
         summary: Python wrapper for the Geospatial Data Abstraction Library (GDAL)
         license: MIT
         license_file: LICENSE.TXT
+
+  - name: libgdal-avif
+    script: build_plugin.sh  # [unix]
+    script: build_plugin.bat  # [win]
+    build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+      script_env:
+        - GDAL_PLUGIN_NAME=AVIF
+        - GDAL_PLUGIN_TYPE=gdal
+        - GDAL_PLUGIN_DEPS=-DGDAL_USE_AVIF=ON
+    requirements:
+      build:
+        - cmake
+        - {{ compiler('c') }}
+        - {{ stdlib("c") }}
+        - {{ compiler('cxx') }}
+        - pkg-config  # [not win]
+        - make  # [unix]
+        - ninja  # [win]
+      host:
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - libavif
+        - expat
+      run:
+        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}      # [unix]
+        - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1    # [win]
+        - gdalinfo --format ${GDAL_PLUGIN_NAME}  # [unix]
+        - gdalinfo --format %GDAL_PLUGIN_NAME%   # [win]
+    about:
+      summary: Raster driver AVIF for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - name: libgdal-heif
+    script: build_plugin.sh  # [unix]
+    script: build_plugin.bat  # [win]
+    build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+      script_env:
+        - GDAL_PLUGIN_NAME=HEIF
+        - GDAL_PLUGIN_TYPE=gdal
+        - GDAL_PLUGIN_DEPS=-DGDAL_USE_HEIF=ON
+    requirements:
+      build:
+        - cmake
+        - {{ compiler('c') }}
+        - {{ stdlib("c") }}
+        - {{ compiler('cxx') }}
+        - pkg-config  # [not win]
+        - make  # [unix]
+        - ninja  # [win]
+      host:
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - libheif
+        - expat
+      run:
+        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}      # [unix]
+        - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1    # [win]
+        - gdalinfo --format ${GDAL_PLUGIN_NAME}  # [unix]
+        - gdalinfo --format %GDAL_PLUGIN_NAME%   # [win]
+    about:
+      summary: Raster driver HEIF for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
 
 about:
   home: http://www.gdal.org

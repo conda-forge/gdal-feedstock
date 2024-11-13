@@ -33,6 +33,8 @@ libarrow:
 - '16.1'
 - '17.0'
 - '18.0'
+libavif:
+- '1'
 libcurl:
 - '8'
 libdeflate:
