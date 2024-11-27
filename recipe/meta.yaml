@@ -838,6 +838,7 @@ about:
 extra:
   feedstock-name: gdal
   recipe-maintainers:
+    - rouault
     - zklaus
     - akrherz
     - gillins
