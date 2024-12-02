@@ -361,6 +361,7 @@ Feedstock Maintainers
 * [@mingwandroid](https://github.com/mingwandroid/)
 * [@msarahan](https://github.com/msarahan/)
 * [@ocefpaf](https://github.com/ocefpaf/)
+* [@rouault](https://github.com/rouault/)
 * [@xylar](https://github.com/xylar/)
 * [@zklaus](https://github.com/zklaus/)
 
