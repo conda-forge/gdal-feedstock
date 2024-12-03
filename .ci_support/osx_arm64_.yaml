@@ -37,7 +37,7 @@ icu:
 json_c:
 - '0.18'
 kealib:
-- '1.5'
+- '1.6'
 lerc:
 - '4'
 libaec:

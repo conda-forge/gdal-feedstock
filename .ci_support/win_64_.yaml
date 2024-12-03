@@ -23,7 +23,7 @@ hdf5:
 icu:
 - '75'
 kealib:
-- '1.5'
+- '1.6'
 lerc:
 - '4'
 libaec:
