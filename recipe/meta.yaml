@@ -196,8 +196,7 @@ outputs:
         - poppler
       run:
         - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
-        # temp until poppler run_export takes hold
-        - poppler >=24.08,<24.09
+        - poppler
     test:
       files:
         - test_data
