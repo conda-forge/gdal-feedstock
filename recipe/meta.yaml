@@ -195,7 +195,6 @@ outputs:
         - poppler
       run:
         - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
-        - poppler
     test:
       files:
         - test_data
