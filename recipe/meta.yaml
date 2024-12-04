@@ -13,7 +13,7 @@ source:
     - 0002-libarrow-18-min-compat.patch
 
 build:
-  number: 6
+  number: 7
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
@@ -113,7 +113,7 @@ outputs:
         - libarrow-dataset  # [libarrow != 13]
         - libparquet        # [libarrow != 13]
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
       commands:
         - test -f ${PREFIX}/lib/gdalplugins/ogr_Arrow${SHLIB_EXT}        # [unix]
@@ -155,7 +155,7 @@ outputs:
         - openjpeg
         - expat
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
       commands:
         - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}      # [unix]
@@ -195,7 +195,7 @@ outputs:
         - expat
         - poppler
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
       files:
         - test_data
@@ -242,7 +242,7 @@ outputs:
         - libpq
         - postgresql
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
         - postgresql
     test:
       commands:
@@ -284,7 +284,7 @@ outputs:
         - libpq
         - postgresql
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
         - postgresql
     test:
       commands:
@@ -323,7 +323,7 @@ outputs:
         - expat
         - freexl
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
       commands:
         - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}      # [unix]
@@ -363,7 +363,7 @@ outputs:
         - expat
         - cfitsio
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
       commands:
         - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}      # [unix]
@@ -403,7 +403,7 @@ outputs:
         - expat
         - libaec
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
       commands:
         - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}      # [unix]
@@ -445,7 +445,7 @@ outputs:
         - kealib
         - hdf5
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
         - libgdal-hdf5 {{ version }}.*
     test:
       commands:
@@ -486,7 +486,7 @@ outputs:
         - expat
         - tiledb
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
       commands:
         - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}      # [unix]
@@ -530,7 +530,7 @@ outputs:
         - expat
         - libnetcdf
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
         - libgdal-hdf5 {{ version }}.*
         - libgdal-hdf4 {{ version }}.*
     test:
@@ -572,7 +572,7 @@ outputs:
         - expat
         - hdf5
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
       commands:
         - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}      # [unix]
@@ -613,7 +613,7 @@ outputs:
         - hdf4
         - libaec
       run:
-        - libgdal-core >={{ ".".join(version.split(".")[:2]) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
       commands:
         - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}      # [unix]
