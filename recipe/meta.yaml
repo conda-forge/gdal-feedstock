@@ -13,7 +13,7 @@ source:
     - 0002-libarrow-18-min-compat.patch
 
 build:
-  number: 7
+  number: 8
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
