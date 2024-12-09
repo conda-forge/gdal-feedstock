@@ -74,7 +74,7 @@ libwebp_base:
 libxml2:
 - '2'
 lz4_c:
-- 1.9.3
+- '1.10'
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
