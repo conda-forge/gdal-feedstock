@@ -11,9 +11,10 @@ source:
     - 000_cmake.patch  # [osx]
     - 0001-Python-bindings-fix-compatibility-issue-with-SWIG-43.patch
     - 0002-libarrow-18-min-compat.patch
+    - pdfsdk_headers_poppler_h.patch
 
 build:
-  number: 7
+  number: 8
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
@@ -94,6 +95,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
     requirements:
       build:
         - cmake
@@ -112,6 +114,8 @@ outputs:
         - libarrow
         - libarrow-dataset  # [libarrow != 13]
         - libparquet        # [libarrow != 13]
+        # dep solver issue
+        - lz4-c
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
@@ -134,6 +138,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=JP2OpenJPEG
         - GDAL_PLUGIN_TYPE=gdal
@@ -154,6 +159,8 @@ outputs:
         - libkml-devel
         - openjpeg
         - expat
+        # dep solver issue
+        - lz4-c
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
@@ -174,6 +181,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PDF
         - GDAL_PLUGIN_TYPE=gdal
@@ -193,6 +201,8 @@ outputs:
         - icu  # [not win]
         - libkml-devel
         - expat
+        # dep solver issue
+        - lz4-c
         - poppler
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -220,6 +230,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PostGISRaster
         - GDAL_PLUGIN_TYPE=gdal
@@ -240,6 +251,8 @@ outputs:
         - libkml-devel
         - expat
         - libpq
+        # dep solver issue
+        - lz4-c
         - postgresql
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -262,6 +275,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PG
         - GDAL_PLUGIN_TYPE=ogr
@@ -282,6 +296,8 @@ outputs:
         - libkml-devel
         - expat
         - libpq
+        # dep solver issue
+        - lz4-c
         - postgresql
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -465,6 +481,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=TileDB
         - GDAL_PLUGIN_TYPE=gdal
@@ -484,6 +501,8 @@ outputs:
         - icu  # [not win]
         - libkml-devel
         - expat
+        # dep solver issue
+        - lz4-c
         - tiledb
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -505,6 +524,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=netCDF
         - GDAL_PLUGIN_TYPE=gdal
@@ -527,6 +547,8 @@ outputs:
         - hdf5
         - hdf4
         - libkml-devel
+        # dep solver issue
+        - lz4-c
         - expat
         - libnetcdf
       run:
@@ -551,6 +573,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=HDF5
         - GDAL_PLUGIN_TYPE=gdal
@@ -570,6 +593,8 @@ outputs:
         - icu  # [not win]
         - libkml-devel
         - expat
+        # dep solver issue
+        - lz4-c
         - hdf5
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -591,6 +616,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=HDF4
         - GDAL_PLUGIN_TYPE=gdal
@@ -612,6 +638,8 @@ outputs:
         - expat
         - hdf4
         - libaec
+        # dep solver issue
+        - lz4-c
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
@@ -656,6 +684,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
     requirements:
       build:
         - {{ compiler('c') }}
@@ -677,6 +706,8 @@ outputs:
         - icu  # [not win]
         - libkml-devel
         - libxml2
+        # dep solver issue
+        - lz4-c
         - expat
         - setuptools
       run:
