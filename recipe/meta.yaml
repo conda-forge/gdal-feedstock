@@ -268,6 +268,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PG
         - GDAL_PLUGIN_TYPE=ogr
@@ -288,6 +289,8 @@ outputs:
         - libkml-devel
         - expat
         - libpq
+        # dep solver issue
+        - lz4-c
         - postgresql
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
