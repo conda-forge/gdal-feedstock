@@ -9,9 +9,10 @@ source:
   sha256: af821a3bcf68cf085724c21c9b53605fd451d83af3c8854d8bf194638eb734a8
   patches:
     - 000_cmake.patch  # [osx]
+    - pdfsdk_headers_poppler_h.patch
 
 build:
-  number: 5
+  number: 6
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
@@ -93,6 +94,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
     requirements:
       build:
         - cmake
@@ -111,6 +113,8 @@ outputs:
         - libarrow
         - libarrow-dataset  # [libarrow != 13]
         - libparquet        # [libarrow != 13]
+        # dep solver issue
+        - lz4-c
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
@@ -173,6 +177,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PDF
         - GDAL_PLUGIN_TYPE=gdal
@@ -192,6 +197,8 @@ outputs:
         - icu  # [not win]
         - libkml-devel
         - expat
+        # dep solver issue
+        - lz4-c
         - poppler
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -261,6 +268,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PG
         - GDAL_PLUGIN_TYPE=ogr
@@ -281,6 +289,8 @@ outputs:
         - libkml-devel
         - expat
         - libpq
+        # dep solver issue
+        - lz4-c
         - postgresql
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
