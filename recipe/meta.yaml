@@ -177,6 +177,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PDF
         - GDAL_PLUGIN_TYPE=gdal
@@ -196,6 +197,8 @@ outputs:
         - icu  # [not win]
         - libkml-devel
         - expat
+        # dep solver issue
+        - lz4-c
         - poppler
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
