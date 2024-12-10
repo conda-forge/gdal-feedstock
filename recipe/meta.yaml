@@ -94,6 +94,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - lz4-c
     requirements:
       build:
         - cmake
@@ -112,6 +113,8 @@ outputs:
         - libarrow
         - libarrow-dataset  # [libarrow != 13]
         - libparquet        # [libarrow != 13]
+        # dep solver issue
+        - lz4-c
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
