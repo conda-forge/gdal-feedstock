@@ -94,6 +94,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
     requirements:
       build:
@@ -138,6 +139,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=JP2OpenJPEG
@@ -182,6 +184,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PDF
@@ -232,6 +235,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PostGISRaster
@@ -278,6 +282,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PG
@@ -322,6 +327,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=XLS
         - GDAL_PLUGIN_TYPE=ogr
@@ -363,6 +369,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=FITS
         - GDAL_PLUGIN_TYPE=gdal
@@ -404,6 +411,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=GRIB
         - GDAL_PLUGIN_TYPE=gdal
@@ -445,6 +453,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=KEA
         - GDAL_PLUGIN_TYPE=gdal
@@ -489,6 +498,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=TileDB
@@ -533,6 +543,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=netCDF
@@ -583,6 +594,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=HDF5
@@ -627,6 +639,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=HDF4
@@ -696,6 +709,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
     requirements:
       build:
@@ -798,6 +812,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=AVIF
@@ -842,6 +857,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=HEIF
