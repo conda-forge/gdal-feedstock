@@ -51,6 +51,7 @@ requirements:
     - libdeflate
     - libiconv
     - libkml-devel
+    - liblzma-devel
     - libpng
     - libspatialite
     - libtiff
@@ -66,7 +67,6 @@ requirements:
     - setuptools
     - sqlite
     - xerces-c
-    - xz
     - zlib
     - zstd
     # For these plugins, we need the headers for the core sources
@@ -112,6 +112,7 @@ outputs:
         - libkml-devel
         - libarrow
         - libarrow-dataset  # [libarrow != 13]
+        - liblzma-devel
         - libparquet        # [libarrow != 13]
         # dep solver issue
         - lz4-c
@@ -158,6 +159,7 @@ outputs:
         # dep solver issue
         - lz4-c
         - libkml-devel
+        - liblzma-devel
         - openjpeg
         - expat
       run:
@@ -199,6 +201,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         # dep solver issue
         - lz4-c
@@ -248,6 +251,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - libpq
         # dep solver issue
@@ -293,6 +297,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - libpq
         # dep solver issue
@@ -335,6 +340,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - freexl
       run:
@@ -375,6 +381,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - cfitsio
       run:
@@ -415,6 +422,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - libaec
       run:
@@ -456,6 +464,7 @@ outputs:
         - icu  # [not win]
         - {{ pin_subpackage('libgdal-hdf5', exact=True) }}
         - libkml-devel
+        - liblzma-devel
         - expat
         - kealib
         - hdf5
@@ -499,6 +508,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         # dep solver issue
         - lz4-c
@@ -546,6 +556,7 @@ outputs:
         - hdf5
         - hdf4
         - libkml-devel
+        - liblzma-devel
         # dep solver issue
         - lz4-c
         - expat
@@ -591,6 +602,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - hdf5
         # dep solver issue
@@ -634,6 +646,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - hdf4
         - libaec
@@ -704,6 +717,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - libxml2
         # dep solver issue
         - lz4-c
@@ -804,6 +818,7 @@ outputs:
         - icu  # [not win]
         - libkml-devel
         - libavif
+        - liblzma-devel
         # dep solver issue
         - lz4-c
         - expat
@@ -846,6 +861,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - libheif
         # dep solver issue
         - lz4-c
