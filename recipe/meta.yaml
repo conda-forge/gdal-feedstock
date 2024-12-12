@@ -14,7 +14,7 @@ source:
     - pdfsdk_headers_poppler_h.patch
 
 build:
-  number: 9
+  number: 10
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
@@ -53,6 +53,7 @@ requirements:
     - libdeflate
     - libiconv
     - libkml-devel
+    - liblzma-devel
     - libpng
     - libspatialite
     - libtiff
@@ -68,7 +69,6 @@ requirements:
     - setuptools
     - sqlite
     - xerces-c
-    - xz
     - zlib
     - zstd
     # For these plugins, we need the headers for the core sources
@@ -95,6 +95,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
     requirements:
       build:
@@ -111,6 +112,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - libarrow
         - libarrow-dataset  # [libarrow != 13]
         - libparquet        # [libarrow != 13]
@@ -138,6 +140,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=JP2OpenJPEG
@@ -157,6 +160,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - openjpeg
         - expat
         # dep solver issue
@@ -181,6 +185,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PDF
@@ -200,6 +205,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         # dep solver issue
         - lz4-c
@@ -230,6 +236,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PostGISRaster
@@ -249,6 +256,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - libpq
         # dep solver issue
@@ -275,6 +283,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PG
@@ -294,6 +303,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - libpq
         # dep solver issue
@@ -318,6 +328,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=XLS
         - GDAL_PLUGIN_TYPE=ogr
@@ -336,6 +347,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - freexl
       run:
@@ -358,6 +370,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=FITS
         - GDAL_PLUGIN_TYPE=gdal
@@ -376,6 +389,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - cfitsio
       run:
@@ -398,6 +412,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=GRIB
         - GDAL_PLUGIN_TYPE=gdal
@@ -416,6 +431,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - libaec
       run:
@@ -438,6 +454,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=KEA
         - GDAL_PLUGIN_TYPE=gdal
@@ -457,6 +474,7 @@ outputs:
         - icu  # [not win]
         - {{ pin_subpackage('libgdal-hdf5', exact=True) }}
         - libkml-devel
+        - liblzma-devel
         - expat
         - kealib
         - hdf5
@@ -481,6 +499,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=TileDB
@@ -500,6 +519,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         # dep solver issue
         - lz4-c
@@ -524,6 +544,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=netCDF
@@ -547,6 +568,7 @@ outputs:
         - hdf5
         - hdf4
         - libkml-devel
+        - liblzma-devel
         # dep solver issue
         - lz4-c
         - expat
@@ -573,6 +595,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=HDF5
@@ -592,6 +615,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         # dep solver issue
         - lz4-c
@@ -616,6 +640,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=HDF4
@@ -635,6 +660,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - expat
         - hdf4
         - libaec
@@ -684,6 +710,7 @@ outputs:
       ignore_run_exports_from:
         - expat
         - icu
+        - liblzma
         - lz4-c
     requirements:
       build:
@@ -705,6 +732,7 @@ outputs:
         # GH992 attempt to workaround dep solver picking wrong libxml2
         - icu  # [not win]
         - libkml-devel
+        - liblzma-devel
         - libxml2
         # dep solver issue
         - lz4-c

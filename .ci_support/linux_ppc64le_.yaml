@@ -61,6 +61,8 @@ libjpeg_turbo:
 - '3'
 libkml_devel:
 - '1.3'
+liblzma_devel:
+- '5'
 libnetcdf:
 - 4.9.2
 libpng:
@@ -113,8 +115,6 @@ tiledb:
 - '2.26'
 xerces_c:
 - '3.2'
-xz:
-- '5'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
