@@ -112,7 +112,7 @@ sqlite:
 target_platform:
 - osx-64
 tiledb:
-- '2.26'
+- '2.27'
 xerces_c:
 - '3.2'
 zip_keys:
