@@ -54,7 +54,7 @@ libavif:
 libcurl:
 - '8'
 libdeflate:
-- '1.22'
+- '1.23'
 libgdal:
 - '3.9'
 libiconv:
