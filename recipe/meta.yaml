@@ -12,7 +12,7 @@ source:
     - pdfsdk_headers_poppler_h.patch
 
 build:
-  number: 9
+  number: 10
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
