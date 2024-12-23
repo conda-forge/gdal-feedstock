@@ -11,7 +11,7 @@ c_stdlib:
 c_stdlib_version:
 - '10.13'
 cfitsio:
-- 4.4.1
+- 4.5.0
 channel_sources:
 - conda-forge
 channel_targets:
@@ -54,7 +54,7 @@ libcurl:
 libdeflate:
 - '1.23'
 libgdal:
-- '3.9'
+- '3.10'
 libiconv:
 - '1'
 libjpeg_turbo:
