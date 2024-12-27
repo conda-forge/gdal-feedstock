@@ -43,6 +43,8 @@ libdeflate:
 - '1.23'
 libgdal:
 - '3.10'
+libheif:
+- '1.18'
 libiconv:
 - '1'
 libjpeg_turbo:
