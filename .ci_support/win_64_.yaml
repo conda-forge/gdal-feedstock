@@ -44,7 +44,7 @@ libdeflate:
 libgdal:
 - '3.10'
 libheif:
-- '1.18'
+- '1.19'
 libiconv:
 - '1'
 libjpeg_turbo:
