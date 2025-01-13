@@ -9,7 +9,6 @@ source:
   sha256: 9211eac72b53f5f85d23cf6d83ee20245c6d818733405024e71f2af41e5c5f91
   patches:
     - 000_cmake.patch  # [osx]
-    - pdfsdk_headers_poppler_h.patch
 
 build:
   number: 0
