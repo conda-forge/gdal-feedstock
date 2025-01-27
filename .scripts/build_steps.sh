@@ -38,6 +38,8 @@ micromamba install --root-prefix ~/.conda --prefix /opt/conda \
     pip  python=3.12 conda-build conda-forge-ci-setup=4 "conda-build>=24.1"
 export CONDA_LIBMAMBA_SOLVER_NO_CHANNELS_FROM_INSTALLED=1
 
+pip install git+https://github.com/isuruf/conda-build@transitive-subpackage
+
 # set up the condarc
 setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
