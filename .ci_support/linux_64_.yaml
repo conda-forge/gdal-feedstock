@@ -23,7 +23,7 @@ docker_image:
 expat:
 - '2'
 geos:
-- 3.13.0
+- 3.13.1
 geotiff:
 - 1.7.3
 giflib:
