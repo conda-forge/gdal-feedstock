@@ -19,13 +19,13 @@ cxx_compiler:
 cxx_compiler_version:
 - '13'
 docker_image:
-- quay.io/condaforge/linux-anvil-x86_64:cos7
+- quay.io/condaforge/linux-anvil-x86_64:alma9
 expat:
 - '2'
 geos:
 - 3.13.1
 geotiff:
-- 1.7.3
+- '1.7'
 giflib:
 - '5.2'
 hdf4:
@@ -100,7 +100,7 @@ poppler:
 postgresql:
 - '17'
 proj:
-- '9.5'
+- '9.6'
 python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
