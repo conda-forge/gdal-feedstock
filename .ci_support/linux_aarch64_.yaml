@@ -25,15 +25,13 @@ expat:
 geos:
 - 3.13.0
 geotiff:
-- 1.7.3
+- '1.7'
 giflib:
 - '5.2'
 hdf4:
 - 4.2.15
 hdf5:
 - 1.14.3
-icu:
-- '75'
 json_c:
 - '0.18'
 kealib:
