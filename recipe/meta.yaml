@@ -11,15 +11,15 @@ source:
     - 000_cmake.patch  # [osx]
 
 build:
-  number: 3
+  number: 2
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
     - kealib
+    - icu
     - openjpeg
     - tiledb
     - libnetcdf
-    - libheif
   run_exports:
     # no idea, going with minor pin
     - {{ pin_subpackage('libgdal-core', max_pin='x.x') }}
@@ -40,6 +40,8 @@ requirements:
     - geos
     - geotiff
     - giflib  # [not win]
+    # GH992 attempt to workaround dep solver picking wrong libxml2
+    - icu  # [not win]
     - libjpeg-turbo
     - json-c  # [not win]
     - lerc
@@ -52,6 +54,7 @@ requirements:
     - libpng
     - libspatialite
     - libtiff
+    - libuuid  # [linux]
     - libwebp-base
     - libxml2
     - lz4-c
@@ -83,17 +86,15 @@ test:
 outputs:
   - name: libgdal-core
 
-  - name: libgdal-core-devel
-    requirements:
-      run:
-        - {{ pin_subpackage('libgdal-core', exact=True) }}
-        - expat
-        - libkml-devel
-        - liblzma-devel
-
   - name: libgdal-arrow-parquet
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
+    build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
     requirements:
       build:
         - cmake
@@ -104,10 +105,17 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - expat
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
         - libarrow
         - libarrow-dataset  # [libarrow != 13]
+        - liblzma-devel
         - libparquet        # [libarrow != 13]
+        # dep solver issue
+        - lz4-c
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
@@ -127,6 +135,11 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=JP2OpenJPEG
         - GDAL_PLUGIN_TYPE=gdal
@@ -141,8 +154,15 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        # dep solver issue
+        - lz4-c
+        - libkml-devel
+        - liblzma-devel
         - openjpeg
+        - expat
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
@@ -160,6 +180,11 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PDF
         - GDAL_PLUGIN_TYPE=gdal
@@ -174,7 +199,14 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - liblzma-devel
+        - expat
+        # dep solver issue
+        - lz4-c
         - poppler
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -199,6 +231,11 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PostGISRaster
         - GDAL_PLUGIN_TYPE=gdal
@@ -213,8 +250,15 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - liblzma-devel
+        - expat
         - libpq
+        # dep solver issue
+        - lz4-c
         - postgresql
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -234,6 +278,11 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=PG
         - GDAL_PLUGIN_TYPE=ogr
@@ -248,8 +297,15 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - liblzma-devel
+        - expat
         - libpq
+        # dep solver issue
+        - lz4-c
         - postgresql
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -267,6 +323,10 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=XLS
         - GDAL_PLUGIN_TYPE=ogr
@@ -281,7 +341,12 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - liblzma-devel
+        - expat
         - freexl
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -300,6 +365,10 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=FITS
         - GDAL_PLUGIN_TYPE=gdal
@@ -314,7 +383,12 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - liblzma-devel
+        - expat
         - cfitsio
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -333,6 +407,10 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=GRIB
         - GDAL_PLUGIN_TYPE=gdal
@@ -347,7 +425,12 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - liblzma-devel
+        - expat
         - libaec
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -366,6 +449,10 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
       script_env:
         - GDAL_PLUGIN_NAME=KEA
         - GDAL_PLUGIN_TYPE=gdal
@@ -380,8 +467,13 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - {{ pin_subpackage('libgdal-hdf5', exact=True) }}
+        - libkml-devel
+        - liblzma-devel
+        - expat
         - kealib
         - hdf5
       run:
@@ -402,6 +494,11 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=TileDB
         - GDAL_PLUGIN_TYPE=gdal
@@ -416,7 +513,14 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - liblzma-devel
+        - expat
+        # dep solver issue
+        - lz4-c
         - tiledb
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -435,6 +539,11 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=netCDF
         - GDAL_PLUGIN_TYPE=gdal
@@ -449,11 +558,18 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
         - {{ pin_subpackage('libgdal-hdf5', exact=True) }}
         - {{ pin_subpackage('libgdal-hdf4', exact=True) }}
         - hdf5
         - hdf4
+        - libkml-devel
+        - liblzma-devel
+        # dep solver issue
+        - lz4-c
+        - expat
         - libnetcdf
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
@@ -474,6 +590,11 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=HDF5
         - GDAL_PLUGIN_TYPE=gdal
@@ -488,8 +609,15 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - liblzma-devel
+        - expat
         - hdf5
+        # dep solver issue
+        - lz4-c
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
@@ -507,6 +635,11 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=HDF4
         - GDAL_PLUGIN_TYPE=gdal
@@ -521,9 +654,16 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - liblzma-devel
+        - expat
         - hdf4
         - libaec
+        # dep solver issue
+        - lz4-c
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
@@ -565,6 +705,11 @@ outputs:
     build:
       skip_compile_pyc:
         - share/bash-completion/completions/*.py
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
     requirements:
       build:
         - {{ compiler('c') }}
@@ -581,7 +726,15 @@ outputs:
         - python
         - pip
         - numpy
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - liblzma-devel
+        - libxml2
+        # dep solver issue
+        - lz4-c
+        - expat
         - setuptools
       run:
         - python
@@ -655,6 +808,11 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=AVIF
         - GDAL_PLUGIN_TYPE=gdal
@@ -669,8 +827,15 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
         - libavif
+        - liblzma-devel
+        # dep solver issue
+        - lz4-c
+        - expat
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
@@ -688,6 +853,11 @@ outputs:
     script: build_plugin.sh  # [unix]
     script: build_plugin.bat  # [win]
     build:
+      ignore_run_exports_from:
+        - expat
+        - icu
+        - liblzma
+        - lz4-c
       script_env:
         - GDAL_PLUGIN_NAME=HEIF
         - GDAL_PLUGIN_TYPE=gdal
@@ -702,8 +872,15 @@ outputs:
         - make  # [unix]
         - ninja  # [win]
       host:
-        - {{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - {{ pin_subpackage('libgdal-core', exact=True) }}
+        # GH992 attempt to workaround dep solver picking wrong libxml2
+        - icu  # [not win]
+        - libkml-devel
+        - liblzma-devel
         - libheif
+        # dep solver issue
+        - lz4-c
+        - expat
       run:
         - {{ pin_subpackage('libgdal-core', exact=True) }}
     test:
