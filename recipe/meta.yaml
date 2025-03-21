@@ -11,7 +11,7 @@ source:
     - 000_cmake.patch  # [osx]
 
 build:
-  number: 2
+  number: 3
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
@@ -19,6 +19,7 @@ build:
     - openjpeg
     - tiledb
     - libnetcdf
+    - libheif
   run_exports:
     # no idea, going with minor pin
     - {{ pin_subpackage('libgdal-core', max_pin='x.x') }}
@@ -51,7 +52,6 @@ requirements:
     - libpng
     - libspatialite
     - libtiff
-    - libuuid  # [linux]
     - libwebp-base
     - libxml2
     - lz4-c
