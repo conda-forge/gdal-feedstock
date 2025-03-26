@@ -9,7 +9,7 @@ c_stdlib_version:
 cdt_name:
 - conda
 cfitsio:
-- 4.5.0
+- 4.6.0
 channel_sources:
 - conda-forge
 channel_targets:
