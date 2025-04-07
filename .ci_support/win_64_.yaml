@@ -64,7 +64,7 @@ libtiff:
 libwebp_base:
 - '1'
 libxml2:
-- '2'
+- '2.13'
 lz4_c:
 - '1.10'
 numpy:
