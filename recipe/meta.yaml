@@ -9,9 +9,10 @@ source:
   sha256: 335a8d2c7567d783563d3fed37e8b58d72d9c1723f6fd1d8c299fe4c0d936781
   patches:
     - 000_cmake.patch  # [osx]
+    - swig-4.3.1-compat.patch
 
 build:
-  number: 2
+  number: 3
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
