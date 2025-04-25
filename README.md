@@ -69,6 +69,24 @@ Package license: MIT
 
 Summary: Raster driver JP2OpenJPEG for the Geospatial Data Abstraction Library (GDAL)
 
+About libgdal-kea
+-----------------
+
+
+
+Package license: MIT
+
+Summary: Raster driver KEA for the Geospatial Data Abstraction Library (GDAL)
+
+About libgdal-netcdf
+--------------------
+
+
+
+Package license: MIT
+
+Summary: Raster driver netCDF for the Geospatial Data Abstraction Library (GDAL)
+
 About libgdal-pdf
 -----------------
 
@@ -113,24 +131,6 @@ About libgdal-xls
 Package license: MIT
 
 Summary: Vector driver XLS for the Geospatial Data Abstraction Library (GDAL)
-
-About libgdal-kea
------------------
-
-
-
-Package license: MIT
-
-Summary: Raster driver KEA for the Geospatial Data Abstraction Library (GDAL)
-
-About libgdal-netcdf
---------------------
-
-
-
-Package license: MIT
-
-Summary: Raster driver netCDF for the Geospatial Data Abstraction Library (GDAL)
 
 Current build status
 ====================
