@@ -31,7 +31,7 @@ giflib:
 hdf4:
 - 4.2.15
 hdf5:
-- 1.14.3
+- 1.14.6
 json_c:
 - '0.18'
 kealib:
@@ -73,8 +73,6 @@ libpq:
 - '17'
 libtiff:
 - '4.7'
-libuuid:
-- '2'
 libwebp_base:
 - '1'
 libxml2:
