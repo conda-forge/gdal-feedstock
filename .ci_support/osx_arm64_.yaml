@@ -52,7 +52,7 @@ libavif:
 libcurl:
 - '8'
 libdeflate:
-- '1.23'
+- '1.24'
 libgdal:
 - '3.10'
 libheif:
