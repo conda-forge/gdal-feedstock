@@ -20,3 +20,6 @@ provider:
   osx: azure
   win: azure
 test: native_and_emulated
+bot:
+  abi_migration_branches:
+  - v3.10.x

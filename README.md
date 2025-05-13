@@ -15,6 +15,15 @@ Summary: GDAL is a translator library for raster and vector geospatial data form
 X/MIT style Open Source license by the Open Source Geospatial Foundation.
 
 
+About libgdal-adbc
+------------------
+
+
+
+Package license: MIT
+
+Summary: Vector driver ADBC for the Geospatial Data Abstraction Library (GDAL)
+
 About libgdal-arrow-parquet
 ---------------------------
 
@@ -224,6 +233,7 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gdal-green.svg)](https://anaconda.org/conda-forge/gdal) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gdal.svg)](https://anaconda.org/conda-forge/gdal) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gdal.svg)](https://anaconda.org/conda-forge/gdal) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gdal.svg)](https://anaconda.org/conda-forge/gdal) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal-green.svg)](https://anaconda.org/conda-forge/libgdal) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal.svg)](https://anaconda.org/conda-forge/libgdal) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal.svg)](https://anaconda.org/conda-forge/libgdal) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal.svg)](https://anaconda.org/conda-forge/libgdal) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--adbc-green.svg)](https://anaconda.org/conda-forge/libgdal-adbc) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-adbc.svg)](https://anaconda.org/conda-forge/libgdal-adbc) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-adbc.svg)](https://anaconda.org/conda-forge/libgdal-adbc) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-adbc.svg)](https://anaconda.org/conda-forge/libgdal-adbc) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--arrow--parquet-green.svg)](https://anaconda.org/conda-forge/libgdal-arrow-parquet) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-arrow-parquet.svg)](https://anaconda.org/conda-forge/libgdal-arrow-parquet) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-arrow-parquet.svg)](https://anaconda.org/conda-forge/libgdal-arrow-parquet) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-arrow-parquet.svg)](https://anaconda.org/conda-forge/libgdal-arrow-parquet) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--avif-green.svg)](https://anaconda.org/conda-forge/libgdal-avif) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-avif.svg)](https://anaconda.org/conda-forge/libgdal-avif) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-avif.svg)](https://anaconda.org/conda-forge/libgdal-avif) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-avif.svg)](https://anaconda.org/conda-forge/libgdal-avif) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgdal--core-green.svg)](https://anaconda.org/conda-forge/libgdal-core) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgdal-core.svg)](https://anaconda.org/conda-forge/libgdal-core) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgdal-core.svg)](https://anaconda.org/conda-forge/libgdal-core) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgdal-core.svg)](https://anaconda.org/conda-forge/libgdal-core) |
@@ -252,16 +262,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `gdal, libgdal, libgdal-arrow-parquet, libgdal-avif, libgdal-core, libgdal-core-devel, libgdal-fits, libgdal-grib, libgdal-hdf4, libgdal-hdf5, libgdal-heif, libgdal-jp2openjpeg, libgdal-kea, libgdal-netcdf, libgdal-pdf, libgdal-pg, libgdal-postgisraster, libgdal-tiledb, libgdal-xls` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `gdal, libgdal, libgdal-adbc, libgdal-arrow-parquet, libgdal-avif, libgdal-core, libgdal-core-devel, libgdal-fits, libgdal-grib, libgdal-hdf4, libgdal-hdf5, libgdal-heif, libgdal-jp2openjpeg, libgdal-kea, libgdal-netcdf, libgdal-pdf, libgdal-pg, libgdal-postgisraster, libgdal-tiledb, libgdal-xls` can be installed with `conda`:
 
 ```
-conda install gdal libgdal libgdal-arrow-parquet libgdal-avif libgdal-core libgdal-core-devel libgdal-fits libgdal-grib libgdal-hdf4 libgdal-hdf5 libgdal-heif libgdal-jp2openjpeg libgdal-kea libgdal-netcdf libgdal-pdf libgdal-pg libgdal-postgisraster libgdal-tiledb libgdal-xls
+conda install gdal libgdal libgdal-adbc libgdal-arrow-parquet libgdal-avif libgdal-core libgdal-core-devel libgdal-fits libgdal-grib libgdal-hdf4 libgdal-hdf5 libgdal-heif libgdal-jp2openjpeg libgdal-kea libgdal-netcdf libgdal-pdf libgdal-pg libgdal-postgisraster libgdal-tiledb libgdal-xls
 ```
 
 or with `mamba`:
 
 ```
-mamba install gdal libgdal libgdal-arrow-parquet libgdal-avif libgdal-core libgdal-core-devel libgdal-fits libgdal-grib libgdal-hdf4 libgdal-hdf5 libgdal-heif libgdal-jp2openjpeg libgdal-kea libgdal-netcdf libgdal-pdf libgdal-pg libgdal-postgisraster libgdal-tiledb libgdal-xls
+mamba install gdal libgdal libgdal-adbc libgdal-arrow-parquet libgdal-avif libgdal-core libgdal-core-devel libgdal-fits libgdal-grib libgdal-hdf4 libgdal-hdf5 libgdal-heif libgdal-jp2openjpeg libgdal-kea libgdal-netcdf libgdal-pdf libgdal-pg libgdal-postgisraster libgdal-tiledb libgdal-xls
 ```
 
 It is possible to list all of the versions of `gdal` available on your platform with `conda`:
