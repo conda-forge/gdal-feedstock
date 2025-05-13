@@ -11,7 +11,7 @@ source:
     - 000_cmake.patch  # [osx]
 
 build:
-  number: 1
+  number: 2
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
@@ -39,7 +39,8 @@ requirements:
     - blosc
     - expat
     - geos
-    - geotiff
+    # We use internal libtiff and libgeotiff for JXL-in-TIFF support
+    # - geotiff
     - giflib  # [not win]
     - libjpeg-turbo
     - json-c  # [not win]
@@ -48,11 +49,13 @@ requirements:
     - libcurl
     - libdeflate
     - libiconv
+    - libjxl
     - libkml-devel
     - liblzma-devel
     - libpng
     - libspatialite
-    - libtiff
+    # We use internal libtiff and libgeotiff for JXL-in-TIFF support
+    # - libtiff
     - libwebp-base
     - libxml2
     - lz4-c

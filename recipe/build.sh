@@ -12,6 +12,8 @@ cd build
 
 # Make sure to disable Arrow/Parquet dependencies for now, so they are only
 # used in build_arrow_parquet
+
+# We use internal libtiff and libgeotiff for JXL-in-TIFF support
 cmake -G "Unix Makefiles" \
       ${CMAKE_ARGS} \
       -DCMAKE_BUILD_TYPE=Release \
@@ -20,6 +22,8 @@ cmake -G "Unix Makefiles" \
       -DCMAKE_INSTALL_LIBDIR=lib \
       -DBUILD_SHARED_LIBS=ON \
       -DBUILD_TESTING=OFF \
+      -DGDAL_USE_TIFF_INTERNAL:BOOL=ON \
+      -DGDAL_USE_GEOTIFF_INTERNAL:BOOL=ON \
       -DGDAL_USE_PARQUET=OFF \
       -DGDAL_USE_ARROW=OFF \
       -DGDAL_USE_ARROWDATASET=OFF \
