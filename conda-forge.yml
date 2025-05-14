@@ -3,6 +3,9 @@ azure:
     variables:
       CONDA_BLD_PATH: D:\bld\
       MINIFORGE_HOME: C:\Miniforge
+bot:
+  abi_migration_branches:
+  - v3.10.x
 build_platform:
   linux_aarch64: linux_64
   linux_ppc64le: linux_64
@@ -20,6 +23,3 @@ provider:
   osx: azure
   win: azure
 test: native_and_emulated
-bot:
-  abi_migration_branches:
-  - v3.10.x
