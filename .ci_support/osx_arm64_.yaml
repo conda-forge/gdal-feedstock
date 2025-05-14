@@ -24,8 +24,6 @@ expat:
 - '2'
 geos:
 - 3.13.1
-geotiff:
-- '1.7'
 giflib:
 - '5.2'
 hdf4:
@@ -71,8 +69,6 @@ libpng:
 - '1.6'
 libpq:
 - '17'
-libtiff:
-- '4.7'
 libwebp_base:
 - '1'
 libxml2:
