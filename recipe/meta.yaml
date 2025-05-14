@@ -13,7 +13,7 @@ source:
     - poppler_25_05_0_compat.patch
 
 build:
-  number: 8
+  number: 9
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
