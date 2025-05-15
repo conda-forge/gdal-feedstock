@@ -12,6 +12,7 @@ if  %vc% GTR 9 set MSVC_TS_VER=140
 REM Make sure to disable Arrow/Parquet dependencies for now, so they are only
 REM used in build_arrow_parquet
 
+REM We use internal libtiff and libgeotiff for JXL-in-TIFF support
 cmake -G "Ninja" ^
       "%CMAKE_ARGS%" ^
       -DCMAKE_BUILD_TYPE=Release ^
@@ -23,6 +24,8 @@ cmake -G "Ninja" ^
       -DBUILD_PYTHON_BINDINGS:BOOL=OFF ^
       -DBUILD_JAVA_BINDINGS:BOOL=OFF ^
       -DBUILD_CSHARP_BINDINGS:BOOL=OFF ^
+      -DGDAL_USE_TIFF_INTERNAL:BOOL=ON ^
+      -DGDAL_USE_GEOTIFF_INTERNAL:BOOL=ON ^
       -DGDAL_USE_MYSQL:BOOL=OFF ^
       -DGDAL_USE_MSSQL_ODBC:BOOL=OFF ^
       -DGDAL_USE_PARQUET=OFF ^
