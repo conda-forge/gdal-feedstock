@@ -11,9 +11,10 @@ source:
     - 000_cmake.patch  # [osx]
     - swig-4.3.1-compat.patch
     - poppler_25_05_0_compat.patch
+    - setuptools_80_compat.patch
 
 build:
-  number: 9
+  number: 10
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
