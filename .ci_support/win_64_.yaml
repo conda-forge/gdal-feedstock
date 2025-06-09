@@ -25,7 +25,7 @@ lerc:
 libaec:
 - '1'
 libarchive:
-- '3.7'
+- '3.8'
 libarrow:
 - '17.0'
 - '18.1'
@@ -38,7 +38,7 @@ libcurl:
 libdeflate:
 - '1.24'
 libgdal:
-- '3.10'
+- '3.11'
 libheif:
 - '1.19'
 libiconv:
@@ -62,11 +62,7 @@ libxml2:
 lz4_c:
 - '1.10'
 numpy:
-- '2.0'
-- '2.0'
-- '2.0'
 - '2'
-- '2.0'
 openjpeg:
 - '2'
 openssl:
@@ -99,9 +95,6 @@ vc:
 - '14'
 xerces_c:
 - '3.2'
-zip_keys:
-- - python
-  - numpy
 zlib:
 - '1'
 zstd:
