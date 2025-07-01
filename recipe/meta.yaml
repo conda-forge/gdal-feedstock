@@ -1,4 +1,4 @@
-{% set version = "3.11.0" %}
+{% set version = "3.11.1" %}
 
 package:
   name: libgdal-core
@@ -6,13 +6,12 @@ package:
 
 source:
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.xz
-  sha256: ba1a17a74428bfd5c789ce293f59b6a3d8bfabab747431c33331ac0ac579ea71
+  sha256: 21341b39a960295bd3194bcc5f119f773229b4701cd752499fbd850f3cc160fd
   patches:
     - 000_cmake.patch  # [osx]
-    - setuptools_80_compat.patch
 
 build:
-  number: 5
+  number: 0
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
@@ -764,9 +763,9 @@ about:
   home: http://www.gdal.org
   license: MIT
   license_file:
-      - LICENSE.TXT
-      - LICENSE_libtiff.txt
-      - LICENSE_libgeotiff.txt
+    - LICENSE.TXT
+    - LICENSE_libtiff.txt
+    - LICENSE_libgeotiff.txt
   summary: |
     GDAL is a translator library for raster and vector geospatial data formats that is released under an
     X/MIT style Open Source license by the Open Source Geospatial Foundation.
