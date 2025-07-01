@@ -9,7 +9,6 @@ source:
   sha256: 21341b39a960295bd3194bcc5f119f773229b4701cd752499fbd850f3cc160fd
   patches:
     - 000_cmake.patch  # [osx]
-    - setuptools_80_compat.patch
 
 build:
   number: 0
