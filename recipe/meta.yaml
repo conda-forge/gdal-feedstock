@@ -1,4 +1,4 @@
-{% set version = "3.11.2" %}
+{% set version = "3.11.3" %}
 
 package:
   name: libgdal-core
@@ -6,7 +6,7 @@ package:
 
 source:
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.xz
-  sha256: bda41b7cf12f05995a00106ae0db1b784d9c307953d81c76d351c7dbeb121aeb
+  sha256: ba0807729fa681eed55bb6d5588bb9e4bde2b691c46e8d6d375ff5eaf789b16a
   patches:
     - 000_cmake.patch  # [osx]
 
