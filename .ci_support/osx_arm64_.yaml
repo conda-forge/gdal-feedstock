@@ -5,7 +5,7 @@ MACOSX_SDK_VERSION:
 c_compiler:
 - clang
 c_compiler_version:
-- '18'
+- '19'
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
@@ -19,7 +19,7 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '18'
+- '19'
 expat:
 - '2'
 geos:
@@ -94,7 +94,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 poppler:
-- '24.12'
+- '25.07'
 postgresql:
 - '17'
 proj:
