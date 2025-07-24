@@ -1,5 +1,5 @@
 c_compiler:
-- vs2019
+- vs2022
 c_stdlib:
 - vs
 cfitsio:
@@ -9,7 +9,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2019
+- vs2022
 expat:
 - '2'
 geos:
@@ -78,7 +78,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 poppler:
-- '24.12'
+- '25.07'
 postgresql:
 - '17'
 proj:
