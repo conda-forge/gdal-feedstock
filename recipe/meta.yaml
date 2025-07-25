@@ -14,7 +14,7 @@ source:
     - setuptools_80_compat.patch
 
 build:
-  number: 12
+  number: 13
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
