@@ -1,0 +1,71 @@
+commit 485cbbc1d0f36bba37ed587d4462343df1104c0d
+Author: Even Rouault <even.rouault@spatialys.com>
+Date:   Thu Jun 19 21:24:28 2025 +0200
+
+    Parquet: initialize arrow::compute for Arrow >= 21
+
+diff --git a/cmake/helpers/CheckDependentLibrariesArrowParquet.cmake b/cmake/helpers/CheckDependentLibrariesArrowParquet.cmake
+index 5f00ee29c4..ffa6519195 100644
+--- a/cmake/helpers/CheckDependentLibrariesArrowParquet.cmake
++++ b/cmake/helpers/CheckDependentLibrariesArrowParquet.cmake
+@@ -2,6 +2,7 @@ gdal_check_package(Arrow "Apache Arrow C++ library" CONFIG CAN_DISABLE)
+ if (Arrow_FOUND)
+     gdal_check_package(Parquet "Apache Parquet C++ library" CONFIG PATHS ${Arrow_DIR} CAN_DISABLE)
+     gdal_check_package(ArrowDataset "Apache ArrowDataset C++ library" CONFIG PATHS ${Arrow_DIR} CAN_DISABLE)
++    gdal_check_package(ArrowCompute "Apache ArrowCompute C++ library" CONFIG PATHS ${Arrow_DIR} CAN_DISABLE)
+     if (Parquet_FOUND AND NOT ArrowDataset_FOUND)
+         message(WARNING "Parquet library found, but not ArrowDataset: partitioned datasets will not be supported")
+     endif()
+diff --git a/ogr/ogrsf_frmts/parquet/CMakeLists.txt b/ogr/ogrsf_frmts/parquet/CMakeLists.txt
+index be73d6728f..b2ccd64328 100644
+--- a/ogr/ogrsf_frmts/parquet/CMakeLists.txt
++++ b/ogr/ogrsf_frmts/parquet/CMakeLists.txt
+@@ -71,3 +71,12 @@ if (GDAL_USE_ARROWDATASET)
+     endif()
+     target_sources(ogr_Parquet PRIVATE ogrparquetdatasetlayer.cpp)
+ endif()
++
++if (GDAL_USE_ARROWCOMPUTE)
++    target_compile_definitions(ogr_Parquet PRIVATE -DGDAL_USE_ARROWCOMPUTE)
++    if(ARROW_USE_STATIC_LIBRARIES)
++        gdal_target_link_libraries(ogr_Parquet PRIVATE ArrowCompute::arrow_compute_static)
++    else()
++        gdal_target_link_libraries(ogr_Parquet PRIVATE ArrowCompute::arrow_compute_shared)
++    endif()
++endif()
+diff --git a/ogr/ogrsf_frmts/parquet/ogr_include_parquet.h b/ogr/ogrsf_frmts/parquet/ogr_include_parquet.h
+index 503ce9bb1b..0b5249a5bd 100644
+--- a/ogr/ogrsf_frmts/parquet/ogr_include_parquet.h
++++ b/ogr/ogrsf_frmts/parquet/ogr_include_parquet.h
+@@ -54,6 +54,10 @@
+ #include "arrow/dataset/scanner.h"
+ #endif
+ 
++#ifdef GDAL_USE_ARROWCOMPUTE
++#include <arrow/compute/api.h>
++#endif
++
+ #ifdef _MSC_VER
+ #pragma warning(pop)
+ #endif
+diff --git a/ogr/ogrsf_frmts/parquet/ogrparquetdriver.cpp b/ogr/ogrsf_frmts/parquet/ogrparquetdriver.cpp
+index d10e87e96b..b4d7791e37 100644
+--- a/ogr/ogrsf_frmts/parquet/ogrparquetdriver.cpp
++++ b/ogr/ogrsf_frmts/parquet/ogrparquetdriver.cpp
+@@ -752,4 +752,16 @@ void RegisterOGRParquet()
+         }
+     }
+ #endif
++
++#if defined(GDAL_USE_ARROWDATASET) && defined(GDAL_USE_ARROWCOMPUTE)
++    {
++        auto status = arrow::compute::Initialize();
++        if (!status.ok())
++        {
++            CPLError(CE_Warning, CPLE_AppDefined,
++                     "arrow::compute::Initialize() failed with %s",
++                     status.message().c_str());
++        }
++    }
++#endif
+ }

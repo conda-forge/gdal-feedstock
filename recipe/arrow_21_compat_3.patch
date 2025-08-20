@@ -1,0 +1,22 @@
+commit 222e1c111437f9fd6e43eb384f0903684735750b
+Author: Even Rouault <even.rouault@spatialys.com>
+Date:   Sun Apr 27 14:31:47 2025 +0200
+
+    Fix warning with Arrow 20.0
+
+diff --git a/ogr/ogrsf_frmts/parquet/ogrparquetwriterlayer.cpp b/ogr/ogrsf_frmts/parquet/ogrparquetwriterlayer.cpp
+index d912c0b7b2..d59368a826 100644
+--- a/ogr/ogrsf_frmts/parquet/ogrparquetwriterlayer.cpp
++++ b/ogr/ogrsf_frmts/parquet/ogrparquetwriterlayer.cpp
+@@ -1076,7 +1076,11 @@ OGRErr OGRParquetWriterLayer::ICreateFeature(OGRFeature *poFeature)
+ 
+ bool OGRParquetWriterLayer::FlushGroup()
+ {
++#if PARQUET_VERSION_MAJOR >= 20
++    auto status = m_poFileWriter->NewRowGroup();
++#else
+     auto status = m_poFileWriter->NewRowGroup(m_apoBuilders[0]->length());
++#endif
+     if (!status.ok())
+     {
+         CPLError(CE_Failure, CPLE_AppDefined, "NewRowGroup() failed with %s",
