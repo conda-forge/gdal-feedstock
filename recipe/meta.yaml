@@ -12,9 +12,12 @@ source:
     - swig-4.3.1-compat.patch
     - poppler_25_05_0_compat.patch
     - setuptools_80_compat.patch
+    - arrow_21_compat_1.patch
+    - arrow_21_compat_2.patch
+    - arrow_21_compat_3.patch
 
 build:
-  number: 12
+  number: 13
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
