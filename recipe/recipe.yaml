@@ -21,8 +21,8 @@ cache:
     python:
       skip_pyc_compilation:
         - share/bash-completion/completions/*.py
-      script:
-        file: ${{ "build_core.sh" if unix else "build_core.bat" }}
+    script:
+      file: ${{ "build_core.sh" if unix else "build_core.bat" }}
   
   requirements:
     build:
