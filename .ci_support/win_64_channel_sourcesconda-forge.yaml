@@ -69,7 +69,7 @@ openjpeg:
 openssl:
 - '3'
 pcre2:
-- '10.45'
+- '10.46'
 pin_run_as_build:
   python:
     min_pin: x.x
