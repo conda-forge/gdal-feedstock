@@ -1,7 +1,13 @@
 c_compiler:
-- vs2022
+- gcc
+c_compiler_version:
+- '14'
 c_stdlib:
-- vs
+- sysroot
+c_stdlib_version:
+- '2.17'
+cdt_name:
+- conda
 cfitsio:
 - 4.6.2
 channel_sources:
@@ -9,19 +15,26 @@ channel_sources:
 - conda-forge
 - conda-forge
 - conda-forge
-- conda-forge,conda-forge/label/python_rc
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2022
+- gxx
+cxx_compiler_version:
+- '14'
+docker_image:
+- quay.io/condaforge/linux-anvil-x86_64:alma9
 expat:
 - '2'
 geos:
 - 3.14.0
+giflib:
+- '5.2'
 hdf4:
 - 4.2.15
 hdf5:
 - 1.14.6
+json_c:
+- '0.18'
 kealib:
 - '1.6'
 lerc:
@@ -41,8 +54,6 @@ libcurl:
 - '8'
 libdeflate:
 - '1.24'
-libgdal:
-- '3.11'
 libheif:
 - '1.19'
 libiconv:
@@ -88,18 +99,17 @@ python:
 - 3.11.* *_cpython
 - 3.12.* *_cpython
 - 3.13.* *_cp313
-- 3.14.* *_cp314
 sqlite:
 - '3'
 target_platform:
-- win-64
+- linux-64
 tiledb:
 - '2.28'
-vc:
-- '14'
 xerces_c:
 - '3.2'
 zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
 - - python
   - channel_sources
 zlib:

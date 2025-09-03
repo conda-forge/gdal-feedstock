@@ -35,7 +35,7 @@ mv /opt/conda/conda-meta/history /opt/conda/conda-meta/history.$(date +%Y-%m-%d-
 echo > /opt/conda/conda-meta/history
 micromamba install --root-prefix ~/.conda --prefix /opt/conda \
     --yes --override-channels --channel conda-forge --strict-channel-priority \
-    pip  python=3.12 conda-build conda-forge-ci-setup=4 "conda-build>=24.1"
+    pip  rattler-build conda-forge-ci-setup=4 "conda-build>=24.1"
 export CONDA_LIBMAMBA_SOLVER_NO_CHANNELS_FROM_INSTALLED=1
 
 # set up the condarc
@@ -61,7 +61,7 @@ ulimit -n 1024
 make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
 if [[ "${HOST_PLATFORM}" != "${BUILD_PLATFORM}" ]] && [[ "${HOST_PLATFORM}" != linux-* ]] && [[ "${BUILD_WITH_CONDA_DEBUG:-0}" != 1 ]]; then
-    EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} --no-test"
+    EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} --test skip"
 fi
 
 
@@ -72,20 +72,16 @@ if [[ -f "${FEEDSTOCK_ROOT}/LICENSE.txt" ]]; then
 fi
 
 if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
-    if [[ "x${BUILD_OUTPUT_ID:-}" != "x" ]]; then
-        EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} --output-id ${BUILD_OUTPUT_ID}"
-    fi
-    conda debug "${RECIPE_ROOT}" -m "${CI_SUPPORT}/${CONFIG}.yaml" \
-        ${EXTRA_CB_OPTIONS:-} \
-        --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml"
-
-    # Drop into an interactive shell
-    /bin/bash
+    echo "rattler-build currently doesn't support debug mode"
 else
-    conda-build "${RECIPE_ROOT}" -m "${CI_SUPPORT}/${CONFIG}.yaml" \
-        --suppress-variables ${EXTRA_CB_OPTIONS:-} \
-        --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml" \
-        --extra-meta flow_run_id="${flow_run_id:-}" remote_url="${remote_url:-}" sha="${sha:-}"
+
+    rattler-build build --recipe "${RECIPE_ROOT}" \
+     -m "${CI_SUPPORT}/${CONFIG}.yaml" \
+     ${EXTRA_CB_OPTIONS:-} \
+     --target-platform "${HOST_PLATFORM}" \
+     --extra-meta flow_run_id="${flow_run_id:-}" \
+     --extra-meta remote_url="${remote_url:-}" \
+     --extra-meta sha="${sha:-}"
     ( startgroup "Inspecting artifacts" ) 2> /dev/null
 
     # inspect_artifacts was only added in conda-forge-ci-setup 4.9.4
