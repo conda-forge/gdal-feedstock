@@ -115,6 +115,8 @@ outputs:
   - package:
       name: libgdal-core-devel
     requirements:
+      host:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
       run:
         - ${{ pin_subpackage('libgdal-core', exact=True) }}
         - expat
