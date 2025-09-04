@@ -88,8 +88,7 @@ else
         --target-platform "${HOST_PLATFORM}" \
         --extra-meta flow_run_id="$flow_run_id" \
         --extra-meta remote_url="$remote_url" \
-        --extra-meta sha="$sha" \
-        --experimental
+        --extra-meta sha="$sha"
 
     ( startgroup "Inspecting artifacts" ) 2> /dev/null
 

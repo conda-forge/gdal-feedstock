@@ -62,7 +62,7 @@ libkml_devel:
 liblzma_devel:
 - '5'
 libnetcdf:
-- 4.9.2
+- 4.9.3
 libpng:
 - '1.6'
 libpq:
@@ -82,7 +82,7 @@ openjpeg:
 openssl:
 - '3'
 pcre2:
-- '10.45'
+- '10.46'
 pin_run_as_build:
   python:
     min_pin: x.x
