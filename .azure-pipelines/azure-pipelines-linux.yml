@@ -8,16 +8,28 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_:
-        CONFIG: linux_64_
+      linux_64_channel_sourcesconda-forge:
+        CONFIG: linux_64_channel_sourcesconda-forge
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_:
-        CONFIG: linux_aarch64_
+      linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc:
+        CONFIG: linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_ppc64le_:
-        CONFIG: linux_ppc64le_
+      linux_aarch64_channel_sourcesconda-forge:
+        CONFIG: linux_aarch64_channel_sourcesconda-forge
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_channel_sourcesconda-forgeconda-forgelabelpython_rc:
+        CONFIG: linux_aarch64_channel_sourcesconda-forgeconda-forgelabelpython_rc
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_ppc64le_channel_sourcesconda-forge:
+        CONFIG: linux_ppc64le_channel_sourcesconda-forge
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc:
+        CONFIG: linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
   timeoutInMinutes: 360

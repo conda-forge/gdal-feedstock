@@ -11,10 +11,6 @@ cdt_name:
 cfitsio:
 - 4.6.2
 channel_sources:
-- conda-forge
-- conda-forge
-- conda-forge
-- conda-forge
 - conda-forge,conda-forge/label/python_rc
 channel_targets:
 - conda-forge main
@@ -55,8 +51,6 @@ libcurl:
 - '8'
 libdeflate:
 - '1.24'
-libgdal:
-- '3.11'
 libheif:
 - '1.19'
 libiconv:
@@ -98,15 +92,11 @@ postgresql:
 proj:
 - '9.6'
 python:
-- 3.10.* *_cpython
-- 3.11.* *_cpython
-- 3.12.* *_cpython
-- 3.13.* *_cp313
 - 3.14.* *_cp314
 sqlite:
 - '3'
 target_platform:
-- linux-aarch64
+- linux-ppc64le
 tiledb:
 - '2.28'
 xerces_c:
