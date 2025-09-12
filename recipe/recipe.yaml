@@ -195,13 +195,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_JP2OpenJPEG${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_JP2OpenJPEG.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format JP2OpenJPEG
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format JP2OpenJPEG
     about:
       summary: Raster driver JP2OpenJPEG for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -241,13 +241,13 @@ outputs:
             - test_pdf.sh
         script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_PDF${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_PDF.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format PDF
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format PDF
           - if: unix
             then: ./test_pdf.sh
           - if: win
@@ -288,13 +288,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_PostGISRaster${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_PostGISRaster.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format PostGISRaster
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format PostGISRaster
     about:
       summary: Raster driver PostGIS for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -331,9 +331,9 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/ogr_PG${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\ogr_PG.dll exit 1
     about:
       summary: Vector driver PG for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -368,13 +368,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/ogr_XLS${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\ogr_XLS.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format XLS
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format XLS
     about:
       summary: Vector driver XLS for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -409,13 +409,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_FITS${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_FITS.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format FITS
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format FITS
     about:
       summary: Raster driver FITS for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -450,13 +450,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_GRIB${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_GRIB.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format GRIB
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format GRIB
     about:
       summary: Raster driver GRIB for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -494,13 +494,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_KEA${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_KEA.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format KEA
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format KEA
     about:
       summary: Raster driver KEA for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -535,13 +535,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_TileDB${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_TileDB.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format TileDB
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format TileDB
     about:
       summary: Raster driver TileDB for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -582,13 +582,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_netCDF${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_netCDF.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format netCDF
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format netCDF
     about:
       summary: Raster driver netCDF for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -623,13 +623,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_HDF5${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_HDF5.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format HDF5
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format HDF5
     about:
       summary: Raster driver HDF5 for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -665,13 +665,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_HDF4${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_HDF4.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format HDF4
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format HDF4
     about:
       summary: Raster driver HDF4 for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -831,13 +831,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/ogr_ADBC${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\ogr_ADBC.dll exit 1
           - if: unix
-            then: ogrinfo --format ${GDAL_PLUGIN_NAME}
+            then: ogrinfo --format ADBC
           - if: win
-            then: ogrinfo --format %GDAL_PLUGIN_NAME%
+            then: ogrinfo --format ADBC
     about:
       summary: Vector driver ADBC for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -872,13 +872,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_AVIF${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_AVIF.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format AVIF
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format AVIF
     about:
       summary: Raster driver AVIF for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
@@ -913,13 +913,13 @@ outputs:
     tests:
       - script:
           - if: unix
-            then: test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+            then: test -f ${PREFIX}/lib/gdalplugins/gdal_HEIF${SHLIB_EXT}
           - if: win
-            then: if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+            then: if not exist %LIBRARY_LIB%\gdalplugins\gdal_HEIF.dll exit 1
           - if: unix
-            then: gdalinfo --format ${GDAL_PLUGIN_NAME}
+            then: gdalinfo --format HEIF
           - if: win
-            then: gdalinfo --format %GDAL_PLUGIN_NAME%
+            then: gdalinfo --format HEIF
     about:
       summary: Raster driver HEIF for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
