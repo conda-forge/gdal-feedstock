@@ -1,7 +1,7 @@
 {% set version = "3.11.4" %}
 
 package:
-  name: libgdal-core
+  name: libgdal-split
   version: {{ version }}
 
 source:

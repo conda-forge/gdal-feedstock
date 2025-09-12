@@ -7,18 +7,26 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gdal-feedstock/
 About gdal
 ----------
 
-Home: http://www.gdal.org
+Home: http://www.gdal.org/
+
+Package license: MIT
+
+Summary: Python wrapper for the Geospatial Data Abstraction Library (GDAL)
+
+About libgdal
+-------------
+
+Home: http://www.gdal.org/
 
 Package license: MIT
 
 Summary: GDAL is a translator library for raster and vector geospatial data formats that is released under an
 X/MIT style Open Source license by the Open Source Geospatial Foundation.
 
-
 About libgdal-adbc
 ------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -27,7 +35,7 @@ Summary: Vector driver ADBC for the Geospatial Data Abstraction Library (GDAL)
 About libgdal-arrow-parquet
 ---------------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -36,16 +44,36 @@ Summary: Arrow and Parquet drivers for the Geospatial Data Abstraction Library (
 About libgdal-avif
 ------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
 Summary: Raster driver AVIF for the Geospatial Data Abstraction Library (GDAL)
 
+About libgdal-core
+------------------
+
+Home: http://www.gdal.org/
+
+Package license: MIT
+
+Summary: GDAL is a translator library for raster and vector geospatial data formats that is released under an
+X/MIT style Open Source license by the Open Source Geospatial Foundation.
+
+About libgdal-core-devel
+------------------------
+
+Home: http://www.gdal.org/
+
+Package license: MIT
+
+Summary: GDAL is a translator library for raster and vector geospatial data formats that is released under an
+X/MIT style Open Source license by the Open Source Geospatial Foundation.
+
 About libgdal-fits
 ------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -54,7 +82,7 @@ Summary: Raster driver FITS for the Geospatial Data Abstraction Library (GDAL)
 About libgdal-grib
 ------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -63,7 +91,7 @@ Summary: Raster driver GRIB for the Geospatial Data Abstraction Library (GDAL)
 About libgdal-hdf4
 ------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -72,7 +100,7 @@ Summary: Raster driver HDF4 for the Geospatial Data Abstraction Library (GDAL)
 About libgdal-hdf5
 ------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -81,7 +109,7 @@ Summary: Raster driver HDF5 for the Geospatial Data Abstraction Library (GDAL)
 About libgdal-heif
 ------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -90,7 +118,7 @@ Summary: Raster driver HEIF for the Geospatial Data Abstraction Library (GDAL)
 About libgdal-jp2openjpeg
 -------------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -99,7 +127,7 @@ Summary: Raster driver JP2OpenJPEG for the Geospatial Data Abstraction Library (
 About libgdal-kea
 -----------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -108,7 +136,7 @@ Summary: Raster driver KEA for the Geospatial Data Abstraction Library (GDAL)
 About libgdal-netcdf
 --------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -117,7 +145,7 @@ Summary: Raster driver netCDF for the Geospatial Data Abstraction Library (GDAL)
 About libgdal-pdf
 -----------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -126,7 +154,7 @@ Summary: Raster driver PDF for the Geospatial Data Abstraction Library (GDAL)
 About libgdal-pg
 ----------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -135,7 +163,7 @@ Summary: Vector driver PG for the Geospatial Data Abstraction Library (GDAL)
 About libgdal-postgisraster
 ---------------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -144,7 +172,7 @@ Summary: Raster driver PostGIS for the Geospatial Data Abstraction Library (GDAL
 About libgdal-tiledb
 --------------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -153,7 +181,7 @@ Summary: Raster driver TileDB for the Geospatial Data Abstraction Library (GDAL)
 About libgdal-xls
 -----------------
 
-
+Home: http://www.gdal.org/
 
 Package license: MIT
 
@@ -177,45 +205,87 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
+              <td>linux_64_channel_sourcesconda-forge</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_channel_sourcesconda-forge" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64</td>
+              <td>linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le</td>
+              <td>linux_aarch64_channel_sourcesconda-forge</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_channel_sourcesconda-forge" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64</td>
+              <td>linux_aarch64_channel_sourcesconda-forgeconda-forgelabelpython_rc</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_channel_sourcesconda-forgeconda-forgelabelpython_rc" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_arm64</td>
+              <td>linux_ppc64le_channel_sourcesconda-forge</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_channel_sourcesconda-forge" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>win_64</td>
+              <td>linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_channel_sourcesconda-forge</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forge" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rc</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_channel_sourcesconda-forgeconda-forgelabelpython_rc" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_channel_sourcesconda-forge</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forge" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rc</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_channel_sourcesconda-forgeconda-forgelabelpython_rc" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_channel_sourcesconda-forge</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=win&configuration=win%20win_64_channel_sourcesconda-forge" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_channel_sourcesconda-forgeconda-forgelabelpython_rc</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3911&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gdal-feedstock?branchName=main&jobName=win&configuration=win%20win_64_channel_sourcesconda-forgeconda-forgelabelpython_rc" alt="variant">
                 </a>
               </td>
             </tr>
