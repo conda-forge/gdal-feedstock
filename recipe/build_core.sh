@@ -101,7 +101,7 @@ cmake -G "Unix Makefiles" \
 cmake --build . -j ${CPU_COUNT} --config Release
 
 # save cache file for later
-cp CMakeCache.txt CMakeCache.txt.orig
+cp -p CMakeCache.txt CMakeCache.txt.orig
 
 cmake --build . --target install
 
