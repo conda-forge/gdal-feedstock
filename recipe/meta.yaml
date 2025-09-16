@@ -11,7 +11,7 @@ source:
     - 000_cmake.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
@@ -57,7 +57,7 @@ requirements:
     # We use internal libtiff and libgeotiff for JXL-in-TIFF support
     # - libtiff
     - libwebp-base
-    - libxml2
+    - libxml2-devel
     - lz4-c
     - muparser
     - openssl
