@@ -17,7 +17,7 @@ source:
     - arrow_21_compat_3.patch
 
 build:
-  number: 17
+  number: 18
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
@@ -59,7 +59,7 @@ requirements:
     - libspatialite
     - libtiff
     - libwebp-base
-    - libxml2
+    - libxml2-devel
     - lz4-c
     - openssl
     - pcre2
