@@ -4,7 +4,7 @@ set -ex # Abort on error.
 
 cd build
 
-cp CMakeCache.txt.orig CMakeCache.txt
+cp -p CMakeCache.txt.orig CMakeCache.txt
 
 if [[ "$PKG_NAME" == "libgdal-arrow-parquet" ]]; then
   # Remove build artifacts potentially generated with a different libarrow version
