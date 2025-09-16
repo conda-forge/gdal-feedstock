@@ -1,13 +1,15 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
+MACOSX_SDK_VERSION:
+- '11.0'
 c_compiler:
-- gcc
+- clang
 c_compiler_version:
-- '14'
+- '19'
 c_stdlib:
-- sysroot
+- macosx_deployment_target
 c_stdlib_version:
-- '2.17'
-cdt_name:
-- conda
+- '11.0'
 cfitsio:
 - 4.6.2
 channel_sources:
@@ -15,15 +17,12 @@ channel_sources:
 - conda-forge
 - conda-forge
 - conda-forge
-- conda-forge,conda-forge/label/python_rc
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- gxx
+- clangxx
 cxx_compiler_version:
-- '14'
-docker_image:
-- quay.io/condaforge/linux-anvil-x86_64:alma9
+- '19'
 expat:
 - '2'
 geos:
@@ -55,8 +54,6 @@ libcurl:
 - '8'
 libdeflate:
 - '1.24'
-libgdal:
-- '3.11'
 libheif:
 - '1.19'
 libiconv:
@@ -79,6 +76,8 @@ libxml2_devel:
 - '2.14'
 lz4_c:
 - '1.10'
+macos_machine:
+- arm64-apple-darwin20.0.0
 numpy:
 - '2'
 openjpeg:
@@ -102,11 +101,10 @@ python:
 - 3.11.* *_cpython
 - 3.12.* *_cpython
 - 3.13.* *_cp313
-- 3.14.* *_cp314
 sqlite:
 - '3'
 target_platform:
-- linux-aarch64
+- osx-arm64
 tiledb:
 - '2.28'
 xerces_c:

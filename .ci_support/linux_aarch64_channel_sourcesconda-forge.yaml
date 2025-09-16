@@ -15,7 +15,6 @@ channel_sources:
 - conda-forge
 - conda-forge
 - conda-forge
-- conda-forge,conda-forge/label/python_rc
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -55,8 +54,6 @@ libcurl:
 - '8'
 libdeflate:
 - '1.24'
-libgdal:
-- '3.11'
 libheif:
 - '1.19'
 libiconv:
@@ -102,11 +99,10 @@ python:
 - 3.11.* *_cpython
 - 3.12.* *_cpython
 - 3.13.* *_cp313
-- 3.14.* *_cp314
 sqlite:
 - '3'
 target_platform:
-- linux-ppc64le
+- linux-aarch64
 tiledb:
 - '2.28'
 xerces_c:
