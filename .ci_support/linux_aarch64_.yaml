@@ -74,7 +74,7 @@ libnetcdf:
 libpng:
 - '1.6'
 libpq:
-- '17'
+- '18'
 libtiff:
 - '4.7'
 libwebp_base:
@@ -98,7 +98,7 @@ pin_run_as_build:
 poppler:
 - '25.07'
 postgresql:
-- '17'
+- '18'
 proj:
 - '9.7'
 python:
