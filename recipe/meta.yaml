@@ -17,7 +17,7 @@ source:
     - arrow_21_compat_3.patch
 
 build:
-  number: 20
+  number: 21
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
