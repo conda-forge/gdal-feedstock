@@ -45,6 +45,7 @@ requirements:
     - libjpeg-turbo
     - json-c  # [not win]
     - lerc
+    - libarchive
     - libarchive * lgpl*
     - libcurl
     - libdeflate
@@ -53,6 +54,7 @@ requirements:
     - libkml-devel
     - liblzma-devel
     - libpng
+    - libspatialite
     - libspatialite * lgpl*
     # We use internal libtiff and libgeotiff for JXL-in-TIFF support
     # - libtiff
