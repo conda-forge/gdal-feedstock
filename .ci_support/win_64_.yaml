@@ -28,6 +28,8 @@ lerc:
 - '4'
 libaec:
 - '1'
+libarchive:
+- '3.8'
 libarrow:
 - '18.1'
 - '19.0'
