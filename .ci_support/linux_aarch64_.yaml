@@ -10,10 +10,6 @@ cfitsio:
 - 4.6.3
 channel_sources:
 - conda-forge
-- conda-forge
-- conda-forge
-- conda-forge
-- conda-forge,conda-forge/label/python_rc
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -106,14 +102,12 @@ sqlite:
 target_platform:
 - linux-aarch64
 tiledb:
-- '2.28'
+- '2.29'
 xerces_c:
 - '3.2'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-- - python
-  - channel_sources
 zlib:
 - '1'
 zstd:
