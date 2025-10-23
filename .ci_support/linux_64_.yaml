@@ -78,7 +78,7 @@ numpy:
 openjpeg:
 - '2'
 openssl:
-- '3'
+- '3.5'
 pcre2:
 - '10.46'
 pin_run_as_build:
@@ -104,7 +104,7 @@ target_platform:
 tiledb:
 - '2.29'
 xerces_c:
-- '3.2'
+- '3.3'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
