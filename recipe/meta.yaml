@@ -613,24 +613,24 @@ outputs:
         - python test_python.py
         - PYTHONWARNINGS="error" python -c "import osgeo; print(osgeo.__version__)"  # [not win]
         # Check that Python-implemented GDAL utilities are available with .py extension, as documented
-        - gdal2tiles.py --help
-        - gdal2xyz.py --help
-        - gdal_calc.py --help
-        - gdal_edit.py --help
-        - gdal_fillnodata.py --help
-        - gdal_merge.py --help
-        - gdal_pansharpen.py --help
-        - gdal_polygonize.py --help
-        - gdal_proximity.py --help
-        - gdal_retile.py --help
-        - gdal_sieve.py --help
-        - gdalattachpct.py --help
-        - gdalcompare.py --help
-        - gdalmove.py --help
-        - pct2rgb.py --help
-        - rgb2pct.py --help
-        - ogrmerge.py --help
-        - ogr_layer_algebra.py --help
+        - gdal2tiles.py --help  # [not win]
+        - gdal2xyz.py --help  # [not win]
+        - gdal_calc.py --help  # [not win]
+        - gdal_edit.py --help  # [not win]
+        - gdal_fillnodata.py --help  # [not win]
+        - gdal_merge.py --help  # [not win]
+        - gdal_pansharpen.py --help  # [not win]
+        - gdal_polygonize.py --help  # [not win]
+        - gdal_proximity.py --help  # [not win]
+        - gdal_retile.py --help  # [not win]
+        - gdal_sieve.py --help  # [not win]
+        - gdalattachpct.py --help  # [not win]
+        - gdalcompare.py --help  # [not win]
+        - gdalmove.py --help  # [not win]
+        - pct2rgb.py --help  # [not win]
+        - rgb2pct.py --help  # [not win]
+        - ogrmerge.py --help  # [not win]
+        - ogr_layer_algebra.py --help  # [not win]
         # Check that the utilities are available as entry points without extension, see:
         # https://github.com/conda-forge/gdal-feedstock/issues/834
         # https://github.com/OSGeo/gdal/pull/8718
