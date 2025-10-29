@@ -39,10 +39,10 @@ libaec:
 libarchive:
 - '3.8'
 libarrow:
-- '18.1'
 - '19.0'
 - '20.0'
 - '21.0'
+- '22.0'
 libavif:
 - '1'
 libcurl:
