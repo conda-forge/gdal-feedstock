@@ -11,7 +11,7 @@ source:
     - 000_cmake.patch  # [osx]
 
 build:
-  number: 8
+  number: 9
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
