@@ -5,7 +5,6 @@ azure:
       MINIFORGE_HOME: C:\Miniforge
 bot:
   abi_migration_branches:
-  - v3.10.x
   - v3.11.x
 build_platform:
   linux_aarch64: linux_64
