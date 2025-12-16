@@ -90,7 +90,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 poppler:
-- '25.07'
+- '25.11'
 postgresql:
 - '18'
 proj:
@@ -106,7 +106,7 @@ sqlite:
 target_platform:
 - linux-ppc64le
 tiledb:
-- '2.29'
+- '2.30'
 xerces_c:
 - '3.3'
 zip_keys:
