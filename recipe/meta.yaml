@@ -1,4 +1,4 @@
-{% set version = "3.12.0" %}
+{% set version = "3.12.1" %}
 
 package:
   name: libgdal-core
@@ -6,12 +6,12 @@ package:
 
 source:
   url: http://download.osgeo.org/gdal/{{ version }}/gdal-{{ version }}.tar.xz
-  sha256: 428c19fff818bbb4136766cfee86fae2eebd3620806aa40af21844f4f0b2dbcf
+  sha256: 2a4fd3170ff81def93db60f7f61f2842a2ae7ad0335e4ed4ba305252f05835de
   patches:
     - 000_cmake.patch  # [osx]
 
 build:
-  number: 4
+  number: 0
   skip_compile_pyc:
     - share/bash-completion/completions/*.py
   ignore_run_exports_from:
