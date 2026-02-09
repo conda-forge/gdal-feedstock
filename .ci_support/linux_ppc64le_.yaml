@@ -50,7 +50,7 @@ libcurl:
 libdeflate:
 - '1.25'
 libgdal:
-- '3.11'
+- '3.12'
 libheif:
 - '1.19'
 libiconv:
