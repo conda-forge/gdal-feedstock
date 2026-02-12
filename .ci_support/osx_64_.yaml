@@ -52,7 +52,7 @@ libcurl:
 libdeflate:
 - '1.25'
 libgdal:
-- '3.11'
+- '3.12'
 libheif:
 - '1.19'
 libiconv:
@@ -90,7 +90,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 poppler:
-- '25.12'
+- '26.02'
 postgresql:
 - '18'
 proj:
