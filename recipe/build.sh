@@ -14,6 +14,9 @@ cd build
 # used in build_arrow_parquet
 
 # We use internal libtiff and libgeotiff for JXL-in-TIFF support
+# Note: we do set GDAL_USE_ADBCDRIVERMANAGER=ON so that libgdal-core knows that
+# the plugin ADBC driver will use it. This does not cause libgdal-core to be
+# linked against adbc-driver-manager, so this is safe. Cf https://github.com/conda-forge/gdal-feedstock/issues/1180
 cmake -G "Unix Makefiles" \
       ${CMAKE_ARGS} \
       -DCMAKE_BUILD_TYPE=Release \
@@ -40,7 +43,7 @@ cmake -G "Unix Makefiles" \
       -DGDAL_USE_HDF5=OFF \
       -DGDAL_USE_AVIF=OFF \
       -DGDAL_USE_HEIF=OFF \
-      -DGDAL_USE_ADBCDRIVERMANAGER=OFF \
+      -DGDAL_USE_ADBCDRIVERMANAGER=ON \
       -DOGR_ENABLE_DRIVER_ARROW=OFF \
       -DOGR_ENABLE_DRIVER_PARQUET=OFF \
       -DGDAL_ENABLE_DRIVER_JP2OPENJPEG=OFF \

@@ -29,6 +29,12 @@ else
       -D${GDAL_PLUGIN_TYPE}_ENABLE_DRIVER_${GDAL_PLUGIN_NAME}_PLUGIN=ON"
 fi
 
+if [[ "$PKG_NAME" == "libgdal-adbc" ]]; then
+  CMAKE_ARGS="$CMAKE_ARGS -DGDAL_USE_ADBCDRIVERMANAGER=ON"
+else
+  CMAKE_ARGS="$CMAKE_ARGS -DGDAL_USE_ADBCDRIVERMANAGER=OFF"
+fi
+
 # We reuse the same build directory as libgdal, so we just to have to
 # turn on the required dependency and drivers
 cmake "-U*LATER_PLUGIN" -DBUILD_PYTHON_BINDINGS:BOOL=OFF ${CMAKE_ARGS} ${SRC_DIR}

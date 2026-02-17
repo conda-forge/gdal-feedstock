@@ -13,6 +13,7 @@ Python_LOOKUP_VERSION=$($PYTHON -c "import sys; print(str(sys.version_info.major
 Python_NumPy_INCLUDE_DIR=$($PYTHON -c "import numpy; print(numpy.get_include())")
 
 cmake "-UPython*" "-U*LATER_PLUGIN" \
+      -DGDAL_USE_ADBCDRIVERMANAGER=OFF \
       -DPython_LOOKUP_VERSION=${Python_LOOKUP_VERSION} \
       -DPython_NumPy_INCLUDE_DIR=${Python_NumPy_INCLUDE_DIR} \
       -DBUILD_PYTHON_BINDINGS:BOOL=ON \
