@@ -1,7 +1,7 @@
 MACOSX_DEPLOYMENT_TARGET:
-- '10.13'
+- '11.0'
 MACOSX_SDK_VERSION:
-- '10.13'
+- '11.0'
 c_compiler:
 - clang
 c_compiler_version:
@@ -9,7 +9,7 @@ c_compiler_version:
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
-- '10.13'
+- '11.0'
 cfitsio:
 - 4.6.3
 channel_sources:
@@ -52,7 +52,7 @@ libcurl:
 libdeflate:
 - '1.25'
 libgdal:
-- '3.11'
+- '3.12'
 libheif:
 - '1.19'
 libiconv:
@@ -64,7 +64,7 @@ libkml_devel:
 liblzma_devel:
 - '5'
 libnetcdf:
-- 4.9.3
+- 4.10.0
 libpng:
 - '1.6'
 libpq:
