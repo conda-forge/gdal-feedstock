@@ -38,7 +38,7 @@ libcurl:
 libdeflate:
 - '1.25'
 libgdal:
-- '3.11'
+- '3.12'
 libheif:
 - '1.19'
 libiconv:
@@ -50,7 +50,7 @@ libkml_devel:
 liblzma_devel:
 - '5'
 libnetcdf:
-- 4.9.3
+- 4.10.0
 libpng:
 - '1.6'
 libpq:
