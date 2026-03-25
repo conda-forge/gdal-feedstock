@@ -30,6 +30,7 @@ hdf4:
 - 4.2.15
 hdf5:
 - 1.14.6
+- '2'
 json_c:
 - '0.18'
 kealib:
@@ -90,7 +91,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 poppler:
-- '25.12'
+- '26.02'
 postgresql:
 - '18'
 proj:
