@@ -15,7 +15,7 @@ source:
       then: 000_cmake.patch
 
 build:
-  number: 4
+  number: 5
 
 outputs:
   - staging:
@@ -157,6 +157,7 @@ outputs:
       summary: Arrow and Parquet drivers for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-jp2openjpeg
     inherit: core-build
@@ -202,6 +203,7 @@ outputs:
       summary: Raster driver JP2OpenJPEG for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-pdf
     inherit: core-build
@@ -254,6 +256,7 @@ outputs:
       summary: Raster driver PDF for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-postgisraster
     inherit: core-build
@@ -301,6 +304,7 @@ outputs:
       summary: Raster driver PostGIS for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-pg
     inherit: core-build
@@ -346,6 +350,7 @@ outputs:
       summary: Vector driver PG for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-xls
     inherit: core-build
@@ -391,6 +396,7 @@ outputs:
       summary: Vector driver XLS for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-fits
     inherit: core-build
@@ -436,6 +442,7 @@ outputs:
       summary: Raster driver FITS for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-grib
     inherit: core-build
@@ -481,6 +488,7 @@ outputs:
       summary: Raster driver GRIB for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-kea
     inherit: core-build
@@ -529,6 +537,7 @@ outputs:
       summary: Raster driver KEA for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-tiledb
     inherit: core-build
@@ -574,6 +583,7 @@ outputs:
       summary: Raster driver TileDB for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-netcdf
     inherit: core-build
@@ -625,6 +635,7 @@ outputs:
       summary: Raster driver netCDF for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-hdf5
     inherit: core-build
@@ -670,6 +681,7 @@ outputs:
       summary: Raster driver HDF5 for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-hdf4
     inherit: core-build
@@ -716,6 +728,7 @@ outputs:
       summary: Raster driver HDF4 for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal
     requirements:
@@ -738,6 +751,7 @@ outputs:
       run_exports:
         - ${{ pin_subpackage('libgdal-core', upper_bound='x.x') }}
         - ${{ pin_subpackage('libgdal', upper_bound='x.x') }}
+
   - package:
       name: gdal
     inherit: core-build
@@ -838,6 +852,7 @@ outputs:
         requirements:
           run:
             - libgdal
+
   - package:
       name: libgdal-adbc
     inherit: core-build
@@ -885,6 +900,7 @@ outputs:
       summary: Vector driver ADBC for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-avif
     inherit: core-build
@@ -930,6 +946,7 @@ outputs:
       summary: Raster driver AVIF for the Geospatial Data Abstraction Library (GDAL)
       license: MIT
       license_file: LICENSE.TXT
+
   - package:
       name: libgdal-heif
     inherit: core-build
