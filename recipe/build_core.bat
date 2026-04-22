@@ -3,12 +3,6 @@ if errorlevel 1 exit 1
 cd build
 if errorlevel 1 exit 1
 
-if  %vc% LEQ 9 set MSVC_VER=1500
-if  %vc% GTR 9 set MSVC_VER=1900
-
-if  %vc% LEQ 9 set MSVC_TS_VER=90
-if  %vc% GTR 9 set MSVC_TS_VER=140
-
 REM Make sure to disable Arrow/Parquet dependencies for now, so they are only
 REM used in build_arrow_parquet
 
