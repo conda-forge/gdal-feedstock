@@ -103,6 +103,10 @@ outputs:
         - ${{ pin_subpackage('libgdal-core', upper_bound='x.x') }}
       run_constraints:
         - libgdal ${{ version }}.*
+    tests:
+      - script:
+          content:
+            - gdalinfo --help
 
   - package:
       name: libgdal-core-devel
@@ -112,6 +116,10 @@ outputs:
         - expat
         - libkml-devel
         - liblzma-devel
+    tests:
+      - script:
+          content:
+            - gdalinfo --help
 
   - package:
       name: libgdal-arrow-parquet
@@ -751,6 +759,10 @@ outputs:
       run_exports:
         - ${{ pin_subpackage('libgdal-core', upper_bound='x.x') }}
         - ${{ pin_subpackage('libgdal', upper_bound='x.x') }}
+    tests:
+      - script:
+          content:
+            - gdalinfo --help
 
   - package:
       name: gdal
