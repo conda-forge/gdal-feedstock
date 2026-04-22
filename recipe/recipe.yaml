@@ -22,7 +22,6 @@ outputs:
   - staging:
       name: core-build
     build:
-      number: ${{ build_num }}
       script:
         file: build_core
     requirements:
