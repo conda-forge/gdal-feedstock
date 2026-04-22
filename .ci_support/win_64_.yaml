@@ -38,8 +38,6 @@ libcurl:
 - '8'
 libdeflate:
 - '1.25'
-libgdal:
-- '3.12'
 libheif:
 - '1.19'
 libiconv:
@@ -93,8 +91,6 @@ target_platform:
 - win-64
 tiledb:
 - '2.30'
-vc:
-- '14'
 xerces_c:
 - '3.3'
 zlib:
