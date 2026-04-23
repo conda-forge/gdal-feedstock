@@ -898,22 +898,38 @@ outputs:
   - package:
       name: libgdal
     requirements:
-      run:
-        - libgdal-core ${{ version }}.*
-        - libgdal-jp2openjpeg ${{ version }}.*
-        - libgdal-pdf ${{ version }}.*
-        - libgdal-postgisraster ${{ version }}.*
-        - libgdal-pg ${{ version }}.*
-        - libgdal-fits ${{ version }}.*
-        - libgdal-xls ${{ version }}.*
-        - libgdal-grib ${{ version }}.*
-        - libgdal-kea ${{ version }}.*
-        - libgdal-tiledb ${{ version }}.*
-        - libgdal-netcdf ${{ version }}.*
-        - libgdal-hdf5 ${{ version }}.*
-        - libgdal-hdf4 ${{ version }}.*
+      host:
+        - ${{ pin_subpackage('libgdal-core', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-jp2openjpeg', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-pdf', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-postgisraster', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-pg', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-fits', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-xls', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-grib', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-kea', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-tiledb', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-netcdf', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-hdf5', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-hdf4', upper_bound='x.x.x') }}
         - if: not win
-          then: libgdal-adbc ${{ version }}.*
+          then: ${{ pin_subpackage('libgdal-adbc', upper_bound='x.x.x') }}
+      run:
+        - ${{ pin_subpackage('libgdal-core', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-jp2openjpeg', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-pdf', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-postgisraster', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-pg', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-fits', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-xls', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-grib', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-kea', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-tiledb', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-netcdf', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-hdf5', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-hdf4', upper_bound='x.x.x') }}
+        - if: not win
+          then: ${{ pin_subpackage('libgdal-adbc', upper_bound='x.x.x') }}
       run_exports:
         - ${{ pin_subpackage('libgdal-core', upper_bound='x.x') }}
         - ${{ pin_subpackage('libgdal', upper_bound='x.x') }}
@@ -1022,7 +1038,22 @@ outputs:
             - test_script_exist.bat
         requirements:
           run:
-            - libgdal
+            - ${{ pin_subpackage('libgdal', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-core', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-jp2openjpeg', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-pdf', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-postgisraster', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-pg', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-fits', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-xls', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-grib', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-kea', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-tiledb', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-netcdf', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-hdf5', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-hdf4', upper_bound='x.x.x') }}
+            - if: not win
+              then: ${{ pin_subpackage('libgdal-adbc', upper_bound='x.x.x') }}
 
 about:
   license: MIT
