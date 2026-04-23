@@ -532,7 +532,7 @@ outputs:
           then: ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
-        - ${{ pin_subpackage('libgdal-hdf5', exact=True) }}
+        - ${{ pin_subpackage('libgdal-hdf5') }}
         - kealib
         - hdf5
       run:
@@ -629,8 +629,8 @@ outputs:
           then: ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
-        - ${{ pin_subpackage('libgdal-hdf5', exact=True) }}
-        - ${{ pin_subpackage('libgdal-hdf4', exact=True) }}
+        - ${{ pin_subpackage('libgdal-hdf5') }}
+        - ${{ pin_subpackage('libgdal-hdf4') }}
         - hdf5
         - hdf4
         - libnetcdf
