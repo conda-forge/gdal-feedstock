@@ -27,15 +27,15 @@ outputs:
     requirements:
       build:
         - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config >=0.21
         - if: not win
           then: make
         - if: win
           then: ninja
-        - ${{ compiler('c') }}
-        - ${{ stdlib("c") }}
-        - ${{ compiler('cxx') }}
         - swig
       host:
         - blosc
@@ -69,7 +69,6 @@ outputs:
         - proj
         # qhull disabled because of https://github.com/conda-forge/qgis-feedstock/issues/284#issuecomment-1356490896
         # - qhull
-        - setuptools
         - sqlite
         - xerces-c
         - zlib
@@ -118,6 +117,13 @@ outputs:
         - expat
         - libkml-devel
         - liblzma-devel
+        - kealib
+        - openjpeg
+        - tiledb
+        - libnetcdf
+        - libheif
+        - if: not win
+          then: libadbc-driver-manager
     tests:
       - script:
           content:
@@ -142,6 +148,7 @@ outputs:
           then: make
         - if: win
           then: ninja
+        - swig
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - libarrow
