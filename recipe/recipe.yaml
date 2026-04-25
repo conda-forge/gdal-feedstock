@@ -29,10 +29,7 @@ outputs:
         - cmake
         - if: not win
           then: pkg-config >=0.21
-        - if: not win
-          then: make
-        - if: win
-          then: ninja
+        - ninja
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
@@ -138,10 +135,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - libarrow
@@ -188,10 +182,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - openjpeg
@@ -235,10 +226,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - poppler
@@ -289,10 +277,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - libpq
@@ -338,10 +323,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - libpq
@@ -385,10 +367,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - freexl
@@ -432,10 +411,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - cfitsio
@@ -479,10 +455,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - libaec
@@ -526,10 +499,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - ${{ pin_subpackage('libgdal-hdf5') }}
@@ -576,10 +546,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - tiledb
@@ -623,10 +590,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - ${{ pin_subpackage('libgdal-hdf5') }}
@@ -676,10 +640,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - hdf5
@@ -723,10 +684,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - hdf4
@@ -773,10 +731,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - libadbc-driver-manager
@@ -820,10 +775,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - libavif
@@ -867,10 +819,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - if: not win
           then: pkg-config
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - libheif
@@ -954,10 +903,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - cmake
-        - if: unix
-          then: make
-        - if: win
-          then: ninja
+        - ninja
         - if: build_platform != target_platform
           then: python
         - if: build_platform != target_platform

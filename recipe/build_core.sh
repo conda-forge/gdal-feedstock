@@ -17,7 +17,7 @@ cd build
 # Note: we do set GDAL_USE_ADBCDRIVERMANAGER=ON so that libgdal-core knows that
 # the plugin ADBC driver will use it. This does not cause libgdal-core to be
 # linked against adbc-driver-manager, so this is safe. Cf https://github.com/conda-forge/gdal-feedstock/issues/1180
-cmake -G "Unix Makefiles" \
+cmake -G "Ninja" \
       ${CMAKE_ARGS} \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_PREFIX_PATH=$PREFIX \
