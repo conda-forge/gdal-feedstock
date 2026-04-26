@@ -39,7 +39,11 @@ fi
 # turn on the required dependency and drivers
 cmake "-U*LATER_PLUGIN" -DBUILD_APPS=OFF -DBUILD_PYTHON_BINDINGS:BOOL=OFF ${CMAKE_ARGS} ${SRC_DIR}
 
+cat build.ninja
+
 ninja -d explain -j ${CPU_COUNT}
+
+cat build.ninja
 
 cmake --build . --target install
 exit 1

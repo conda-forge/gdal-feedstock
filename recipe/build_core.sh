@@ -108,6 +108,8 @@ cmake ${SRC_DIR}
 
 cmake --build . -j ${CPU_COUNT} --config Release
 
+cat build.ninja
+
 # save cache file for later
 cp CMakeCache.txt CMakeCache.txt.orig
 
