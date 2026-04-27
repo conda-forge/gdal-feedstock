@@ -1,0 +1,1026 @@
+schema_version: 1
+
+context:
+  version: "3.12.3"
+  build_num: 5
+
+recipe:
+  name: libgdal-split
+  version: ${{ version }}
+
+source:
+  url: http://download.osgeo.org/gdal/${{ version }}/gdal-${{ version }}.tar.xz
+  sha256: 398a5a32ee6e75040598a7f8e895126a8225118317f272d715867c844f932848
+  patches:
+    - if: osx
+      then: 000_cmake.patch
+
+build:
+  number: ${{ build_num }}
+
+outputs:
+  - staging:
+      name: core-build
+    build:
+      script:
+        file: build_core
+    requirements:
+      build:
+        - cmake
+        - if: not win
+          then: pkg-config >=0.21
+        - ninja
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - swig
+      host:
+        - blosc
+        - expat
+        - geos
+        # We use internal libtiff and libgeotiff for JXL-in-TIFF support
+        # - geotiff
+        - if: not win
+          then: giflib
+        - libjpeg-turbo
+        - if: not win
+          then: json-c
+        - lerc
+        - libarchive
+        - libcurl
+        - libdeflate
+        - libiconv
+        - libjxl
+        - libkml-devel
+        - liblzma-devel
+        - libpng
+        - libspatialite
+        # We use internal libtiff and libgeotiff for JXL-in-TIFF support
+        # - libtiff
+        - libwebp-base
+        - libxml2-devel
+        - lz4-c
+        - muparser
+        - openssl
+        - pcre2
+        - proj
+        # qhull disabled because of https://github.com/conda-forge/qgis-feedstock/issues/284#issuecomment-1356490896
+        # - qhull
+        - setuptools
+        - sqlite
+        - xerces-c
+        - zlib
+        - zstd
+        # For these plugins, we need the headers for the core sources
+        - kealib
+        - openjpeg
+        - tiledb
+        - libnetcdf
+        - libheif
+        - if: not win
+          then: libadbc-driver-manager
+      ignore_run_exports:
+        from_package:
+          - kealib
+          - openjpeg
+          - tiledb
+          - libnetcdf
+          - libheif
+          - if: not win
+            then: libadbc-driver-manager
+
+  - package:
+      name: libgdal-core
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      python:
+        skip_pyc_compilation:
+          - share/bash-completion/completions/*.py
+    requirements:
+      run_exports:
+        - ${{ pin_subpackage('libgdal-core', upper_bound='x.x') }}
+      run_constraints:
+        - libgdal ${{ version }}.*
+    tests:
+      - script:
+          content:
+            - gdalinfo --help
+
+  - package:
+      name: libgdal-core-devel
+    requirements:
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+        - expat
+        - libkml-devel
+        - liblzma-devel
+    tests:
+      - script:
+          content:
+            - gdalinfo --help
+
+  - package:
+      name: libgdal-arrow-parquet
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - libarrow
+        - if: libarrow != 13
+          then: libarrow-dataset
+        - if: libarrow != 13
+          then: libparquet
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - script:
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/ogr_Arrow${SHLIB_EXT}
+                - test -f ${PREFIX}/lib/gdalplugins/ogr_Parquet${SHLIB_EXT}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\ogr_Arrow.dll exit 1
+                - if not exist %LIBRARY_LIB%\gdalplugins\ogr_Parquet.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+            - gdalinfo --format Arrow
+            - gdalinfo --format Parquet
+    about:
+      summary: Arrow and Parquet drivers for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-jp2openjpeg
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: JP2OpenJPEG
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_OPENJPEG=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - openjpeg
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: JP2OpenJPEG
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_OPENJPEG=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Raster driver JP2OpenJPEG for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-pdf
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: PDF
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_POPPLER=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - poppler
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - files:
+          recipe:
+            - test_data
+            - test_pdf.bat
+            - test_pdf.sh
+        script:
+          env:
+            GDAL_PLUGIN_NAME: PDF
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_POPPLER=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+                - ./test_pdf.sh
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+                - test_pdf.bat
+    about:
+      summary: Raster driver PDF for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-postgisraster
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: PostGISRaster
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_POSTGRESQL=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - libpq
+        - postgresql
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+        - postgresql
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: PostGISRaster
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_POSTGRESQL=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Raster driver PostGIS for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-pg
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: PG
+          GDAL_PLUGIN_TYPE: ogr
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_POSTGRESQL=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - libpq
+        - postgresql
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+        - postgresql
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: PG
+            GDAL_PLUGIN_TYPE: ogr
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_POSTGRESQL=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+    about:
+      summary: Vector driver PG for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-xls
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: XLS
+          GDAL_PLUGIN_TYPE: ogr
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_FREEXL=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - freexl
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: XLS
+            GDAL_PLUGIN_TYPE: ogr
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_FREEXL=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Vector driver XLS for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-fits
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: FITS
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_CFITSIO=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - cfitsio
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: FITS
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_CFITSIO=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Raster driver FITS for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-grib
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: GRIB
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_LIBAEC=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - libaec
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: GRIB
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_LIBAEC=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Raster driver GRIB for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-kea
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: KEA
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_KEA=ON -DGDAL_USE_HDF5=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - ${{ pin_subpackage('libgdal-hdf5') }}
+        - kealib
+        - hdf5
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+        - libgdal-hdf5 ${{ version }}.*
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: KEA
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_KEA=ON -DGDAL_USE_HDF5=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Raster driver KEA for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-tiledb
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: TileDB
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_TILEDB=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - tiledb
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: TileDB
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_TILEDB=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Raster driver TileDB for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-netcdf
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: netCDF
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_NETCDF=ON -DGDAL_USE_HDF5=ON -DGDAL_USE_HDF4=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - ${{ pin_subpackage('libgdal-hdf5') }}
+        - ${{ pin_subpackage('libgdal-hdf4') }}
+        - hdf5
+        - hdf4
+        - libnetcdf
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+        - libgdal-hdf5 ${{ version }}.*
+        - libgdal-hdf4 ${{ version }}.*
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: netCDF
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_NETCDF=ON -DGDAL_USE_HDF5=ON -DGDAL_USE_HDF4=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Raster driver netCDF for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-hdf5
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: HDF5
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_HDF5=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - hdf5
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: HDF5
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_HDF5=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Raster driver HDF5 for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-hdf4
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: HDF4
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_HDF4=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - hdf4
+        - libaec
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: HDF4
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_HDF4=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Raster driver HDF4 for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-adbc
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      # FIXME: libadbc-driver-manager is not available currently on Windows
+      skip: win
+      script:
+        env:
+          GDAL_PLUGIN_NAME: ADBC
+          GDAL_PLUGIN_TYPE: ogr
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_ADBCDRIVERMANAGER=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - libadbc-driver-manager
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: ADBC
+            GDAL_PLUGIN_TYPE: ogr
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_ADBCDRIVERMANAGER=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Vector driver ADBC for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-avif
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: AVIF
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_AVIF=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - libavif
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: AVIF
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_AVIF=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Raster driver AVIF for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal-heif
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      script:
+        env:
+          GDAL_PLUGIN_NAME: HEIF
+          GDAL_PLUGIN_TYPE: gdal
+          GDAL_PLUGIN_DEPS: "-DGDAL_USE_HEIF=ON"
+        file: build_plugin
+    requirements:
+      build:
+        - cmake
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - if: not win
+          then: pkg-config
+        - ninja
+      host:
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - libheif
+      run:
+        - ${{ pin_subpackage('libgdal-core', exact=True) }}
+    tests:
+      - script:
+          env:
+            GDAL_PLUGIN_NAME: HEIF
+            GDAL_PLUGIN_TYPE: gdal
+            GDAL_PLUGIN_DEPS: "-DGDAL_USE_HEIF=ON"
+          content:
+            - if: unix
+              then:
+                - test -f ${PREFIX}/lib/gdalplugins/${GDAL_PLUGIN_TYPE}_${GDAL_PLUGIN_NAME}${SHLIB_EXT}
+                - gdalinfo --format ${GDAL_PLUGIN_NAME}
+              else:
+                - if not exist %LIBRARY_LIB%\gdalplugins\%GDAL_PLUGIN_TYPE%_%GDAL_PLUGIN_NAME%.dll exit 1
+                - gdalinfo --format %GDAL_PLUGIN_NAME%
+    about:
+      summary: Raster driver HEIF for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+
+  - package:
+      name: libgdal
+    requirements:
+      host:
+        - ${{ pin_subpackage('libgdal-core', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-jp2openjpeg', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-pdf', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-postgisraster', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-pg', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-fits', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-xls', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-grib', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-kea', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-tiledb', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-netcdf', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-hdf5', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-hdf4', upper_bound='x.x.x') }}
+        - if: not win
+          then: ${{ pin_subpackage('libgdal-adbc', upper_bound='x.x.x') }}
+      run:
+        - ${{ pin_subpackage('libgdal-core', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-jp2openjpeg', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-pdf', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-postgisraster', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-pg', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-fits', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-xls', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-grib', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-kea', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-tiledb', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-netcdf', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-hdf5', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('libgdal-hdf4', upper_bound='x.x.x') }}
+        - if: not win
+          then: ${{ pin_subpackage('libgdal-adbc', upper_bound='x.x.x') }}
+      run_exports:
+        - ${{ pin_subpackage('libgdal-core', upper_bound='x.x') }}
+        - ${{ pin_subpackage('libgdal', upper_bound='x.x') }}
+    tests:
+      - script:
+          content:
+            - gdalinfo --help
+
+  - package:
+      name: gdal
+    inherit: core-build
+    build:
+      number: ${{ build_num }}
+      python:
+        skip_pyc_compilation:
+          - share/bash-completion/completions/*.py
+      script:
+        file: install_python
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - ninja
+        - if: build_platform != target_platform
+          then: python
+        - if: build_platform != target_platform
+          then: cross-python_${{ target_platform }}
+        - if: build_platform != target_platform
+          then: numpy
+        - swig
+      host:
+        - python
+        - pip
+        - numpy
+        - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
+        - setuptools
+      run:
+        - python
+        - libgdal-core ${{ version }}.*
+    about:
+      summary: Python wrapper for the Geospatial Data Abstraction Library (GDAL)
+      license: MIT
+      license_file: LICENSE.TXT
+    tests:
+      - python:
+          imports:
+            - osgeo
+            - osgeo.ogr
+            - osgeo.gdal
+            - osgeo._gdal
+            - osgeo._gdalconst
+            - osgeo._ogr
+            - osgeo._osr
+          pip_check: false
+      - script:
+          - python test_python.py
+          - if: not win
+            then:
+              - PYTHONWARNINGS="error" python -c "import osgeo; print(osgeo.__version__)"
+              - gdal2tiles.py --help
+              - gdal2xyz.py --help
+              - gdal_calc.py --help
+              - gdal_edit.py --help
+              - gdal_fillnodata.py --help
+              - gdal_merge.py --help
+              - gdal_pansharpen.py --help
+              - gdal_polygonize.py --help
+              - gdal_proximity.py --help
+              - gdal_retile.py --help
+              - gdal_sieve.py --help
+              - gdalattachpct.py --help
+              - gdalcompare.py --help
+              - gdalmove.py --help
+              - pct2rgb.py --help
+              - rgb2pct.py --help
+              - ogrmerge.py --help
+              - ogr_layer_algebra.py --help
+          - gdal2tiles --help
+          - gdal2xyz --help
+          - gdal_calc --help
+          - gdal_edit --help
+          - gdal_fillnodata --help
+          - gdal_merge --help
+          - gdal_pansharpen --help
+          - gdal_polygonize --help
+          - gdal_proximity --help
+          - gdal_retile --help
+          - gdal_sieve --help
+          - gdalattachpct --help
+          - gdalcompare --help
+          - gdalmove --help
+          - pct2rgb --help
+          - rgb2pct --help
+          - ogrmerge --help
+          - ogr_layer_algebra --help
+        files:
+          recipe:
+            - test_data
+            - extra_tests.py
+            - test_python.py
+            - test_script_exist.bat
+        requirements:
+          run:
+            - ${{ pin_subpackage('libgdal', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-core', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-jp2openjpeg', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-pdf', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-postgisraster', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-pg', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-fits', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-xls', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-grib', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-kea', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-tiledb', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-netcdf', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-hdf5', upper_bound='x.x.x') }}
+            - ${{ pin_subpackage('libgdal-hdf4', upper_bound='x.x.x') }}
+            - if: not win
+              then: ${{ pin_subpackage('libgdal-adbc', upper_bound='x.x.x') }}
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.TXT
+    - LICENSE_libtiff.txt
+    - LICENSE_libgeotiff.txt
+  summary: |
+    GDAL is a translator library for raster and vector geospatial data formats that is released under an
+    X/MIT style Open Source license by the Open Source Geospatial Foundation.
+  homepage: http://www.gdal.org
+
+extra:
+  feedstock-name: gdal
+  recipe-maintainers:
+    - rouault
+    - zklaus
+    - akrherz
+    - gillins
+    - kmuehlbauer
+    - mingwandroid
+    - msarahan
+    - ocefpaf
+    - xylar
