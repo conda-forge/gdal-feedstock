@@ -2,6 +2,8 @@
 
 set -ex # Abort on error.
 
+echo "CONDA_BUILD_SYSROOT:${CONDA_BUILD_SYSROOT}"
+
 cd build
 
 cp CMakeCache.txt.orig CMakeCache.txt
@@ -46,4 +48,3 @@ ninja -d explain -j ${CPU_COUNT}
 cat build.ninja
 
 cmake --build . --target install
-exit 1
