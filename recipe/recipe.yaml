@@ -1,8 +1,8 @@
 schema_version: 1
 
 context:
-  version: "3.12.3"
-  build_num: 5
+  version: "3.12.4"
+  build_num: 1
 
 recipe:
   name: libgdal-split
@@ -10,7 +10,7 @@ recipe:
 
 source:
   url: http://download.osgeo.org/gdal/${{ version }}/gdal-${{ version }}.tar.xz
-  sha256: 398a5a32ee6e75040598a7f8e895126a8225118317f272d715867c844f932848
+  sha256: 813094498c17522ac42821a5ea1ea783d8326c0adf286cce86a949038bd09198
   patches:
     - if: osx
       then: 000_cmake.patch
