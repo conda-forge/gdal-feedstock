@@ -155,7 +155,6 @@ outputs:
               else:
                 - if not exist %LIBRARY_LIB%\gdalplugins\ogr_Arrow.dll exit 1
                 - if not exist %LIBRARY_LIB%\gdalplugins\ogr_Parquet.dll exit 1
-                - gdalinfo --format %GDAL_PLUGIN_NAME%
             - gdalinfo --format Arrow
             - gdalinfo --format Parquet
     about:
