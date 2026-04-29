@@ -98,6 +98,12 @@ outputs:
         skip_pyc_compilation:
           - share/bash-completion/completions/*.py
     requirements:
+      # TODO: Remove the build and host sections when rattler-build is fixed
+      build:
+        - ${{ compiler('cxx') }}
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+      host:
       run_exports:
         - ${{ pin_subpackage('libgdal-core', upper_bound='x.x') }}
       run_constraints:
