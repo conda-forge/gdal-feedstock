@@ -4,7 +4,8 @@
 
 set -ex # Abort on error.
 
-echo ${CONDA_BUILD_SYSROOT}
+echo "CONDA_BUILD_SYSROOT:${CONDA_BUILD_SYSROOT}"
+echo "SDKROOT:${SDKROOT}"
 
 # also allow newer symbols (https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk)
 export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DHAVE_POPPLER"
