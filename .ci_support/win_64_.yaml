@@ -28,10 +28,10 @@ libaec:
 libarchive:
 - '3.8'
 libarrow:
-- '20.0'
 - '21.0'
 - '22.0'
 - '23.0'
+- '24.0'
 libavif:
 - '1'
 libcurl:
