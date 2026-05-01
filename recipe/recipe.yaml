@@ -145,10 +145,8 @@ outputs:
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
         - libarrow
-        - if: libarrow != 13
-          then: libarrow-dataset
-        - if: libarrow != 13
-          then: libparquet
+        - libarrow-dataset
+        - libparquet
       run:
         - ${{ pin_subpackage('libgdal-core', exact=True) }}
     tests:
