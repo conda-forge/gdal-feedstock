@@ -2,6 +2,8 @@
 
 set -ex # Abort on error.
 
+echo "CONDA_BUILD_SYSROOT:${CONDA_BUILD_SYSROOT}"
+
 cd build
 
 cp CMakeCache.txt.orig CMakeCache.txt
@@ -37,7 +39,8 @@ fi
 
 # We reuse the same build directory as libgdal, so we just to have to
 # turn on the required dependency and drivers
-cmake "-U*LATER_PLUGIN" -DBUILD_PYTHON_BINDINGS:BOOL=OFF ${CMAKE_ARGS} ${SRC_DIR}
+cmake "-U*LATER_PLUGIN" -DBUILD_APPS=OFF -DBUILD_PYTHON_BINDINGS:BOOL=OFF ${CMAKE_ARGS} ${SRC_DIR}
 
-cmake --build . -j ${CPU_COUNT} --config Release
+ninja -d explain -j ${CPU_COUNT}
+
 cmake --build . --target install

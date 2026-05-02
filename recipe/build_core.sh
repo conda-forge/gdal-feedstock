@@ -4,6 +4,9 @@
 
 set -ex # Abort on error.
 
+echo "CONDA_BUILD_SYSROOT:${CONDA_BUILD_SYSROOT}"
+echo "SDKROOT:${SDKROOT}"
+
 # also allow newer symbols (https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk)
 export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DHAVE_POPPLER"
 
@@ -17,7 +20,7 @@ cd build
 # Note: we do set GDAL_USE_ADBCDRIVERMANAGER=ON so that libgdal-core knows that
 # the plugin ADBC driver will use it. This does not cause libgdal-core to be
 # linked against adbc-driver-manager, so this is safe. Cf https://github.com/conda-forge/gdal-feedstock/issues/1180
-cmake -G "Unix Makefiles" \
+cmake -G "Ninja" \
       ${CMAKE_ARGS} \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_PREFIX_PATH=$PREFIX \
@@ -100,6 +103,11 @@ cmake -G "Unix Makefiles" \
       -DBUILD_JAVA_BINDINGS:BOOL=OFF \
       -DBUILD_CSHARP_BINDINGS:BOOL=OFF \
       ${SRC_DIR}
+
+# Run cmake again because it changes the flags a bit.
+# In particular -pthread gets added in build/port/CMakeFiles/cpl.dir/flags.make
+# on the second CMake run
+cmake ${SRC_DIR}
 
 cmake --build . -j ${CPU_COUNT} --config Release
 
