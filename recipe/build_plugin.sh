@@ -44,3 +44,7 @@ cmake "-U*LATER_PLUGIN" -DBUILD_APPS=OFF -DBUILD_PYTHON_BINDINGS:BOOL=OFF ${CMAK
 ninja -d explain -j ${CPU_COUNT}
 
 cmake --build . --target install
+
+# remove Python precompiled files that could have been generated during the build
+# cf https://github.com/conda-forge/gdal-feedstock/issues/1199
+rm -rf "$PREFIX/lib/python*/site-packages/_distutils_hack/__pycache__"

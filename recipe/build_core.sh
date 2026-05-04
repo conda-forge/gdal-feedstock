@@ -116,6 +116,10 @@ cp CMakeCache.txt CMakeCache.txt.orig
 
 cmake --build . --target install
 
+# remove Python precompiled files that could have been generated during the build
+# cf https://github.com/conda-forge/gdal-feedstock/issues/1199
+rm -rf "$PREFIX/lib/python*/site-packages/_distutils_hack/__pycache__"
+
 # Make sure GDAL_DATA and set and still present in the package.
 # https://github.com/conda/conda-recipes/pull/267
 ACTIVATE_DIR=${PREFIX}/etc/conda/activate.d
