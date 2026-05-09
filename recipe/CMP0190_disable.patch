@@ -1,0 +1,14 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index db92ee4a50..063e5e47d2 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -2,6 +2,9 @@
+ include(cmake/helpers/GdalCMakeMinimumRequired.cmake)
+ cmake_minimum_required(VERSION ${GDAL_CMAKE_VERSION_MIN}...${GDAL_CMAKE_VERSION_MAX})
+ 
++# HACK: Disable https://cmake.org/cmake/help/latest/policy/CMP0190.html to workaround cross compilation issue in FindPython
++cmake_policy(SET CMP0190 OLD)
++
+ project(gdal LANGUAGES C CXX)
+ 
+ set(GDAL_LIB_TARGET_NAME GDAL)

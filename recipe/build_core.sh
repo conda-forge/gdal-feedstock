@@ -6,9 +6,15 @@ set -ex # Abort on error.
 
 echo "CONDA_BUILD_SYSROOT:${CONDA_BUILD_SYSROOT}"
 echo "SDKROOT:${SDKROOT}"
+echo "CMAKE_CROSSCOMPILING_EMULATOR:${CMAKE_CROSSCOMPILING_EMULATOR}"
 
 # also allow newer symbols (https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk)
 export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DHAVE_POPPLER"
+
+if test "${LD}" = "powerpc64le-conda-linux-gnu-ld"; then
+  # Avoid 'relocation truncated to fit: R_PPC64_REL24' issues
+  export CXXFLAGS="${CXXFLAGS} -mlongcall"
+fi
 
 mkdir build
 cd build
@@ -23,6 +29,7 @@ cd build
 cmake -G "Ninja" \
       ${CMAKE_ARGS} \
       -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_CROSSCOMPILING_EMULATOR:STRING="${CMAKE_CROSSCOMPILING_EMULATOR}" \
       -DCMAKE_PREFIX_PATH=$PREFIX \
       -DCMAKE_INSTALL_PREFIX=$PREFIX \
       -DCMAKE_INSTALL_LIBDIR=lib \
