@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "3.12.4"
+  version: "3.13.0"
   build_num: 3
 
 recipe:
@@ -10,10 +10,12 @@ recipe:
 
 source:
   url: http://download.osgeo.org/gdal/${{ version }}/gdal-${{ version }}.tar.xz
-  sha256: 813094498c17522ac42821a5ea1ea783d8326c0adf286cce86a949038bd09198
+  sha256: 1c537dd2f4d66f05534ae419bc2af495c2204ce13bb266c8cbd867dd6705f0c7
   patches:
     - if: osx
       then: 000_cmake.patch
+    # Below is a hack that will eventually break.
+    - CMP0190_disable.patch
 
 build:
   number: ${{ build_num }}
