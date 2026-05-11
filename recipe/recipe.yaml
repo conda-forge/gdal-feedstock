@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   version: "3.13.0"
-  build_num: 2
+  build_num: 1
 
 recipe:
   name: libgdal-split
@@ -18,7 +18,7 @@ source:
     - CMP0190_disable.patch
 
 build:
-  number: 0
+  number: ${{ build_num }}
 
 outputs:
   - staging:
@@ -68,7 +68,6 @@ outputs:
         - proj
         # qhull disabled because of https://github.com/conda-forge/qgis-feedstock/issues/284#issuecomment-1356490896
         # - qhull
-        - setuptools
         - sqlite
         - xerces-c
         - zlib
@@ -95,7 +94,7 @@ outputs:
       name: libgdal-core
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       python:
         skip_pyc_compilation:
           - share/bash-completion/completions/*.py
@@ -132,7 +131,7 @@ outputs:
       name: libgdal-arrow-parquet
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         file: build_plugin
     requirements:
@@ -172,7 +171,7 @@ outputs:
       name: libgdal-jp2openjpeg
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: JP2OpenJPEG
@@ -216,7 +215,7 @@ outputs:
       name: libgdal-pdf
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: PDF
@@ -267,7 +266,7 @@ outputs:
       name: libgdal-postgisraster
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: PostGISRaster
@@ -313,7 +312,7 @@ outputs:
       name: libgdal-pg
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: PG
@@ -357,7 +356,7 @@ outputs:
       name: libgdal-xls
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: XLS
@@ -401,7 +400,7 @@ outputs:
       name: libgdal-fits
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: FITS
@@ -445,7 +444,7 @@ outputs:
       name: libgdal-grib
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: GRIB
@@ -489,7 +488,7 @@ outputs:
       name: libgdal-kea
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: KEA
@@ -536,7 +535,7 @@ outputs:
       name: libgdal-tiledb
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: TileDB
@@ -580,7 +579,7 @@ outputs:
       name: libgdal-netcdf
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: netCDF
@@ -630,7 +629,7 @@ outputs:
       name: libgdal-hdf5
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: HDF5
@@ -674,7 +673,7 @@ outputs:
       name: libgdal-hdf4
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: HDF4
@@ -719,7 +718,7 @@ outputs:
       name: libgdal-adbc
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       # FIXME: libadbc-driver-manager is not available currently on Windows
       skip: win
       script:
@@ -765,7 +764,7 @@ outputs:
       name: libgdal-avif
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: AVIF
@@ -809,7 +808,7 @@ outputs:
       name: libgdal-heif
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       script:
         env:
           GDAL_PLUGIN_NAME: HEIF
@@ -896,7 +895,7 @@ outputs:
       name: gdal
     inherit: core-build
     build:
-      number: 0
+      number: ${{ build_num }}
       python:
         skip_pyc_compilation:
           - share/bash-completion/completions/*.py
