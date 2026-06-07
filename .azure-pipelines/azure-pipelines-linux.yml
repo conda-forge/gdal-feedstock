@@ -12,17 +12,26 @@ jobs:
         CONFIG: linux_64_
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+        docker_run_args: ''
+        build_workspace_dir: build_artifacts
         store_build_artifacts: false
+        tools_install_dir: ~/miniforge3
       linux_aarch64_:
         CONFIG: linux_aarch64_
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+        docker_run_args: ''
+        build_workspace_dir: build_artifacts
         store_build_artifacts: false
+        tools_install_dir: ~/miniforge3
       linux_ppc64le_:
         CONFIG: linux_ppc64le_
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+        docker_run_args: ''
+        build_workspace_dir: build_artifacts
         store_build_artifacts: false
+        tools_install_dir: ~/miniforge3
   timeoutInMinutes: 360
   variables: {}
 
@@ -36,6 +45,9 @@ jobs:
     displayName: Configure binfmt_misc
 
   - script: |
+        export MINIFORGE_HOME=$(tools_install_dir)
+        export CONDA_BLD_PATH=$(build_workspace_dir)
+        export CONDA_FORGE_DOCKER_RUN_ARGS="$(docker_run_args)"
         export CI=azure
         export flow_run_id=azure_$(Build.BuildNumber).$(System.JobAttempt)
         export remote_url=$(Build.Repository.Uri)
