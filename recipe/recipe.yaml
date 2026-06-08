@@ -2,7 +2,6 @@ schema_version: 1
 
 context:
   version: "3.13.1"
-  build_num: 0
 
 recipe:
   name: libgdal-split
