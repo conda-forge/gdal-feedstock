@@ -31,7 +31,7 @@ fi
 # vsizip does not work without this.
 export CPL_ZIP_ENCODING=UTF-8
 
-if [ -n "${BASH_VERSION:-}" ]; then
+if [ -n "${BASH_VERSION:-}" ] && [ -n "${PS1-}" ]; then
     if [ -f "${CONDA_PREFIX}/share/bash-completion/completions/gdalinfo" ]; then
         # Activate bash completion for all GDAL command line utilities
         source "${CONDA_PREFIX}/share/bash-completion/completions/gdalinfo"
