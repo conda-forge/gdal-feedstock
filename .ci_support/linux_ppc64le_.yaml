@@ -32,7 +32,7 @@ hdf5:
 json_c:
 - '0.18'
 kealib:
-- '1.6'
+- '2.0'
 lerc:
 - '4'
 libaec:
