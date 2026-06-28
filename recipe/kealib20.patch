@@ -1,0 +1,275 @@
+From 7814cd442ecef4d1404497199cb75aa9644a10d9 Mon Sep 17 00:00:00 2001
+From: Sam Gillingham <gillingham.sam@gmail.com>
+Date: Fri, 23 Jan 2026 12:09:11 +1000
+Subject: [PATCH 1/5] support kealib 2.0
+
+---
+ frmts/kea/keadataset.cpp | 20 ++++++++++++++------
+ frmts/kea/keadataset.h   | 12 +++++++++---
+ 2 files changed, 23 insertions(+), 9 deletions(-)
+
+diff --git a/frmts/kea/keadataset.cpp b/frmts/kea/keadataset.cpp
+index e7f34e52f645..8581778b9bc3 100644
+--- a/frmts/kea/keadataset.cpp
++++ b/frmts/kea/keadataset.cpp
+@@ -120,9 +120,10 @@ GDALDataset *KEADataset::Open(GDALOpenInfo *poOpenInfo)
+         try
+         {
+             // try and open it in the appropriate mode
+-            H5::H5File *pH5File;
++            HDF5Ptr pH5File;
+             if (poOpenInfo->eAccess == GA_ReadOnly)
+             {
++#if LIBKEA_VERSION_MAJOR < 2
+                 // use the virtual driver so we can open files using
+                 // /vsicurl etc
+                 // do this same as libkea
+@@ -141,6 +142,13 @@ GDALDataset *KEADataset::Open(GDALOpenInfo *poOpenInfo)
+                 pH5File = new H5::H5File(keaImgFilePath, H5F_ACC_RDONLY,
+                                          H5::FileCreatPropList::DEFAULT,
+                                          keaAccessPlist);
++#else
++                // use the virtual driver so we can open files using
++                // /vsicurl etc
++                pH5File = kealib::KEAImageIO::openKeaH5RDOnly( poOpenInfo->pszFilename,
++                    kealib::KEA_MDC_NELMTS, kealib::KEA_RDCC_NELMTS, kealib::KEA_RDCC_NBYTES, kealib::KEA_RDCC_W0, 
++                    kealib::KEA_SIEVE_BUF, kealib::KEA_META_BLOCKSIZE, HDF5VFLGetFileDriver(), nullptr);
++#endif
+             }
+             else
+             {
+@@ -181,7 +189,7 @@ GDALDataset *KEADataset::Open(GDALOpenInfo *poOpenInfo)
+ }
+ 
+ // static function
+-H5::H5File *KEADataset::CreateLL(const char *pszFilename, int nXSize,
++HDF5Ptr KEADataset::CreateLL(const char *pszFilename, int nXSize,
+                                  int nYSize, int nBandsIn, GDALDataType eType,
+                                  char **papszParamList)
+ {
+@@ -269,7 +277,7 @@ H5::H5File *KEADataset::CreateLL(const char *pszFilename, int nXSize,
+     try
+     {
+         // now create it
+-        H5::H5File *keaImgH5File = kealib::KEAImageIO::createKEAImage(
++        HDF5Ptr keaImgH5File = kealib::KEAImageIO::createKEAImage(
+             pszFilename, keaDataType, nXSize, nYSize, nBandsIn, nullptr,
+             nullptr, nimageblockSize, nattblockSize, nmdcElmts, nrdccNElmts,
+             nrdccNBytes, nrdccW0, nsieveBuf, nmetaBlockSize, ndeflate);
+@@ -296,7 +304,7 @@ GDALDataset *KEADataset::Create(const char *pszFilename, int nXSize, int nYSize,
+                                 int nBandsIn, GDALDataType eType,
+                                 char **papszParamList)
+ {
+-    H5::H5File *keaImgH5File =
++    HDF5Ptr keaImgH5File =
+         CreateLL(pszFilename, nXSize, nYSize, nBandsIn, eType, papszParamList);
+     if (keaImgH5File == nullptr)
+         return nullptr;
+@@ -346,7 +354,7 @@ GDALDataset *KEADataset::CreateCopy(const char *pszFilename,
+     GDALDataType eType = (nBands == 0)
+                              ? GDT_Unknown
+                              : pSrcDs->GetRasterBand(1)->GetRasterDataType();
+-    H5::H5File *keaImgH5File =
++    HDF5Ptr keaImgH5File =
+         CreateLL(pszFilename, nXSize, nYSize, nBands, eType, papszParamList);
+     if (keaImgH5File == nullptr)
+         return nullptr;
+@@ -436,7 +444,7 @@ GDALDataset *KEADataset::CreateCopy(const char *pszFilename,
+ }
+ 
+ // constructor
+-KEADataset::KEADataset(H5::H5File *keaImgH5File, GDALAccess eAccessIn)
++KEADataset::KEADataset(HDF5Ptr keaImgH5File, GDALAccess eAccessIn)
+ {
+     this->m_hMutex = CPLCreateMutex();
+     CPLReleaseMutex(this->m_hMutex);
+diff --git a/frmts/kea/keadataset.h b/frmts/kea/keadataset.h
+index ce9581f72cc6..c684906f22d4 100644
+--- a/frmts/kea/keadataset.h
++++ b/frmts/kea/keadataset.h
+@@ -16,19 +16,25 @@
+ #include "gdal_priv.h"
+ #include "cpl_multiproc.h"
+ #include "libkea_headers.h"
++#include "libkea/kea-config.h"
+ 
+ class LockedRefCount;
+ 
++#if LIBKEA_VERSION_MAJOR < 2
++    typedef H5::H5File* HDF5Ptr;
++#else
++    typedef HighFive::File* HDF5Ptr;
++#endif
++
+ // class that implements a GDAL dataset
+ class KEADataset final : public GDALDataset
+ {
+-    static H5::H5File *CreateLL(const char *pszFilename, int nXSize, int nYSize,
++    static HDF5Ptr CreateLL(const char *pszFilename, int nXSize, int nYSize,
+                                 int nBands, GDALDataType eType,
+                                 char **papszParamList);
+-
+   public:
+     // constructor/destructor
+-    KEADataset(H5::H5File *keaImgH5File, GDALAccess eAccess);
++    KEADataset(HDF5Ptr keaImgH5File, GDALAccess eAccess);
+     ~KEADataset() override;
+ 
+     // static methods that handle open and creation
+
+From 90a8210b957993253739e207a0d1e4af74bd2591 Mon Sep 17 00:00:00 2001
+From: Sam Gillingham <gillingham.sam@gmail.com>
+Date: Fri, 23 Jan 2026 13:42:18 +1000
+Subject: [PATCH 2/5] linter fixes
+
+---
+ frmts/kea/keadataset.cpp | 13 ++++++++-----
+ frmts/kea/keadataset.h   |  8 ++++----
+ 2 files changed, 12 insertions(+), 9 deletions(-)
+
+diff --git a/frmts/kea/keadataset.cpp b/frmts/kea/keadataset.cpp
+index 8581778b9bc3..d6765eff4bd9 100644
+--- a/frmts/kea/keadataset.cpp
++++ b/frmts/kea/keadataset.cpp
+@@ -145,9 +145,12 @@ GDALDataset *KEADataset::Open(GDALOpenInfo *poOpenInfo)
+ #else
+                 // use the virtual driver so we can open files using
+                 // /vsicurl etc
+-                pH5File = kealib::KEAImageIO::openKeaH5RDOnly( poOpenInfo->pszFilename,
+-                    kealib::KEA_MDC_NELMTS, kealib::KEA_RDCC_NELMTS, kealib::KEA_RDCC_NBYTES, kealib::KEA_RDCC_W0, 
+-                    kealib::KEA_SIEVE_BUF, kealib::KEA_META_BLOCKSIZE, HDF5VFLGetFileDriver(), nullptr);
++                pH5File = kealib::KEAImageIO::openKeaH5RDOnly( 
++                    poOpenInfo->pszFilename, kealib::KEA_MDC_NELMTS, 
++                    kealib::KEA_RDCC_NELMTS, kealib::KEA_RDCC_NBYTES, 
++                    kealib::KEA_RDCC_W0, kealib::KEA_SIEVE_BUF, 
++                    kealib::KEA_META_BLOCKSIZE, HDF5VFLGetFileDriver(), 
++                    nullptr);
+ #endif
+             }
+             else
+@@ -190,8 +193,8 @@ GDALDataset *KEADataset::Open(GDALOpenInfo *poOpenInfo)
+ 
+ // static function
+ HDF5Ptr KEADataset::CreateLL(const char *pszFilename, int nXSize,
+-                                 int nYSize, int nBandsIn, GDALDataType eType,
+-                                 char **papszParamList)
++                             int nYSize, int nBandsIn, GDALDataType eType,
++                             char **papszParamList)
+ {
+     GDALDriverH hDriver = GDALGetDriverByName("KEA");
+     if ((hDriver == nullptr) ||
+diff --git a/frmts/kea/keadataset.h b/frmts/kea/keadataset.h
+index c684906f22d4..b3b3442a0c57 100644
+--- a/frmts/kea/keadataset.h
++++ b/frmts/kea/keadataset.h
+@@ -21,17 +21,17 @@
+ class LockedRefCount;
+ 
+ #if LIBKEA_VERSION_MAJOR < 2
+-    typedef H5::H5File* HDF5Ptr;
++typedef H5::H5File* HDF5Ptr;
+ #else
+-    typedef HighFive::File* HDF5Ptr;
++typedef HighFive::File* HDF5Ptr;
+ #endif
+ 
+ // class that implements a GDAL dataset
+ class KEADataset final : public GDALDataset
+ {
+     static HDF5Ptr CreateLL(const char *pszFilename, int nXSize, int nYSize,
+-                                int nBands, GDALDataType eType,
+-                                char **papszParamList);
++                            int nBands, GDALDataType eType,
++                            char **papszParamList);
+   public:
+     // constructor/destructor
+     KEADataset(HDF5Ptr keaImgH5File, GDALAccess eAccess);
+
+From cccf74e2272f96d105a110d1715a7b6352825239 Mon Sep 17 00:00:00 2001
+From: Sam Gillingham <gillingham.sam@gmail.com>
+Date: Thu, 14 May 2026 19:02:27 +1000
+Subject: [PATCH 3/5] missing include
+
+---
+ frmts/kea/keadataset.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/frmts/kea/keadataset.cpp b/frmts/kea/keadataset.cpp
+index 7a6fe1bd82e0..d052cdac5c2e 100644
+--- a/frmts/kea/keadataset.cpp
++++ b/frmts/kea/keadataset.cpp
+@@ -14,6 +14,7 @@
+ #include "keaband.h"
+ #include "keacopy.h"
+ #include "keadrivercore.h"
++#include <hdf5.h>
+ #include "../frmts/hdf5/hdf5vfl.h"
+ #include "cpl_vsi_virtual.h"
+ 
+
+From 70aa046a9a5e6c20f06f3ac02414faa7ae9a9d27 Mon Sep 17 00:00:00 2001
+From: Even Rouault <even.rouault@spatialys.com>
+Date: Mon, 18 May 2026 16:28:47 +0200
+Subject: [PATCH 5/5] Formatting fixes
+
+---
+ frmts/kea/keadataset.cpp | 14 +++++++-------
+ frmts/kea/keadataset.h   |  5 +++--
+ 2 files changed, 10 insertions(+), 9 deletions(-)
+
+diff --git a/frmts/kea/keadataset.cpp b/frmts/kea/keadataset.cpp
+index d052cdac5c2e..9538b95ae45e 100644
+--- a/frmts/kea/keadataset.cpp
++++ b/frmts/kea/keadataset.cpp
+@@ -146,11 +146,11 @@ GDALDataset *KEADataset::Open(GDALOpenInfo *poOpenInfo)
+ #else
+                 // use the virtual driver so we can open files using
+                 // /vsicurl etc
+-                pH5File = kealib::KEAImageIO::openKeaH5RDOnly( 
+-                    poOpenInfo->pszFilename, kealib::KEA_MDC_NELMTS, 
+-                    kealib::KEA_RDCC_NELMTS, kealib::KEA_RDCC_NBYTES, 
+-                    kealib::KEA_RDCC_W0, kealib::KEA_SIEVE_BUF, 
+-                    kealib::KEA_META_BLOCKSIZE, HDF5VFLGetFileDriver(), 
++                pH5File = kealib::KEAImageIO::openKeaH5RDOnly(
++                    poOpenInfo->pszFilename, kealib::KEA_MDC_NELMTS,
++                    kealib::KEA_RDCC_NELMTS, kealib::KEA_RDCC_NBYTES,
++                    kealib::KEA_RDCC_W0, kealib::KEA_SIEVE_BUF,
++                    kealib::KEA_META_BLOCKSIZE, HDF5VFLGetFileDriver(),
+                     nullptr);
+ #endif
+             }
+@@ -193,8 +193,8 @@ GDALDataset *KEADataset::Open(GDALOpenInfo *poOpenInfo)
+ }
+ 
+ // static function
+-HDF5Ptr KEADataset::CreateLL(const char *pszFilename, int nXSize,
+-                             int nYSize, int nBandsIn, GDALDataType eType,
++HDF5Ptr KEADataset::CreateLL(const char *pszFilename, int nXSize, int nYSize,
++                             int nBandsIn, GDALDataType eType,
+                              CSLConstList papszParamList)
+ {
+     GDALDriverH hDriver = GDALGetDriverByName("KEA");
+diff --git a/frmts/kea/keadataset.h b/frmts/kea/keadataset.h
+index 473f25280a1a..d86cf10ec05c 100644
+--- a/frmts/kea/keadataset.h
++++ b/frmts/kea/keadataset.h
+@@ -21,9 +21,9 @@
+ class LockedRefCount;
+ 
+ #if LIBKEA_VERSION_MAJOR < 2
+-typedef H5::H5File* HDF5Ptr;
++typedef H5::H5File *HDF5Ptr;
+ #else
+-typedef HighFive::File* HDF5Ptr;
++typedef HighFive::File *HDF5Ptr;
+ #endif
+ 
+ // class that implements a GDAL dataset
+@@ -32,6 +32,7 @@ class KEADataset final : public GDALDataset
+     static HDF5Ptr CreateLL(const char *pszFilename, int nXSize, int nYSize,
+                             int nBands, GDALDataType eType,
+                             CSLConstList papszParamList);
++
+   public:
+     // constructor/destructor
+     KEADataset(HDF5Ptr keaImgH5File, GDALAccess eAccess);

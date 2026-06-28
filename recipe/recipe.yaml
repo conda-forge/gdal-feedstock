@@ -15,9 +15,11 @@ source:
       then: 000_cmake.patch
     # Below is a hack that will eventually break.
     - CMP0190_disable.patch
+    # Backport kealib 2.0 patch - will be removed when GDAL 3.14 is released
+    - kealib20.patch
 
 build:
-  number: 2
+  number: 3
 
 outputs:
   - staging:
@@ -508,6 +510,7 @@ outputs:
         - ${{ pin_subpackage('libgdal-hdf5') }}
         - kealib
         - hdf5
+        - highfive
       run:
         - ${{ pin_subpackage('libgdal-core', exact=True) }}
         - libgdal-hdf5 ${{ version }}.*
