@@ -75,6 +75,7 @@ outputs:
         - zstd
         # For these plugins, we need the headers for the core sources
         - kealib
+        - highfive
         - openjpeg
         - tiledb
         - libnetcdf
