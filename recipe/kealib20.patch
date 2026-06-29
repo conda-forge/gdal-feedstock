@@ -1,7 +1,15 @@
 diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.cpp gdal-3.13.1/frmts/kea/keadataset.cpp
 --- gdal-3.13.1.orig/frmts/kea/keadataset.cpp	2026-06-29 10:45:31.957995932 +1000
-+++ gdal-3.13.1/frmts/kea/keadataset.cpp	2026-06-29 10:53:16.763842870 +1000
-@@ -120,9 +120,10 @@
++++ gdal-3.13.1/frmts/kea/keadataset.cpp	2026-06-29 12:42:49.964461875 +1000
+@@ -14,6 +14,7 @@
+ #include "keaband.h"
+ #include "keacopy.h"
+ #include "keadrivercore.h"
++#include <hdf5.h>
+ #include "../frmts/hdf5/hdf5vfl.h"
+ #include "cpl_vsi_virtual.h"
+ 
+@@ -120,9 +121,10 @@
          try
          {
              // try and open it in the appropriate mode
@@ -13,7 +21,7 @@ diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.cpp gdal-3.13.1/frmts/kea/keadata
                  // use the virtual driver so we can open files using
                  // /vsicurl etc
                  // do this same as libkea
-@@ -141,6 +142,13 @@
+@@ -141,6 +143,13 @@
                  pH5File = new H5::H5File(keaImgFilePath, H5F_ACC_RDONLY,
                                           H5::FileCreatPropList::DEFAULT,
                                           keaAccessPlist);
@@ -27,7 +35,7 @@ diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.cpp gdal-3.13.1/frmts/kea/keadata
              }
              else
              {
-@@ -181,7 +189,7 @@
+@@ -181,7 +190,7 @@
  }
  
  // static function
@@ -36,7 +44,7 @@ diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.cpp gdal-3.13.1/frmts/kea/keadata
                                   int nYSize, int nBandsIn, GDALDataType eType,
                                   CSLConstList papszParamList)
  {
-@@ -269,7 +277,7 @@
+@@ -269,7 +278,7 @@
      try
      {
          // now create it
@@ -45,7 +53,7 @@ diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.cpp gdal-3.13.1/frmts/kea/keadata
              pszFilename, keaDataType, nXSize, nYSize, nBandsIn, nullptr,
              nullptr, nimageblockSize, nattblockSize, nmdcElmts, nrdccNElmts,
              nrdccNBytes, nrdccW0, nsieveBuf, nmetaBlockSize, ndeflate);
-@@ -296,7 +304,7 @@
+@@ -296,7 +305,7 @@
                                  int nBandsIn, GDALDataType eType,
                                  CSLConstList papszParamList)
  {
@@ -54,7 +62,7 @@ diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.cpp gdal-3.13.1/frmts/kea/keadata
          CreateLL(pszFilename, nXSize, nYSize, nBandsIn, eType, papszParamList);
      if (keaImgH5File == nullptr)
          return nullptr;
-@@ -346,7 +354,7 @@
+@@ -346,7 +355,7 @@
      GDALDataType eType = (nBands == 0)
                               ? GDT_Unknown
                               : pSrcDs->GetRasterBand(1)->GetRasterDataType();
@@ -63,7 +71,7 @@ diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.cpp gdal-3.13.1/frmts/kea/keadata
          CreateLL(pszFilename, nXSize, nYSize, nBands, eType, papszParamList);
      if (keaImgH5File == nullptr)
          return nullptr;
-@@ -436,7 +444,7 @@
+@@ -436,7 +445,7 @@
  }
  
  // constructor
