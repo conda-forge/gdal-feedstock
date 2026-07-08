@@ -73,8 +73,8 @@ diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.cpp gdal-3.12.4/frmts/kea/keadata
      CPLReleaseMutex(this->m_hMutex);
 diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.h gdal-3.12.4/frmts/kea/keadataset.h
 --- gdal-3.12.4.orig/frmts/kea/keadataset.h	2026-07-09 08:27:16.832018249 +1000
-+++ gdal-3.12.4/frmts/kea/keadataset.h	2026-07-09 08:30:38.907517042 +1000
-@@ -16,9 +16,16 @@
++++ gdal-3.12.4/frmts/kea/keadataset.h	2026-07-09 08:32:34.378978278 +1000
+@@ -16,19 +16,26 @@
  #include "gdal_priv.h"
  #include "cpl_multiproc.h"
  #include "libkea_headers.h"
@@ -91,3 +91,15 @@ diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.h gdal-3.12.4/frmts/kea/keadatase
  // class that implements a GDAL dataset
  class KEADataset final : public GDALDataset
  {
+-    static H5::H5File *CreateLL(const char *pszFilename, int nXSize, int nYSize,
++    static HDF5Ptr *CreateLL(const char *pszFilename, int nXSize, int nYSize,
+                                 int nBands, GDALDataType eType,
+                                 char **papszParamList);
+ 
+   public:
+     // constructor/destructor
+-    KEADataset(H5::H5File *keaImgH5File, GDALAccess eAccess);
++    KEADataset(HDF5Ptr *keaImgH5File, GDALAccess eAccess);
+     ~KEADataset() override;
+ 
+     // static methods that handle open and creation
