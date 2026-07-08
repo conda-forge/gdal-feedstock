@@ -1,6 +1,6 @@
-diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.cpp gdal-3.13.1/frmts/kea/keadataset.cpp
---- gdal-3.13.1.orig/frmts/kea/keadataset.cpp	2026-06-29 10:45:31.957995932 +1000
-+++ gdal-3.13.1/frmts/kea/keadataset.cpp	2026-06-29 12:42:49.964461875 +1000
+diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.cpp gdal-3.12.4/frmts/kea/keadataset.cpp
+--- gdal-3.12.4.orig/frmts/kea/keadataset.cpp	2026-07-09 08:27:16.833018207 +1000
++++ gdal-3.12.4/frmts/kea/keadataset.cpp	2026-07-09 08:30:09.302665396 +1000
 @@ -14,6 +14,7 @@
  #include "keaband.h"
  #include "keacopy.h"
@@ -14,10 +14,10 @@ diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.cpp gdal-3.13.1/frmts/kea/keadata
          {
              // try and open it in the appropriate mode
 -            H5::H5File *pH5File;
-+            HDF5Ptr pH5File;
++            HDF5Ptr *pH5File;
              if (poOpenInfo->eAccess == GA_ReadOnly)
              {
-+#if LIBKEA_VERSION_MAJOR < 2            
++#if LIBKEA_VERSION_MAJOR < 2
                  // use the virtual driver so we can open files using
                  // /vsicurl etc
                  // do this same as libkea
@@ -40,35 +40,26 @@ diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.cpp gdal-3.13.1/frmts/kea/keadata
  
  // static function
 -H5::H5File *KEADataset::CreateLL(const char *pszFilename, int nXSize,
-+HDF5Ptr KEADataset::CreateLL(const char *pszFilename, int nXSize,
++HDF5Ptr *KEADataset::CreateLL(const char *pszFilename, int nXSize,
                                   int nYSize, int nBandsIn, GDALDataType eType,
-                                  CSLConstList papszParamList)
+                                  char **papszParamList)
  {
 @@ -269,7 +278,7 @@
      try
      {
          // now create it
 -        H5::H5File *keaImgH5File = kealib::KEAImageIO::createKEAImage(
-+        HDF5Ptr keaImgH5File = kealib::KEAImageIO::createKEAImage(
++        HDF5Ptr *keaImgH5File = kealib::KEAImageIO::createKEAImage(
              pszFilename, keaDataType, nXSize, nYSize, nBandsIn, nullptr,
              nullptr, nimageblockSize, nattblockSize, nmdcElmts, nrdccNElmts,
              nrdccNBytes, nrdccW0, nsieveBuf, nmetaBlockSize, ndeflate);
 @@ -296,7 +305,7 @@
                                  int nBandsIn, GDALDataType eType,
-                                 CSLConstList papszParamList)
+                                 char **papszParamList)
  {
 -    H5::H5File *keaImgH5File =
-+    HDF5Ptr keaImgH5File =
++    HDF5Ptr *keaImgH5File =
          CreateLL(pszFilename, nXSize, nYSize, nBandsIn, eType, papszParamList);
-     if (keaImgH5File == nullptr)
-         return nullptr;
-@@ -346,7 +355,7 @@
-     GDALDataType eType = (nBands == 0)
-                              ? GDT_Unknown
-                              : pSrcDs->GetRasterBand(1)->GetRasterDataType();
--    H5::H5File *keaImgH5File =
-+    HDF5Ptr keaImgH5File =
-         CreateLL(pszFilename, nXSize, nYSize, nBands, eType, papszParamList);
      if (keaImgH5File == nullptr)
          return nullptr;
 @@ -436,7 +445,7 @@
@@ -76,14 +67,14 @@ diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.cpp gdal-3.13.1/frmts/kea/keadata
  
  // constructor
 -KEADataset::KEADataset(H5::H5File *keaImgH5File, GDALAccess eAccessIn)
-+KEADataset::KEADataset(HDF5Ptr keaImgH5File, GDALAccess eAccessIn)
++KEADataset::KEADataset(HDF5Ptr *keaImgH5File, GDALAccess eAccessIn)
  {
      this->m_hMutex = CPLCreateMutex();
      CPLReleaseMutex(this->m_hMutex);
-diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.h gdal-3.13.1/frmts/kea/keadataset.h
---- gdal-3.13.1.orig/frmts/kea/keadataset.h	2026-06-29 10:45:31.957995932 +1000
-+++ gdal-3.13.1/frmts/kea/keadataset.h	2026-06-29 10:53:38.779884406 +1000
-@@ -16,19 +16,26 @@
+diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.h gdal-3.12.4/frmts/kea/keadataset.h
+--- gdal-3.12.4.orig/frmts/kea/keadataset.h	2026-07-09 08:27:16.832018249 +1000
++++ gdal-3.12.4/frmts/kea/keadataset.h	2026-07-09 08:30:38.907517042 +1000
+@@ -16,9 +16,16 @@
  #include "gdal_priv.h"
  #include "cpl_multiproc.h"
  #include "libkea_headers.h"
@@ -100,15 +91,3 @@ diff -ru gdal-3.13.1.orig/frmts/kea/keadataset.h gdal-3.13.1/frmts/kea/keadatase
  // class that implements a GDAL dataset
  class KEADataset final : public GDALDataset
  {
--    static H5::H5File *CreateLL(const char *pszFilename, int nXSize, int nYSize,
-+    static HDF5Ptr CreateLL(const char *pszFilename, int nXSize, int nYSize,
-                                 int nBands, GDALDataType eType,
-                                 CSLConstList papszParamList);
- 
-   public:
-     // constructor/destructor
--    KEADataset(H5::H5File *keaImgH5File, GDALAccess eAccess);
-+    KEADataset(HDF5Ptr keaImgH5File, GDALAccess eAccess);
-     ~KEADataset() override;
- 
-     // static methods that handle open and creation
