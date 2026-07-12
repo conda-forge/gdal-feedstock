@@ -20,7 +20,7 @@ hdf5:
 - 1.14.6
 - '2'
 kealib:
-- '1.6'
+- '2.0'
 lerc:
 - '4'
 libaec:
@@ -51,7 +51,7 @@ libkml_devel:
 liblzma_devel:
 - '5'
 libnetcdf:
-- 4.10.0
+- 4.10.1
 libpng:
 - '1.6'
 libpq:
@@ -75,7 +75,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 poppler:
-- '26.05'
+- '26.07'
 postgresql:
 - '18'
 proj:
