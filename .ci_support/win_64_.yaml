@@ -51,7 +51,7 @@ libkml_devel:
 liblzma_devel:
 - '5'
 libnetcdf:
-- 4.10.0
+- 4.10.1
 libpng:
 - '1.6'
 libpq:
