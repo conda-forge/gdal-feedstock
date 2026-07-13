@@ -16,6 +16,7 @@ source:
       then: 000_cmake.patch
     # can be removed in GDAL 3.14
     - kealib20.patch
+    - poppler2607.patch
 
 build:
   number: 2

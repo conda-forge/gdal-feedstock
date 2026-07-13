@@ -1,0 +1,107 @@
+Only in gdal-3.12.4: CMakeLists.txt.orig
+Only in gdal-3.12.4: CMakeLists.txt.rej
+diff -ru gdal-3.12.4_orig/frmts/pdf/CMakeLists.txt gdal-3.12.4/frmts/pdf/CMakeLists.txt
+--- gdal-3.12.4_orig/frmts/pdf/CMakeLists.txt	2026-07-14 07:50:37.409300974 +1000
++++ gdal-3.12.4/frmts/pdf/CMakeLists.txt	2026-07-14 07:52:30.700566978 +1000
+@@ -67,12 +67,18 @@
+   if ("${Poppler_VERSION_MINOR}" MATCHES "0?[0-9]+")
+     string(REGEX REPLACE "0?([0-9]+)" "\\1" Poppler_VERSION_MINOR ${Poppler_VERSION_MINOR})
+   endif ()
++  string(REGEX REPLACE "^[0-9]+\\.[0-9]+\\.([0-9]+)" "\\1" Poppler_VERSION_MICRO ${Poppler_VERSION_STRING})
++  # Strip leading zero
++  if ("${Poppler_VERSION_MICRO}" MATCHES "0?[0-9]+")
++    string(REGEX REPLACE "0?([0-9]+)" "\\1" Poppler_VERSION_MICRO ${Poppler_VERSION_MICRO})
++  endif ()
+   if (Poppler_VERSION_STRING VERSION_GREATER_EQUAL "24.05")
+     target_compile_features(gdal_PDF PRIVATE cxx_std_20)
+   endif ()
+   target_compile_definitions(gdal_PDF PRIVATE -DHAVE_POPPLER
+                                               -DPOPPLER_MAJOR_VERSION=${Poppler_VERSION_MAJOR}
+-                                              -DPOPPLER_MINOR_VERSION=${Poppler_VERSION_MINOR})
++                                              -DPOPPLER_MINOR_VERSION=${Poppler_VERSION_MINOR}
++                                              -DPOPPLER_MICRO_VERSION=${Poppler_VERSION_MICRO})
+ endif ()
+ if (GDAL_USE_PODOFO)
+   if( "${PODOFO_VERSION_STRING}" VERSION_GREATER "0.10")
+diff -ru gdal-3.12.4_orig/frmts/pdf/pdfdataset.cpp gdal-3.12.4/frmts/pdf/pdfdataset.cpp
+--- gdal-3.12.4_orig/frmts/pdf/pdfdataset.cpp	2026-07-14 07:50:37.409300974 +1000
++++ gdal-3.12.4/frmts/pdf/pdfdataset.cpp	2026-07-14 07:55:27.693405705 +1000
+@@ -182,6 +182,23 @@
+     }
+ 
+ #if POPPLER_MAJOR_VERSION > 26 ||                                              \
++    (POPPLER_MAJOR_VERSION == 26 && POPPLER_MINOR_VERSION > 5) ||              \
++    (POPPLER_MAJOR_VERSION == 26 && POPPLER_MINOR_VERSION == 5 &&              \
++     POPPLER_MICRO_VERSION > 0)
++    bool setSoftMaskFromImageMask(GfxState *state, Object *ref, Stream *str,
++                                  int width, int height, bool invert,
++                                  bool inlineImg,
++                                  std::array<double, 6> &baseMatrix) override
++    {
++        if (bEnableBitmap)
++            return SplashOutputDev::setSoftMaskFromImageMask(
++                state, ref, str, width, height, invert, inlineImg, baseMatrix);
++        else
++            str->close();
++        return true;
++    }
++#else
++#if POPPLER_MAJOR_VERSION > 26 ||                                              \
+     (POPPLER_MAJOR_VERSION == 26 && POPPLER_MINOR_VERSION >= 2)
+     void setSoftMaskFromImageMask(GfxState *state, Object *ref, Stream *str,
+                                   int width, int height, bool invert,
+@@ -199,6 +216,7 @@
+         else
+             str->close();
+     }
++#endif
+ 
+ #if POPPLER_MAJOR_VERSION > 26 ||                                              \
+     (POPPLER_MAJOR_VERSION == 26 && POPPLER_MINOR_VERSION >= 2)
+@@ -5107,7 +5125,14 @@
+ #ifdef HAVE_POPPLER
+     if (bUseLib.test(PDFLIB_POPPLER))
+     {
++#if POPPLER_MAJOR_VERSION > 26 ||                                              \
++    (POPPLER_MAJOR_VERSION == 26 && POPPLER_MINOR_VERSION > 5) ||              \
++    (POPPLER_MAJOR_VERSION == 26 && POPPLER_MINOR_VERSION == 5 &&              \
++     POPPLER_MICRO_VERSION > 0)
++        const auto *psMediaBox = &(poPagePoppler->getMediaBox());
++#else
+         const auto *psMediaBox = poPagePoppler->getMediaBox();
++#endif
+         dfX1 = psMediaBox->x1;
+         dfY1 = psMediaBox->y1;
+         dfX2 = psMediaBox->x2;
+Only in gdal-3.12.4/frmts/pdf: pdfdataset.cpp.orig
+diff -ru gdal-3.12.4_orig/frmts/pdf/pdfobject.cpp gdal-3.12.4/frmts/pdf/pdfobject.cpp
+--- gdal-3.12.4_orig/frmts/pdf/pdfobject.cpp	2026-07-14 07:50:37.409300974 +1000
++++ gdal-3.12.4/frmts/pdf/pdfobject.cpp	2026-07-14 07:54:32.748105351 +1000
+@@ -1335,8 +1335,15 @@
+     int nLength = m_poDict->getLength();
+     for (i = 0; i < nLength; i++)
+     {
++#if POPPLER_MAJOR_VERSION > 26 ||                                              \
++    (POPPLER_MAJOR_VERSION == 26 && POPPLER_MINOR_VERSION > 5) ||              \
++    (POPPLER_MAJOR_VERSION == 26 && POPPLER_MINOR_VERSION == 5 &&              \
++     POPPLER_MICRO_VERSION > 0)
++        Get(m_poDict->getKey(i).c_str());
++#else
+         const char *pszKey = m_poDict->getKey(i);
+         Get(pszKey);
++#endif
+     }
+     return m_map;
+ }
+Only in gdal-3.12.4/frmts/pdf: pdfobject.cpp.orig
+diff -ru gdal-3.12.4_orig/frmts/pdf/pdfsdk_headers_poppler.h gdal-3.12.4/frmts/pdf/pdfsdk_headers_poppler.h
+--- gdal-3.12.4_orig/frmts/pdf/pdfsdk_headers_poppler.h	2026-07-14 07:50:37.409300974 +1000
++++ gdal-3.12.4/frmts/pdf/pdfsdk_headers_poppler.h	2026-07-14 07:55:02.579264785 +1000
+@@ -75,6 +75,7 @@
+ #include <SplashOutputDev.h>
+ #include <GlobalParams.h>
+ #include <ErrorCodes.h>
++#include <OptionalContent.h>
+ 
+ /* end of poppler xpdf includes */
+ 
