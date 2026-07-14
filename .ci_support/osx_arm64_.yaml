@@ -42,10 +42,10 @@ libaec:
 libarchive:
 - '3.8'
 libarrow:
-- '21.0'
 - '22.0'
 - '23.0'
 - '24.0'
+- '25.0'
 libavif:
 - '1'
 libcurl:
@@ -65,7 +65,7 @@ libkml_devel:
 liblzma_devel:
 - '5'
 libnetcdf:
-- 4.10.0
+- 4.10.1
 libpng:
 - '1.6'
 libpq:
