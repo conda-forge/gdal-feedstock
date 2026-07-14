@@ -1,6 +1,6 @@
 diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.cpp gdal-3.12.4/frmts/kea/keadataset.cpp
---- gdal-3.12.4.orig/frmts/kea/keadataset.cpp	2026-07-09 08:27:16.833018207 +1000
-+++ gdal-3.12.4/frmts/kea/keadataset.cpp	2026-07-09 08:30:09.302665396 +1000
+--- gdal-3.12.4.orig/frmts/kea/keadataset.cpp	2026-07-14 17:02:03.785086349 +0200
++++ gdal-3.12.4/frmts/kea/keadataset.cpp	2026-07-14 17:02:39.588134245 +0200
 @@ -14,6 +14,7 @@
  #include "keaband.h"
  #include "keacopy.h"
@@ -14,7 +14,7 @@ diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.cpp gdal-3.12.4/frmts/kea/keadata
          {
              // try and open it in the appropriate mode
 -            H5::H5File *pH5File;
-+            HDF5Ptr *pH5File;
++            HDF5Ptr pH5File;
              if (poOpenInfo->eAccess == GA_ReadOnly)
              {
 +#if LIBKEA_VERSION_MAJOR < 2
@@ -40,7 +40,7 @@ diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.cpp gdal-3.12.4/frmts/kea/keadata
  
  // static function
 -H5::H5File *KEADataset::CreateLL(const char *pszFilename, int nXSize,
-+HDF5Ptr *KEADataset::CreateLL(const char *pszFilename, int nXSize,
++HDF5Ptr KEADataset::CreateLL(const char *pszFilename, int nXSize,
                                   int nYSize, int nBandsIn, GDALDataType eType,
                                   char **papszParamList)
  {
@@ -49,7 +49,7 @@ diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.cpp gdal-3.12.4/frmts/kea/keadata
      {
          // now create it
 -        H5::H5File *keaImgH5File = kealib::KEAImageIO::createKEAImage(
-+        HDF5Ptr *keaImgH5File = kealib::KEAImageIO::createKEAImage(
++        HDF5Ptr keaImgH5File = kealib::KEAImageIO::createKEAImage(
              pszFilename, keaDataType, nXSize, nYSize, nBandsIn, nullptr,
              nullptr, nimageblockSize, nattblockSize, nmdcElmts, nrdccNElmts,
              nrdccNBytes, nrdccW0, nsieveBuf, nmetaBlockSize, ndeflate);
@@ -58,8 +58,17 @@ diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.cpp gdal-3.12.4/frmts/kea/keadata
                                  char **papszParamList)
  {
 -    H5::H5File *keaImgH5File =
-+    HDF5Ptr *keaImgH5File =
++    HDF5Ptr keaImgH5File =
          CreateLL(pszFilename, nXSize, nYSize, nBandsIn, eType, papszParamList);
+     if (keaImgH5File == nullptr)
+         return nullptr;
+@@ -346,7 +355,7 @@
+     GDALDataType eType = (nBands == 0)
+                              ? GDT_Unknown
+                              : pSrcDs->GetRasterBand(1)->GetRasterDataType();
+-    H5::H5File *keaImgH5File =
++    HDF5Ptr keaImgH5File =
+         CreateLL(pszFilename, nXSize, nYSize, nBands, eType, papszParamList);
      if (keaImgH5File == nullptr)
          return nullptr;
 @@ -436,7 +445,7 @@
@@ -67,13 +76,13 @@ diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.cpp gdal-3.12.4/frmts/kea/keadata
  
  // constructor
 -KEADataset::KEADataset(H5::H5File *keaImgH5File, GDALAccess eAccessIn)
-+KEADataset::KEADataset(HDF5Ptr *keaImgH5File, GDALAccess eAccessIn)
++KEADataset::KEADataset(HDF5Ptr keaImgH5File, GDALAccess eAccessIn)
  {
      this->m_hMutex = CPLCreateMutex();
      CPLReleaseMutex(this->m_hMutex);
 diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.h gdal-3.12.4/frmts/kea/keadataset.h
---- gdal-3.12.4.orig/frmts/kea/keadataset.h	2026-07-09 08:27:16.832018249 +1000
-+++ gdal-3.12.4/frmts/kea/keadataset.h	2026-07-09 08:32:34.378978278 +1000
+--- gdal-3.12.4.orig/frmts/kea/keadataset.h	2026-07-14 17:02:03.991506148 +0200
++++ gdal-3.12.4/frmts/kea/keadataset.h	2026-07-14 17:02:39.591134250 +0200
 @@ -16,19 +16,26 @@
  #include "gdal_priv.h"
  #include "cpl_multiproc.h"
@@ -92,14 +101,14 @@ diff -ur gdal-3.12.4.orig/frmts/kea/keadataset.h gdal-3.12.4/frmts/kea/keadatase
  class KEADataset final : public GDALDataset
  {
 -    static H5::H5File *CreateLL(const char *pszFilename, int nXSize, int nYSize,
-+    static HDF5Ptr *CreateLL(const char *pszFilename, int nXSize, int nYSize,
++    static HDF5Ptr CreateLL(const char *pszFilename, int nXSize, int nYSize,
                                  int nBands, GDALDataType eType,
                                  char **papszParamList);
  
    public:
      // constructor/destructor
 -    KEADataset(H5::H5File *keaImgH5File, GDALAccess eAccess);
-+    KEADataset(HDF5Ptr *keaImgH5File, GDALAccess eAccess);
++    KEADataset(HDF5Ptr keaImgH5File, GDALAccess eAccess);
      ~KEADataset() override;
  
      // static methods that handle open and creation
