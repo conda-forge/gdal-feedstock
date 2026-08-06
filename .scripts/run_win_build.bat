@@ -76,7 +76,7 @@ call :end_group
 
 :: Build the recipe
 echo Building recipe
-rattler-build.exe build --recipe "recipe" -m .ci_support\%CONFIG%.yaml %EXTRA_CB_OPTIONS% --target-platform %HOST_PLATFORM%
+rattler-build.exe build --recipe "recipe" -m .ci_support\%CONFIG%.yaml %EXTRA_CB_OPTIONS% --build-platform %BUILD_PLATFORM% --target-platform %HOST_PLATFORM%
 if !errorlevel! neq 0 exit /b !errorlevel!
 
 call :start_group "Inspecting artifacts"
@@ -87,7 +87,7 @@ call :end_group
 :: Prepare some environment variables for the upload step
 if /i "%CI%" == "github_actions" (
     set "FEEDSTOCK_NAME=%GITHUB_REPOSITORY:*/=%"
-    set "GIT_BRANCH=%GITHUB_REF:refs/heads/=%"
+    set "GIT_BRANCH=%GITHUB_REF_NAME%"
     if /i "%GITHUB_EVENT_NAME%" == "pull_request" (
         set "IS_PR_BUILD=True"
     ) else (
