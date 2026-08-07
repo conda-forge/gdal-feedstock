@@ -35,7 +35,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
-        - swig
+        - swig <4.5
       host:
         - blosc
         - expat
@@ -897,7 +897,7 @@ outputs:
             - python
             - cross-python_${{ target_platform }}
             - numpy
-        - swig
+        - swig <4.5
       host:
         - python
         - pip
