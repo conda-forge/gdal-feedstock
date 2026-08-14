@@ -5,7 +5,7 @@ MACOSX_SDK_VERSION:
 c_compiler:
 - clang
 c_compiler_version:
-- '19'
+- '21'
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
@@ -19,13 +19,13 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '19'
+- '21'
 expat:
 - '2'
 geos:
 - 3.14.1
 giflib:
-- '5.2'
+- '6'
 hdf4:
 - 4.2.15
 hdf5:
@@ -42,6 +42,9 @@ libaec:
 libarchive:
 - '3.8'
 libarrow:
+- '22.0'
+- '23.0'
+- '24.0'
 - '25.0'
 libavif:
 - '1'
