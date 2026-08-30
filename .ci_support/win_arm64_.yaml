@@ -1,0 +1,52 @@
+c_compiler:
+- vs2022
+c_stdlib:
+- vs
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- vs2022
+expat:
+- '2'
+geos:
+- 3.14.1
+lerc:
+- '4'
+libarchive:
+- '3.8'
+libcurl:
+- '8'
+libdeflate:
+- '1.25'
+libiconv:
+- '1'
+libjpeg_turbo:
+- '3'
+libjxl:
+- '0.12'
+liblzma_devel:
+- '5'
+libpng:
+- '1.6'
+libwebp_base:
+- '1'
+libxml2_devel:
+- '2.15'
+lz4_c:
+- '1.10'
+openssl:
+- '3.5'
+pcre2:
+- '10.47'
+proj:
+- '9.8'
+sqlite:
+- '3'
+target_platform:
+- win-arm64
+zlib:
+- '1'
+zstd:
+- '1.5'
