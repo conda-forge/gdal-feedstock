@@ -36,9 +36,9 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
-        - if: target_platform != "win-arm64"
-          then: swig
+        - swig
       host:
+        - blosc
         - expat
         - geos
         # We use internal libtiff and libgeotiff for JXL-in-TIFF support
@@ -54,50 +54,41 @@ outputs:
         - libdeflate
         - libiconv
         - libjxl
+        - libkml-devel
         - liblzma-devel
         - libpng
+        - libspatialite
         # We use internal libtiff and libgeotiff for JXL-in-TIFF support
         # - libtiff
         - libwebp-base
         - libxml2-devel
         - lz4-c
+        - muparser
         - openssl
         - pcre2
         - proj
         # qhull disabled because of https://github.com/conda-forge/qgis-feedstock/issues/284#issuecomment-1356490896
         # - qhull
         - sqlite
+        - xerces-c
         - zlib
         - zstd
-        # Keep the first Windows ARM64 package to the GeoTIFF/PDAL core path.
-        # These optional built-in features are preserved on established targets.
-        - if: target_platform != "win-arm64"
-          then:
-            - blosc
-            - libkml-devel
-            - libspatialite
-            - muparser
-            - xerces-c
-        # These headers are only needed to prepare the later plugin outputs.
-        - if: target_platform != "win-arm64"
-          then:
-            - kealib
-            - highfive
-            - openjpeg
-            - tiledb
-            - libnetcdf
-            - libheif
+        # For these plugins, we need the headers for the core sources
+        - kealib
+        - highfive
+        - openjpeg
+        - tiledb
+        - libnetcdf
+        - libheif
         - if: not win
           then: libadbc-driver-manager
       ignore_run_exports:
         from_package:
-          - if: target_platform != "win-arm64"
-            then:
-              - kealib
-              - openjpeg
-              - tiledb
-              - libnetcdf
-              - libheif
+          - kealib
+          - openjpeg
+          - tiledb
+          - libnetcdf
+          - libheif
           - if: not win
             then: libadbc-driver-manager
 
@@ -121,21 +112,8 @@ outputs:
         - libgdal ${{ version }}.*
     tests:
       - script:
-          content: gdalinfo --help
-      - if: target_platform == "win-arm64"
-        then:
-          files:
-            recipe:
-              - check_win_arm64.ps1
-              - test_data
-          script:
-            content:
-              - gdalinfo --format GTiff
-              - gdal_translate -of GTiff -a_srs EPSG:4326 test_data\grid.asc core.tif
-              - gdalinfo -checksum core.tif
-              - gdalwarp -r near -t_srs EPSG:3857 core.tif core-3857.tif
-              - gdalinfo -checksum core-3857.tif
-              - powershell -NoProfile -ExecutionPolicy Bypass -File check_win_arm64.ps1
+          content:
+            - gdalinfo --help
 
   - package:
       name: libgdal-core-devel
@@ -143,8 +121,7 @@ outputs:
       run:
         - ${{ pin_subpackage('libgdal-core', exact=True) }}
         - expat
-        - if: target_platform != "win-arm64"
-          then: libkml-devel
+        - libkml-devel
         - liblzma-devel
     tests:
       - script:
@@ -155,7 +132,6 @@ outputs:
       name: libgdal-arrow-parquet
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         file: build_plugin
     requirements:
@@ -195,7 +171,6 @@ outputs:
       name: libgdal-jp2openjpeg
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: JP2OpenJPEG
@@ -239,7 +214,6 @@ outputs:
       name: libgdal-pdf
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: PDF
@@ -290,7 +264,6 @@ outputs:
       name: libgdal-postgisraster
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: PostGISRaster
@@ -336,7 +309,6 @@ outputs:
       name: libgdal-pg
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: PG
@@ -380,7 +352,6 @@ outputs:
       name: libgdal-xls
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: XLS
@@ -424,7 +395,6 @@ outputs:
       name: libgdal-fits
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: FITS
@@ -468,7 +438,6 @@ outputs:
       name: libgdal-grib
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: GRIB
@@ -512,7 +481,6 @@ outputs:
       name: libgdal-kea
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: KEA
@@ -562,7 +530,6 @@ outputs:
       name: libgdal-tiledb
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: TileDB
@@ -606,7 +573,6 @@ outputs:
       name: libgdal-netcdf
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: netCDF
@@ -656,7 +622,6 @@ outputs:
       name: libgdal-hdf5
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: HDF5
@@ -700,7 +665,6 @@ outputs:
       name: libgdal-hdf4
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: HDF4
@@ -790,7 +754,6 @@ outputs:
       name: libgdal-avif
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: AVIF
@@ -834,7 +797,6 @@ outputs:
       name: libgdal-heif
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       script:
         env:
           GDAL_PLUGIN_NAME: HEIF
@@ -876,8 +838,6 @@ outputs:
 
   - package:
       name: libgdal
-    build:
-      skip: target_platform == "win-arm64"
     requirements:
       host:
         - ${{ pin_subpackage('libgdal-core', upper_bound='x.x.x') }}
@@ -923,7 +883,6 @@ outputs:
       name: gdal
     inherit: core-build
     build:
-      skip: target_platform == "win-arm64"
       python:
         skip_pyc_compilation:
           - share/bash-completion/completions/*.py
