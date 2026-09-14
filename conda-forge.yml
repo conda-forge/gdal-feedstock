@@ -23,4 +23,5 @@ provider:
   linux_ppc64le: azure
   osx: azure
   win: azure
+  win_arm64: default
 test: native_and_emulated

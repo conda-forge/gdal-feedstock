@@ -81,15 +81,12 @@ postgresql:
 proj:
 - '9.8'
 python:
-- 3.11.* *_cpython
-- 3.12.* *_cpython
-- 3.13.* *_cp313
 - 3.14.* *_cp314
 - 3.14.* *_cp314t
 sqlite:
 - '3'
 target_platform:
-- win-64
+- win-arm64
 tiledb:
 - '2.30'
 xerces_c:
