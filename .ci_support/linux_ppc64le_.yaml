@@ -71,7 +71,7 @@ libpq:
 libwebp_base:
 - '1'
 libxml2_devel:
-- '2.14'
+- '2.15'
 lz4_c:
 - '1.10'
 numpy:
@@ -91,9 +91,8 @@ poppler:
 postgresql:
 - '18'
 proj:
-- '9.8'
+- '9.9'
 python:
-- 3.10.* *_cpython
 - 3.11.* *_cpython
 - 3.12.* *_cpython
 - 3.13.* *_cp313
