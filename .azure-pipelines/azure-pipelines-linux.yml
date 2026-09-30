@@ -8,8 +8,8 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_:
-        CONFIG: linux_64_
+      linux_64_channel_sourcesconda-forge:
+        CONFIG: linux_64_channel_sourcesconda-forge
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
         docker_run_args: ''
@@ -19,8 +19,30 @@ jobs:
         resize_partitions: false
         store_build_artifacts: false
         tools_install_dir: ~/miniforge3
-      linux_ppc64le_:
-        CONFIG: linux_ppc64le_
+      linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc:
+        CONFIG: linux_64_channel_sourcesconda-forgeconda-forgelabelpython_rc
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+        docker_run_args: ''
+        build_workspace_dir: build_artifacts
+        free_disk_space: skip
+        pagefile_size: 0
+        resize_partitions: false
+        store_build_artifacts: false
+        tools_install_dir: ~/miniforge3
+      linux_ppc64le_channel_sourcesconda-forge:
+        CONFIG: linux_ppc64le_channel_sourcesconda-forge
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+        docker_run_args: ''
+        build_workspace_dir: build_artifacts
+        free_disk_space: skip
+        pagefile_size: 0
+        resize_partitions: false
+        store_build_artifacts: false
+        tools_install_dir: ~/miniforge3
+      linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc:
+        CONFIG: linux_ppc64le_channel_sourcesconda-forgeconda-forgelabelpython_rc
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
         docker_run_args: ''
