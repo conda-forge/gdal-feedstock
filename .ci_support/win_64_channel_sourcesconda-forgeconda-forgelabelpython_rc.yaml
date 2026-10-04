@@ -5,7 +5,7 @@ c_stdlib:
 cfitsio:
 - 4.6.4
 channel_sources:
-- conda-forge
+- conda-forge,conda-forge/label/python_rc
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -81,11 +81,7 @@ postgresql:
 proj:
 - '9.9'
 python:
-- 3.11.* *_cpython
-- 3.12.* *_cpython
-- 3.13.* *_cp313
-- 3.14.* *_cp314
-- 3.14.* *_cp314t
+- 3.15.* *_cp315
 sqlite:
 - '3'
 target_platform:
@@ -94,6 +90,9 @@ tiledb:
 - '2.30'
 xerces_c:
 - '3.3'
+zip_keys:
+- - python
+  - channel_sources
 zlib:
 - '1'
 zstd:

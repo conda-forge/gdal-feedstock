@@ -10,6 +10,10 @@ cfitsio:
 - 4.6.4
 channel_sources:
 - conda-forge
+- conda-forge
+- conda-forge
+- conda-forge
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -109,6 +113,8 @@ xerces_c:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
+- - python
+  - channel_sources
 zlib:
 - '1'
 zstd:
