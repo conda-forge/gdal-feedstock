@@ -1,0 +1,117 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
+MACOSX_SDK_VERSION:
+- '11.0'
+c_compiler:
+- clang
+c_compiler_version:
+- '21'
+c_stdlib:
+- macosx_deployment_target
+c_stdlib_version:
+- '11.0'
+cfitsio:
+- 4.6.4
+channel_sources:
+- conda-forge,conda-forge/label/python_rc
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- clangxx
+cxx_compiler_version:
+- '21'
+expat:
+- '2'
+geos:
+- 3.14.1
+giflib:
+- '6'
+hdf4:
+- 4.2.15
+hdf5:
+- 1.14.6
+- '2'
+json_c:
+- '0.18'
+kealib:
+- '2.0'
+lerc:
+- '4'
+libaec:
+- '1'
+libarchive:
+- '3.8'
+libarrow:
+- '22.0'
+- '23.0'
+- '24.0'
+- '25.0'
+libavif:
+- '1'
+libcurl:
+- '8'
+libdeflate:
+- '1.25'
+libheif:
+- '1.23'
+libiconv:
+- '1'
+libjpeg_turbo:
+- '3'
+libjxl:
+- '0.12'
+libkml_devel:
+- '1.3'
+liblzma_devel:
+- '5'
+libnetcdf:
+- 4.10.1
+libpng:
+- '1.6'
+libpq:
+- '18'
+libwebp_base:
+- '1'
+libxml2_devel:
+- '2.15'
+lz4_c:
+- '1.10'
+macos_machine:
+- x86_64-apple-darwin13.4.0
+numpy:
+- '2'
+openjpeg:
+- '2'
+openssl:
+- '3.5'
+pcre2:
+- '10.47'
+pin_run_as_build:
+  python:
+    min_pin: x.x
+    max_pin: x.x
+poppler:
+- '26.07'
+postgresql:
+- '18'
+proj:
+- '9.9'
+python:
+- 3.15.* *_cp315
+sqlite:
+- '3'
+target_platform:
+- osx-64
+tiledb:
+- '2.30'
+xerces_c:
+- '3.3'
+zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
+- - python
+  - channel_sources
+zlib:
+- '1'
+zstd:
+- '1.5'

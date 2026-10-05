@@ -8,8 +8,18 @@ jobs:
     vmImage: windows-2022
   strategy:
     matrix:
-      win_64_:
-        CONFIG: win_64_
+      win_64_channel_sourcesconda-forge:
+        CONFIG: win_64_channel_sourcesconda-forge
+        UPLOAD_PACKAGES: 'True'
+        build_platform: win-64
+        build_workspace_dir: D:\bld\
+        free_disk_space: skip
+        pagefile_size: 0
+        resize_partitions: false
+        store_build_artifacts: false
+        tools_install_dir: C:\Miniforge
+      win_64_channel_sourcesconda-forgeconda-forgelabelpython_rc:
+        CONFIG: win_64_channel_sourcesconda-forgeconda-forgelabelpython_rc
         UPLOAD_PACKAGES: 'True'
         build_platform: win-64
         build_workspace_dir: D:\bld\
