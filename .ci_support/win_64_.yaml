@@ -1,38 +1,24 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '11.0'
-MACOSX_SDK_VERSION:
-- '11.0'
 c_compiler:
-- clang
-c_compiler_version:
-- '21'
+- vs2022
 c_stdlib:
-- macosx_deployment_target
-c_stdlib_version:
-- '11.0'
+- vs
 cfitsio:
 - 4.6.4
 channel_sources:
-- conda-forge,conda-forge/label/python_rc
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- clangxx
-cxx_compiler_version:
-- '21'
+- vs2022
 expat:
 - '2'
 geos:
 - 3.14.1
-giflib:
-- '6'
 hdf4:
 - 4.2.15
 hdf5:
 - 1.14.6
 - '2'
-json_c:
-- '0.18'
 kealib:
 - '2.0'
 lerc:
@@ -42,10 +28,10 @@ libaec:
 libarchive:
 - '3.8'
 libarrow:
-- '22.0'
 - '23.0'
 - '24.0'
 - '25.0'
+- '26.0'
 libavif:
 - '1'
 libcurl:
@@ -76,8 +62,6 @@ libxml2_devel:
 - '2.15'
 lz4_c:
 - '1.10'
-macos_machine:
-- arm64-apple-darwin20.0.0
 numpy:
 - '2'
 openjpeg:
@@ -97,20 +81,20 @@ postgresql:
 proj:
 - '9.9'
 python:
+- 3.11.* *_cpython
+- 3.12.* *_cpython
+- 3.13.* *_cp313
+- 3.14.* *_cp314
+- 3.14.* *_cp314t
 - 3.15.* *_cp315
 sqlite:
 - '3'
 target_platform:
-- osx-arm64
+- win-64
 tiledb:
 - '2.30'
 xerces_c:
 - '3.3'
-zip_keys:
-- - c_compiler_version
-  - cxx_compiler_version
-- - python
-  - channel_sources
 zlib:
 - '1'
 zstd:
