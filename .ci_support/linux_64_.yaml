@@ -1,3 +1,5 @@
+DOCKER_PLATFORM:
+- linux/amd64
 c_compiler:
 - gcc
 c_compiler_version:
@@ -10,10 +12,6 @@ cfitsio:
 - 4.6.4
 channel_sources:
 - conda-forge
-- conda-forge
-- conda-forge
-- conda-forge
-- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -21,7 +19,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '15'
 docker_image:
-- quay.io/condaforge/linux-anvil-aarch64:alma10
+- quay.io/condaforge/linux-anvil-x86_64:alma10
 expat:
 - '2'
 geos:
@@ -44,10 +42,10 @@ libaec:
 libarchive:
 - '3.8'
 libarrow:
-- '22.0'
 - '23.0'
 - '24.0'
 - '25.0'
+- '26.0'
 libavif:
 - '1'
 libcurl:
@@ -102,10 +100,11 @@ python:
 - 3.13.* *_cp313
 - 3.14.* *_cp314
 - 3.14.* *_cp314t
+- 3.15.* *_cp315
 sqlite:
 - '3'
 target_platform:
-- linux-aarch64
+- linux-64
 tiledb:
 - '2.30'
 xerces_c:
@@ -113,8 +112,6 @@ xerces_c:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-- - python
-  - channel_sources
 zlib:
 - '1'
 zstd:
