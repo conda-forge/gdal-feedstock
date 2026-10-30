@@ -19,7 +19,7 @@ source:
     - kealib20.patch
 
 build:
-  number: 4
+  number: 5
 
 outputs:
   - staging:
@@ -111,9 +111,18 @@ outputs:
       run_constraints:
         - libgdal ${{ version }}.*
     tests:
-      - script:
+      - files:
+          recipe:
+            - test_data
+            - run_test.bat
+            - run_test.sh
+        script:
           content:
             - gdalinfo --help
+            - if: unix
+              then: bash -e run_test.sh
+            - if: win
+              then: call run_test.bat
 
   - package:
       name: libgdal-core-devel
