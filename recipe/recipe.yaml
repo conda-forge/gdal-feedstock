@@ -37,6 +37,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - swig
+        - rust
       host:
         - blosc
         - expat
@@ -105,6 +106,7 @@ outputs:
         - ${{ compiler('cxx') }}
         - ${{ compiler('c') }}
         - ${{ stdlib('c') }}
+        - rust
       host:
       run_exports:
         - ${{ pin_subpackage('libgdal-core', upper_bound='x.x') }}
@@ -149,6 +151,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -192,6 +195,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -235,6 +239,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -285,6 +290,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -330,6 +336,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -373,6 +380,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -416,6 +424,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -459,6 +468,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -502,6 +512,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -551,6 +562,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -594,6 +606,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -643,6 +656,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -686,6 +700,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -732,6 +747,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -775,6 +791,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -818,6 +835,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - if: not win
           then: pkg-config
         - ninja
@@ -902,6 +920,7 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
+        - rust
         - cmake
         - ninja
         - if: build_platform != target_platform
