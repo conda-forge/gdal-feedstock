@@ -51,7 +51,7 @@ mv "${MINIFORGE_HOME}"/conda-meta/history "${MINIFORGE_HOME}"/conda-meta/history
 echo > "${MINIFORGE_HOME}"/conda-meta/history
 "${MICROMAMBA_EXE}" install --yes --root-prefix "${MAMBA_ROOT_PREFIX}" --prefix "${MINIFORGE_HOME}" \
     --override-channels --channel conda-forge --strict-channel-priority \
-    pip  rattler-build conda-forge-ci-setup=4 "conda-build>=26.3"
+    pip  python=3.14 rattler-build conda-forge-ci-setup=4 "conda-build>=26.3"
 
 ( endgroup "Provisioning base env with micromamba" ) 2> /dev/null
 
