@@ -31,7 +31,7 @@ outputs:
       build:
         - cmake
         - if: not win
-          then: pkg-config >=0.21
+          then: pkgconf
         - ninja
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
@@ -150,7 +150,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -193,7 +193,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -236,7 +236,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -286,7 +286,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -331,7 +331,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -374,7 +374,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -417,7 +417,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -460,7 +460,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -503,7 +503,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -552,7 +552,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -595,7 +595,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -644,7 +644,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -687,7 +687,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -733,7 +733,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -776,7 +776,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
@@ -819,7 +819,7 @@ outputs:
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
         - if: not win
-          then: pkg-config
+          then: pkgconf
         - ninja
       host:
         - ${{ pin_subpackage('libgdal-core-devel', exact=True) }}
