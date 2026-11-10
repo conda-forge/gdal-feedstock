@@ -19,7 +19,7 @@ source:
     - kealib20.patch
 
 build:
-  number: 7
+  number: 8
 
 outputs:
   - staging:
