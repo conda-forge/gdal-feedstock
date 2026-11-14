@@ -75,7 +75,7 @@ libwebp_base:
 libxml2_devel:
 - '2.15'
 lz4_c:
-- '1.10'
+- '1.11'
 numpy:
 - '2'
 openjpeg:
