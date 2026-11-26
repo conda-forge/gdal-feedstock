@@ -17,7 +17,7 @@ cxx_compiler_version:
 expat:
 - '2'
 geos:
-- 3.15.0
+- 3.15.1
 hdf4:
 - 4.2.15
 hdf5:
